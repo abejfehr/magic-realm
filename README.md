@@ -1,2 +1,4 @@
-# magic-realm
-Magic Realm Project for COMP3004
+Magic Realm
+===========
+
+A clone of the orginal Magic Realm board game by Avalon Hill.
