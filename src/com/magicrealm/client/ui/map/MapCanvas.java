@@ -9,6 +9,9 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JComponent;
 
 import com.magicrealm.common.model.hextile.HexTile;
+import com.magicrealm.common.model.hextile.HighPass;
+import com.magicrealm.common.model.hextile.Ledges;
+import com.magicrealm.common.model.hextile.Ruins;
 
 @SuppressWarnings("serial")
 public class MapCanvas extends JComponent {
@@ -41,15 +44,11 @@ public class MapCanvas extends JComponent {
 		setOpaque(true);
 		setDoubleBuffered(true);
 		
-		// Make the hex tiles
-		for(int i=0;i<tiles.length;++i) {
-			for(int j=0;j<tiles[i].length;++j) {
-//				tiles[i][j] = new HexTile();
-			}
-		}
-		tiles[0][0] = new HexTile();
-		tiles[0][1] = new HexTile();
-		tiles[1][0] = new HexTile();
+		// Make some tiles
+		tiles[0][0] = new Ruins();
+		tiles[0][0].setAngle(240);
+		tiles[0][1] = new Ledges();
+		tiles[1][0] = new HighPass();
 	}
  
 	@Override
