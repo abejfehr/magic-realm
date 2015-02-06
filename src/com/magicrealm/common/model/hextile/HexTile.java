@@ -13,10 +13,11 @@ import com.magicrealm.common.Config;
 public class HexTile {
 
 	/*
-	 * Private members
+	 * Private/protected members
 	 */
 	private int angle = 0;	
 	protected String imageFilename = "caves1.gif";
+	protected boolean enchanted = false;
 	
 	/*
 	 * Paints the contents of the tile to the graphics object passed in
@@ -40,5 +41,9 @@ public class HexTile {
 
 	public void setAngle(int angle) {
 		this.angle = angle;
+	}
+	
+	public boolean isEnchanted() {
+		return enchanted;
 	}
 }
