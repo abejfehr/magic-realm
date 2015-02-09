@@ -19,8 +19,8 @@ public class MapCanvas extends JComponent {
 	/*
 	 * Constants
 	 */
-	private final int MAX_WIDTH = 5;
-	private final int MAX_HEIGHT = 5;
+	private final int MAX_WIDTH = 6;
+	private final int MAX_HEIGHT = 6;
 	
 	/*
 	 * Publicly accessible properties 
@@ -43,14 +43,13 @@ public class MapCanvas extends JComponent {
 		scale = 1;
 		setOpaque(true);
 		setDoubleBuffered(true);
-		
-		// Make some tiles
-		tiles[0][0] = new Ruins();
-		tiles[0][0].setAngle(240);
-		tiles[0][1] = new Ledges();
-		tiles[1][0] = new HighPass();
 	}
  
+	public MapCanvas(HexTile[][] tiles) {
+		this();
+		this.tiles = tiles;
+	}
+
 	@Override
 	public void paint(Graphics g) {
  
