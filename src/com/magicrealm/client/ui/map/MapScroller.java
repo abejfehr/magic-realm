@@ -1,44 +1,47 @@
 package com.magicrealm.client.ui.map;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
  
-public class MapScroller {
+public class MapScroller extends JPanel {
  
+	// TODO: make setters and getters for these
 	private static double width = 500;
 	private static double height = 500;
 	
 	private static MapCanvas canvas;
 		
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
+	public MapScroller() {
 		canvas = new MapCanvas();
 		TranslateHandler translater = new TranslateHandler();
 		canvas.addMouseListener(translater);
 		canvas.addMouseMotionListener(translater);
 		canvas.addMouseWheelListener(new ScaleHandler());
-		frame.setLayout(new BorderLayout());
-		frame.getContentPane().add(canvas, BorderLayout.CENTER);
-		frame.setSize((int)width, (int)height);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setVisible(true);
+		setLayout(new BorderLayout());
+		add(canvas, BorderLayout.CENTER);
+		setSize((int)width, (int)height);
+		setVisible(true);
 	}
  
+	public MapScroller(MapCanvas canvas) {
+		this.canvas = canvas;
+		TranslateHandler translater = new TranslateHandler();
+		canvas.addMouseListener(translater);
+		canvas.addMouseMotionListener(translater);
+		canvas.addMouseWheelListener(new ScaleHandler());
+		setLayout(new BorderLayout());
+		add(canvas, BorderLayout.CENTER);
+		setSize((int)width, (int)height);
+		setVisible(true);
+	}
+
 	private static class TranslateHandler implements MouseListener,
 			MouseMotionListener {
 		private int lastOffsetX;
