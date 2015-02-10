@@ -20,6 +20,17 @@ public class HexTile {
 	protected boolean enchanted = false;
 	
 	/*
+	 * Constructors
+	 */
+	public HexTile() {
+		
+	}
+	
+	public HexTile(int rotationStep) {
+		angle = rotationStep * 60;
+	}
+	
+	/*
 	 * Paints the contents of the tile to the graphics object passed in
 	 */
 	public void paint(Graphics g, int x, int y) {

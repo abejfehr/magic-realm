@@ -15,6 +15,7 @@ public class MapScroller extends JPanel {
 	// TODO: make setters and getters for these
 	private static double width = 500;
 	private static double height = 500;
+	private static double scale = 0.3;
 	
 	private static MapCanvas canvas;
 		
@@ -27,6 +28,13 @@ public class MapScroller extends JPanel {
 		setLayout(new BorderLayout());
 		add(canvas, BorderLayout.CENTER);
 		setSize((int)width, (int)height);
+
+		// Set the initial position and scale
+		canvas.scale = scale;
+		canvas.translateX = -(width / 2 - canvas.getWidth() * scale / 2) + width / 2;
+		canvas.translateY = -(height / 2 + canvas.getHeight() * scale / 2);
+
+		// Show the map
 		setVisible(true);
 	}
  
@@ -39,6 +47,14 @@ public class MapScroller extends JPanel {
 		setLayout(new BorderLayout());
 		add(canvas, BorderLayout.CENTER);
 		setSize((int)width, (int)height);
+
+		// Set the initial position and scale
+		canvas.scale = scale;
+		// TODO: Change this constant to reflect the actual center
+		canvas.translateX = -(canvas.getWidth() * scale / 2) - 50;
+		canvas.translateY = -(height / 2 + canvas.getHeight() * scale / 2);
+
+		// Show the map
 		setVisible(true);
 	}
 
@@ -93,7 +109,7 @@ public class MapScroller extends JPanel {
 
 				// make it a reasonable amount of zoom
 				// .1 gives a nice slow transition
-				canvas.scale += (.1 * e.getWheelRotation());
+				canvas.scale += (.01 * e.getWheelRotation());
 				// don't cross negative threshold.
 				// also, setting scale to 0 has bad effects
 				canvas.scale = Math.max(0.1, canvas.scale);
@@ -106,7 +122,6 @@ public class MapScroller extends JPanel {
 	            // reverse the translation caused by scaling
 	            canvas.translateX += mouse_x - newx;
 	            canvas.translateY += mouse_y - newy;
-
 								
 				canvas.repaint();
 			}
