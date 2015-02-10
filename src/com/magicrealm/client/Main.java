@@ -30,9 +30,9 @@ public class Main {
 	public static void main(String[] args) {
 		JFrame window = new JFrame();
 		window.setSize(500, 500);
-		
+		/* This is to test the map */
 		HexTile[][] mapTiles = new HexTile[6][6];
-		mapTiles[0][2] = new Cliff();
+		mapTiles[0][2] = new Cliff(1);
 		mapTiles[0][3] = new EvilValley();
 		mapTiles[0][4] = new HighPass();
 		mapTiles[1][2] = new Ledges();
@@ -55,7 +55,7 @@ public class Main {
 		MapCanvas canvas = new MapCanvas(mapTiles);
 		MapScroller mapScroller = new MapScroller(canvas);
 		window.getContentPane().add(mapScroller);
-		
+
 		window.setVisible(true);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
