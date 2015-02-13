@@ -14,7 +14,7 @@ public class Main {
 
 		//window.add(background);
 		window.add(screen);
-			
+		
 		// Build and show the window
 		window.pack();
 		window.setVisible(true);
