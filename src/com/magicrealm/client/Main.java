@@ -1,24 +1,42 @@
 package com.magicrealm.client;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import com.magicrealm.client.ui.screen.MainMenu;
+import com.magicrealm.client.controller.ScreenController;
+import com.magicrealm.client.ui.screen.Screen;
 
-public class Main {
-	public static void main(String[] args) {
-		// Create the window
-		JFrame window = new JFrame();
-						
-		JPanel screen = new MainMenu();
+@SuppressWarnings("serial")
+public class Main extends JFrame implements Observer {
 
+	ScreenController scrController;
+	
+	Main() {
+		// Start the screen controller
+		scrController = new ScreenController();
+		
 		//window.add(background);
-		window.add(screen);
+		add(scrController.getScreen());		
 		
 		// Build and show the window
-		window.pack();
-		window.setVisible(true);
-	    window.setExtendedState(window.getExtendedState() | JFrame.MAXIMIZED_BOTH);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		pack();
+		setVisible(true);
+	    setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args) {
+		Main program = new Main();
+		program.scrController.addObserver(program);
+	}
+
+	@Override
+	public void update(Observable o, Object screen) {
+		getContentPane().removeAll();
+		add((Screen)screen);
+		validate();
+		repaint();
 	}
 }

@@ -12,13 +12,12 @@ import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
 
 @SuppressWarnings("serial")
-public class MainMenu extends JPanel {
+public class MainMenu extends Screen {
 	
 	public MainMenu() {
 		setLayout(new BorderLayout());
@@ -58,6 +57,11 @@ public class MainMenu extends JPanel {
 		JButton createGameButton = new JButton("Create Game");
 		createGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		createGameButton.setFont(font);
+		createGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				scrController.show(Game.class);
+			}
+		});
 		buttonBox.add(createGameButton);
 	
 		// Join Game button
