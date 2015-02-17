@@ -1,25 +1,29 @@
 package com.magicrealm.common;
 
 public class VictoryCondition {
-	/*
-	 * Victory Points to win Game
+	
+	/*/
+	 * List of Functions
+	 *-checkForVictory(int,int,int,int,int) takes in 5 ints to compare against needed values to win 
+	 *-printVictoryCondition() returns string containing needed victory points to win (mostly for testing)
 	 */
-	int treasurePoints, famePoints, notorietyPoints, goldPoints, spellPoints;
+	
+	
+	/*
+	 * Parameters
+	 */
+	private int treasurePoints, famePoints, notorietyPoints, goldPoints, spellPoints;
 	
 	/*
 	 * Constructor
 	 * 0-5 Victory points for each victory category, 5 in total
 	 */
-	public VictoryCondition(int treasureVictory, int fameVictory, int notorietyVictory ,int goldVictory, int spellVictory){		
-		if (treasureVictory + fameVictory + notorietyVictory + goldVictory + spellVictory == 5){
-			treasurePoints  = treasureVictory;
-			famePoints      = 10*fameVictory;
-			notorietyPoints = 20*notorietyVictory;
-			goldPoints      = 30*goldVictory;
-			spellPoints     = 2*spellVictory;
-		} else {
-			//throw some error reselect victory points
-		}
+	public VictoryCondition(int treasureVictory, int fameVictory, int notorietyVictory ,int goldVictory, int spellVictory){			
+		treasurePoints  = treasureVictory;
+		famePoints      = 10*fameVictory;
+		notorietyPoints = 20*notorietyVictory;
+		goldPoints      = 30*goldVictory;
+		spellPoints     = 2*spellVictory;
 	}
 	
 	public boolean checkForVictory(int treasure, int fame, int notoriety,int gold, int spell){
@@ -30,5 +34,10 @@ public class VictoryCondition {
 			return false;
 		}
 		
+	}
+	
+	public String printVictoryCondition(){
+		return ("This player needs " + treasurePoints + " Treasure, " + famePoints + " fame points, " + notorietyPoints + 
+				" notoriety points, " + goldPoints + " gold points and, " + spellPoints + " spell points to win the Game.");
 	}
 }
