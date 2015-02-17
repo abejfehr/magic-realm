@@ -4,7 +4,7 @@ public class Weapon {
 
 	//attack, length, price
 	
-	// Players can have only one active Weapon at a time 
+	//Controller:  Players can have only one active Weapon at a time 
 	
 	/* Class Variables */
 	protected String attackType;
