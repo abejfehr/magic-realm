@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class Staff {
+public class Staff extends Weapon {
 
 	public Staff() {
-		// TODO Auto-generated constructor stub
+		super("Striking", 9, 1);
+		imageFilename = "staff.gif";
 	}
 
 }

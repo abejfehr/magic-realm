@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class ThrustingSword {
+public class ThrustingSword extends Weapon {
 
 	public ThrustingSword() {
-		// TODO Auto-generated constructor stub
+		super("Striking", 4, 6);
+		imageFilename = "thrusting_sword.gif";
 	}
 
 }
