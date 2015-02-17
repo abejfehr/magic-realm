@@ -1,9 +1,11 @@
 package com.magicrealm.common.weapon;
 
-public class Axe {
 
-	public Axe() {
-		// TODO Auto-generated constructor stub
+public class Axe extends Weapon {
+
+	public Axe(String name){
+		super("Missile", 16, 8);
+		imageFilename = "axe.gif";
 	}
 
 }

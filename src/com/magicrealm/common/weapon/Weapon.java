@@ -10,10 +10,11 @@ public class Weapon {
 	protected String attackType;
 	protected int length; 
 	protected int price;
-	protected boolean isActive; 
+	protected boolean isActive;
+	protected String imageFilename; 
 	
 	/* Constructor */ 
-	public Weapon(String attackType, int length, int price, boolean isActive) {
+	public Weapon(String attackType, int length, int price) {
 		this.attackType = attackType;
 		this.length = length;
 		this.price = price;
