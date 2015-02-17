@@ -2,7 +2,7 @@ package com.magicrealm.common;
 
 public class BlackKnight extends Character{
 	public BlackKnight(String name){
-		super(Vulnerability.MEDIUM, 40,name);
+		super(Vulnerability.MEDIUM, name);
 		this.setStartingPoint();
 	} 
 	

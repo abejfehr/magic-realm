@@ -23,11 +23,11 @@ public abstract class Character {
     /*
      * Constructors
      */
-    public Character(int vulnerability, int gold, String name){
+    public Character(int vulnerability, String name){
     	this.vulnerability  = new Vulnerability(vulnerability);
     	this.startingPoint  = new Dwellings(Dwellings.NOT_SET);
     	this.name           = name;
-    	this.gold           = gold;
+    	this.gold           = 10;
     	this.treasureCount  = 0;
     	this.notorietyCount = 0;
     	this.fameCount      = 0;
@@ -48,5 +48,10 @@ public abstract class Character {
     	startingPoint.dwelling = startingDwelling;
     	
     }
+    
+    protected void setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
+    	victoryCondition = new VictoryCondition(treasure, fame, notoriety, gold, spell);   	
+    }
+    
             
 }

@@ -2,7 +2,7 @@ package com.magicrealm.common;
 
 public class Amazon extends Character{
 	public Amazon(String name){
-		super(Vulnerability.MEDIUM, 35, name);
+		super(Vulnerability.MEDIUM, name);
 		this.setStartingPoint();
 	}
 	

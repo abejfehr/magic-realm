@@ -2,7 +2,7 @@ package com.magicrealm.common;
 
 public class Elf extends Character{
 	public Elf(String name){
-		super(Vulnerability.LIGHT, 16, name);
+		super(Vulnerability.LIGHT, name);
 		this.setStartingPoint();
 	}
 	

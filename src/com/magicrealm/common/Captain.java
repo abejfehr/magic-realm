@@ -2,7 +2,7 @@ package com.magicrealm.common;
 
 public class Captain extends Character{
 	public Captain(String name){
-		super(Vulnerability.MEDIUM, 35,name);
+		super(Vulnerability.MEDIUM, name);
 		//Needs to set starting point between INN, HOUSE, GUARD_HOUSE
 	}
 	
