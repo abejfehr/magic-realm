@@ -7,37 +7,16 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JComponent;
  
-public class MapScroller extends JPanel {
+@SuppressWarnings("serial")
+public class MapScroller extends JComponent {
  
 	// TODO: make setters and getters for these
-	private static double width = 500;
-	private static double height = 500;
-	private static double scale = 0.3;
+	private static double scale = 0.5;
 	
 	private static MapCanvas canvas;
-		
-	public MapScroller() {
-		canvas = new MapCanvas();
-		TranslateHandler translater = new TranslateHandler();
-		canvas.addMouseListener(translater);
-		canvas.addMouseMotionListener(translater);
-		canvas.addMouseWheelListener(new ScaleHandler());
-		setLayout(new BorderLayout());
-		add(canvas, BorderLayout.CENTER);
-		setSize((int)width, (int)height);
-
-		// Set the initial position and scale
-		canvas.scale = scale;
-		canvas.translateX = -(width / 2 - canvas.getWidth() * scale / 2) + width / 2;
-		canvas.translateY = -(height / 2 + canvas.getHeight() * scale / 2);
-
-		// Show the map
-		setVisible(true);
-	}
- 
+		 
 	public MapScroller(MapCanvas canvas) {
 		this.canvas = canvas;
 		TranslateHandler translater = new TranslateHandler();
@@ -46,16 +25,22 @@ public class MapScroller extends JPanel {
 		canvas.addMouseWheelListener(new ScaleHandler());
 		setLayout(new BorderLayout());
 		add(canvas, BorderLayout.CENTER);
-		setSize((int)width, (int)height);
-
-		// Set the initial position and scale
-		canvas.scale = scale;
-		// TODO: Change this constant to reflect the actual center
-		canvas.translateX = -(canvas.getWidth() * scale / 2) - 50;
-		canvas.translateY = -(height / 2 + canvas.getHeight() * scale / 2);
 
 		// Show the map
 		setVisible(true);
+
+		// Set the initial position and scale
+		canvas.scale = scale;
+
+		System.out.println(getHeight());
+		System.out.println(getWidth());
+		System.out.println(canvas.getHeight());
+		System.out.println(canvas.getWidth());
+
+		canvas.translateX = 50;
+		canvas.translateY = -200;
+//		canvas.translateX = -(this.getWidth() / 2 + canvas.getWidth() * scale / 2);
+//		canvas.translateY = -(this.getHeight() / 2 + canvas.getHeight() * scale / 2);
 	}
 
 	private static class TranslateHandler implements MouseListener,
@@ -64,11 +49,12 @@ public class MapScroller extends JPanel {
 		private int lastOffsetY;
  
 		public void mousePressed(MouseEvent e) {
+
 			// capture starting point
 			lastOffsetX = e.getX();
 			lastOffsetY = e.getY();
 		}
- 
+		
 		public void mouseDragged(MouseEvent e) {
 			
 			// new x and y are defined by current mouse location subtracted
@@ -102,8 +88,8 @@ public class MapScroller extends JPanel {
 	            // Get the position of the mouse with respect to 
 	            //  the origin of the map (or image or whatever).
 	            // Let us call these the map coordinates
-	            double mouse_x = width / 2  - canvas.getX();
-	            double mouse_y = height / 2 - canvas.getY();
+	            double mouse_x = canvas.getWidth() / 2  - canvas.getX();
+	            double mouse_y = canvas.getHeight() / 2 - canvas.getY();
 
 	            double oldscale = canvas.scale;
 

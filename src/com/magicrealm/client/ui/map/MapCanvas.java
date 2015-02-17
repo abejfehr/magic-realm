@@ -6,15 +6,12 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 
-import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 import com.magicrealm.common.model.hextile.HexTile;
-import com.magicrealm.common.model.hextile.HighPass;
-import com.magicrealm.common.model.hextile.Ledges;
-import com.magicrealm.common.model.hextile.Ruins;
 
 @SuppressWarnings("serial")
-public class MapCanvas extends JComponent {
+public class MapCanvas extends JPanel {
 	
 	/*
 	 * Constants
@@ -33,21 +30,17 @@ public class MapCanvas extends JComponent {
 	 * Privately accessible properties
 	 */
 	private HexTile[][] tiles = new HexTile[MAX_WIDTH][MAX_HEIGHT];
- 
+  
 	/*
 	 * Constructors
 	 */
-	public MapCanvas() {
+	public MapCanvas(Map map) {
 		translateX = 0;
 		translateY = 0;
 		scale = 1;
 		setOpaque(true);
 		setDoubleBuffered(true);
-	}
- 
-	public MapCanvas(HexTile[][] tiles) {
-		this();
-		this.tiles = tiles;
+		this.tiles = map.getTiles();
 	}
 
 	@Override
