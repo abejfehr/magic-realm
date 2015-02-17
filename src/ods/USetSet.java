@@ -46,7 +46,7 @@ public class USetSet<T> extends AbstractSet<T> {
 		cs.add(new HashSet<Integer>());
 		cs.add(new USetSet<Integer>(new LinearHashTable<Integer>(-1)));
 		cs.add(new USetSet<Integer>(new ChainedHashTable<Integer>()));
-		Testum.setSpeedTests(cs, n);
+		//Testum.setSpeedTests(cs, n);
 	}
 
 }
