@@ -1,10 +1,12 @@
 package com.magicrealm.common;
 
+import com.magicrealm.common.weapon.*;
+
 public abstract class Character {
 	/*
 	 * Parameters
 	 */
-	//Weapon
+	Weapon weapon;
 	//Armour
 	//Combat chits
 	//List of active chits

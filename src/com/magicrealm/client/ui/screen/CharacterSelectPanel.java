@@ -6,14 +6,11 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.*;
 
-import org.junit.Assert;
-
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
 
 import java.awt.*;
 import java.io.IOException;
-import java.beans.Introspector;
 
 
 public class CharacterSelectPanel extends JPanel{
@@ -23,7 +20,6 @@ public class CharacterSelectPanel extends JPanel{
 	//private Box         buttonBox;
 	private JPanel      imagePanel = new JPanel();
 	private JScrollPane scrollPane;
-	private JButton     selectButton = new JButton("Select Character");
 	
 	
 	//image and label to change on different character clicks
@@ -64,7 +60,6 @@ public class CharacterSelectPanel extends JPanel{
     	updateCharImage("amazon.jpg");
     	imagePanel.setLayout(new BorderLayout());
     	imagePanel.add(character, BorderLayout.CENTER);
-    	imagePanel.add(selectButton, BorderLayout.SOUTH);
     	imagePanel.setBackground(Color.LIGHT_GRAY);
     	this.add(imagePanel, BorderLayout.EAST);
     	this.setBackground(Color.LIGHT_GRAY);
