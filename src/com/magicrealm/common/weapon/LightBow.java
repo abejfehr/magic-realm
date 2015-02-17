@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class LightBow {
+public class LightBow extends Weapon {
 
 	public LightBow() {
-		// TODO Auto-generated constructor stub
+		super("Missile", 14, 6);
+		imageFilename = "light_bow.gif";
 	}
 
 }

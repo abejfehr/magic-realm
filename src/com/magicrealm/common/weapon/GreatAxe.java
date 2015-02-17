@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class GreatAxe {
+public class GreatAxe extends Weapon {
 
-	public GreatAxe() {
-		// TODO Auto-generated constructor stub
+	public GreatAxe(){
+		super("Missile", 12, 10);
+		imageFilename = "great_axe.gif";
 	}
 
 }

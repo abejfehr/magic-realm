@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class MorningStar {
+public class MorningStar extends Weapon {
 
 	public MorningStar() {
-		// TODO Auto-generated constructor stub
+		super("Striking", 6, 8);
+		imageFilename = "morning_star.gif";
 	}
 
 }

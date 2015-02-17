@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class Mace {
+public class Mace extends Weapon {
 
 	public Mace() {
-		// TODO Auto-generated constructor stub
+		super("Striking", 1, 6);
+		imageFilename = "mace.gif";
 	}
 
 }

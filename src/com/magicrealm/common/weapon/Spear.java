@@ -1,9 +1,10 @@
 package com.magicrealm.common.weapon;
 
-public class Spear {
+public class Spear extends Weapon {
 
 	public Spear() {
-		// TODO Auto-generated constructor stub
+		super("Striking", 3, 25);
+		imageFilename = "spear.gif";
 	}
 
 }
