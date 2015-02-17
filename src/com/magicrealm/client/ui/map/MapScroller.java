@@ -32,11 +32,6 @@ public class MapScroller extends JComponent {
 		// Set the initial position and scale
 		canvas.scale = scale;
 
-		System.out.println(getHeight());
-		System.out.println(getWidth());
-		System.out.println(canvas.getHeight());
-		System.out.println(canvas.getWidth());
-
 		canvas.translateX = 50;
 		canvas.translateY = -200;
 //		canvas.translateX = -(this.getWidth() / 2 + canvas.getWidth() * scale / 2);

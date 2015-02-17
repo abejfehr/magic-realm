@@ -24,34 +24,51 @@ public abstract class HexTile {
 	protected String code = null;
 	protected boolean enchanted = false;
 	protected ArrayStack<PathNode> pathNodes = new ArrayStack<PathNode>(PathNode.class);
+	protected ArrayStack<PathNode> enchantedPathNodes = new ArrayStack<PathNode>(PathNode.class);
+	protected BufferedImage tileImage = null;
+
+	private double angleInRadians = 0;
+	private double locationX, locationY;
+	private AffineTransformOp op = null;
+	private AffineTransform tx;
+	private BufferedImage filteredImage = null;
 	
 	/*
 	 * Constructors
 	 */
-	public HexTile() { }
-	
-	public HexTile(int rotationStep) { angle = rotationStep * 60; }
+	public HexTile(int rotationStep, String filename) {
+
+		imageFilename = filename;
+		angle = rotationStep * 60;
+		try {
+			tileImage = ImageIO.read(getClass().getResource(Config.TILE_IMAGE_LOCATION + imageFilename));
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, "The tile could not be drawn.");
+		}
+		
+		// Calculate the rotation of the tile to store for drawing
+		angleInRadians = Math.toRadians(angle);
+		locationX = tileImage.getWidth() / 2;
+		locationY = tileImage.getHeight() / 2;
+		tx = AffineTransform.getRotateInstance(angleInRadians, locationX, locationY);	
+		op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+		filteredImage = op.filter(tileImage, null);
+	}
 	
 	/*
 	 * Paints the contents of the tile to the graphics object passed in
 	 */
 	public void paint(Graphics g, int x, int y) {
+
 		// Draw a single tile
-		BufferedImage img = null;
-		try {
-			img = ImageIO.read(getClass().getResource(Config.TILE_IMAGE_LOCATION + imageFilename));
-		} catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "The tile could not be drawn.");
-		}
-		double rotationRequired = Math.toRadians(angle);
-		double locationX = img.getWidth() / 2;
-		double locationY = img.getHeight() / 2;
-		AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-		AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		
-		g.drawImage(op.filter(img, null), x, y, null);
+		g.drawImage(filteredImage, x, y, null);
 	}
 
+	
+	
+	/*
+	 * Getters and setters
+	 */
 	public void setAngle(int angle) { this.angle = angle; }
 	
 	public boolean isEnchanted() { return enchanted; }
@@ -61,7 +78,7 @@ public abstract class HexTile {
 	public Object getCode() { return code; }
 
 	public Clearing getClearing(int oClearingNumber) {
-		for(PathNode p: pathNodes) {
+		for(PathNode p: (enchanted ? enchantedPathNodes : pathNodes)) {
 			if(p instanceof Clearing) {
 				if(((Clearing)p).getNumber() == oClearingNumber) {
 					return ((Clearing) p);
@@ -71,5 +88,7 @@ public abstract class HexTile {
 		return null;
 	}
 
-	public ArrayStack<PathNode> getClearings() { return pathNodes; }
+	public ArrayStack<PathNode> getClearings() { return (enchanted ? enchantedPathNodes : pathNodes); }
+
+	public int getAngle() { return angle; }
 }

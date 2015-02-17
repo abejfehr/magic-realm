@@ -8,16 +8,13 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JPanel;
 
+import ods.ArrayStack;
+
+import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.model.hextile.HexTile;
 
 @SuppressWarnings("serial")
 public class MapCanvas extends JPanel {
-	
-	/*
-	 * Constants
-	 */
-	private final int MAX_WIDTH = 6;
-	private final int MAX_HEIGHT = 6;
 	
 	/*
 	 * Publicly accessible properties 
@@ -29,8 +26,8 @@ public class MapCanvas extends JPanel {
 	/*
 	 * Privately accessible properties
 	 */
-	private HexTile[][] tiles = new HexTile[MAX_WIDTH][MAX_HEIGHT];
-  
+	private Map map;
+	
 	/*
 	 * Constructors
 	 */
@@ -40,7 +37,7 @@ public class MapCanvas extends JPanel {
 		scale = 1;
 		setOpaque(true);
 		setDoubleBuffered(true);
-		this.tiles = map.getTiles();
+		this.map = map;
 	}
 
 	@Override
@@ -60,22 +57,40 @@ public class MapCanvas extends JPanel {
 		ourGraphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
 				RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-		// Go through the tiles and draw each one that exists
+		/*
+		 * Paint the tiles
+		 */
+		HexTile[][] tiles = map.getTiles();
 		for(int i=0;i<tiles.length;++i) {
 			for(int j=0;j<tiles[i].length;++j) {
 				// Check to make sure the tile exists
 				if(tiles[i][j] != null) {
-					tiles[i][j].paint(ourGraphics,i*497-(497/4)*i,j*431+(431/2)*i);
+					tiles[i][j].paint(ourGraphics, Map.getTilePositionX(i, j), Map.getTilePositionY(i, j) );
 				}
 			}
+		}
+		
+		
+		/*
+		 * Paint the dwellings
+		 */
+		for(Dwellings dwelling : map.getDwellings()) {
+			// Get the location of the tile that it's on
+						
+			dwelling.paint(ourGraphics,
+					map.getTilePositionX(dwelling.getLocation()), 
+					map.getTilePositionY(dwelling.getLocation()),
+					map.getClearing(dwelling.getLocation()).getOffsetX(),
+					map.getClearing(dwelling.getLocation()).getOffsetY(),
+					map.getTileAngle(dwelling.getLocation()));
 		}
 	}
 	
 	public void setMapTiles(HexTile[][] tiles) {
-		this.tiles = tiles;
+		map.setTiles(tiles);
 	}
 
 	public HexTile[][] getMapTiles() {
-		return this.tiles;
+		return map.getTiles();
 	}
 }

@@ -1,5 +1,6 @@
 package com.magicrealm.common;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -17,16 +18,17 @@ public class Dwellings {
 	/*
 	 * Constants determining value for each dwelling
 	 */	
-	static final int NOT_SET        = 0;
-	static final int INN            = 1;
-	static final int CHAPEL	        = 2;
-	static final int SMALL_CAMPFIRE = 3;
-	static final int LARGE_CAMPFIRE = 4;
-	static final int HUT            = 5;
-	static final int GUARD_HOUSE    = 6;
-	static final int HOUSE          = 7;
-	static final int TWO_GHOSTS     = 8;
+	public static final int NOT_SET        = 0;
+	public static final int INN            = 1;
+	public static final int CHAPEL	        = 2;
+	public static final int SMALL_CAMPFIRE = 3;
+	public static final int LARGE_CAMPFIRE = 4;
+	public static final int HUT            = 5;
+	public static final int GUARD_HOUSE    = 6;
+	public static final int HOUSE          = 7;
+	public static final int TWO_GHOSTS     = 8;
 	
+	private String location = null;
 	
 	/*
 	 * Parameters
@@ -86,5 +88,27 @@ public class Dwellings {
 	 * returns dwellingImage to be displayed
 	 */
 	public BufferedImage getImage(){ return dwellingImage; } 
+	
+	public String getLocation() { return location; }
+	public void setLocation(String location) { this.location = location; }
 
+	public void paint(Graphics g, int x, int y, int oX, int oY, int angle) {
+		
+		// The angle, in radians
+		double rotation = Math.toRadians(angle);
+		
+		// Get the center of the icon
+		double dwellingCenterX = dwellingImage.getWidth() / 2;
+		double dwellingCenterY = dwellingImage.getHeight() / 2;
+				
+		int centerX = Config.HEX_TILE_IMAGE_WIDTH / 2;
+		int centerY = Config.HEX_TILE_IMAGE_HEIGHT / 2;
+
+		double newX = x + centerX + (oX-centerX)*Math.cos(rotation) - (oY-centerY)*Math.sin(rotation);
+		double newY = y + centerY + (oX-centerX)*Math.sin(rotation) + (oY-centerY)*Math.cos(rotation);
+		
+		// Draw the image
+		g.drawImage(dwellingImage, (int)(newX - dwellingCenterX), (int)(newY - dwellingCenterY), null);
+		
+	}
 }
