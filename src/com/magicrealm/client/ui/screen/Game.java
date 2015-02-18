@@ -32,7 +32,5 @@ public class Game extends Screen {
 		MapScroller mapScroller = new MapScroller(canvas);
 		
 		add(mapScroller, BorderLayout.CENTER);
-		
-		// Somehow, this is the place where the character dialog box should show up.
 	}
 }

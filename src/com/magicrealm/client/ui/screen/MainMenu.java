@@ -6,15 +6,19 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
+import com.magicrealm.common.NetworkController;
+import com.magicrealm.common.config.Errors;
 
 @SuppressWarnings("serial")
 public class MainMenu extends Screen {
@@ -59,7 +63,20 @@ public class MainMenu extends Screen {
 		createGameButton.setFont(font);
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scrController.show(Game.class);
+				
+				try {
+					NetworkController.StartServer(Config.GAME_PORT);
+					// Connects to localhost, since we started our own server
+					NetworkController.StartClient("127.0.0.1", Config.GAME_PORT); 
+					// We're connected! Yay.
+
+					// Show the game
+					scrController.show(Game.class);
+					
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(null, Errors.ERROR_STARTING_SERVER);
+				}
+				
 			}
 		});
 		buttonBox.add(createGameButton);
@@ -68,6 +85,19 @@ public class MainMenu extends Screen {
 		JButton joinGameButton = new JButton("Join Game");
 		joinGameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		joinGameButton.setFont(font);
+		joinGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				String ipAddress = JOptionPane.showInputDialog("Enter the IP Address of the host", Config.DEFAULT_IP_ADDRESS);
+				
+				try {
+					NetworkController.StartClient(ipAddress, Config.GAME_PORT);
+				} catch (IOException ex) {
+					JOptionPane.showMessageDialog(null, Errors.ERROR_CONNECTING_TO_HOST);
+				}
+				
+			}
+		});
 		buttonBox.add(joinGameButton);
 		
 		// Exit button
