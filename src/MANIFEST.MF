@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.magicrealm.client.Main
+Class-Path: org.eclipse.jdt.junit.JUNIT_CONTAINER/4 libs/kryo-2.23.1-
+ SNAPSHOT-all-debug.jar libs/jsonbeans-0.5.jar
