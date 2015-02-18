@@ -48,7 +48,7 @@ public class MainMenu extends Screen {
 	    JLabel logo = null;
 	    BufferedImage imgLogo = null;		
 	    try {
-			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo.png"));
+			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2glow.png"));
 		} catch(Exception e) { } // Should fail silently if images aren't available
 		logo = new JLabel(new ImageIcon(imgLogo));
 		logo.setAlignmentX(CENTER_ALIGNMENT);
@@ -92,6 +92,8 @@ public class MainMenu extends Screen {
 				
 				try {
 					NetworkController.StartClient(ipAddress, Config.GAME_PORT);
+					
+					JOptionPane.showMessageDialog(null, "Successfully connected to host!");
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(null, Errors.ERROR_CONNECTING_TO_HOST);
 				}

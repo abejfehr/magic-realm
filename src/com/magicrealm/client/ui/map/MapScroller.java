@@ -17,8 +17,8 @@ public class MapScroller extends JComponent {
 	
 	private static MapCanvas canvas;
 		 
-	public MapScroller(MapCanvas canvas) {
-		this.canvas = canvas;
+	public MapScroller(MapCanvas newCanvas) {
+		canvas = newCanvas;
 		TranslateHandler translater = new TranslateHandler();
 		canvas.addMouseListener(translater);
 		canvas.addMouseMotionListener(translater);

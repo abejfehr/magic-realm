@@ -41,7 +41,6 @@ public class USetSet<T> extends AbstractSet<T> {
 	}
 	
 	public static void main(String[] args) {
-		int n = 1000000;
 		Collection<Set<Integer>> cs = new ArrayList<Set<Integer>>();
 		cs.add(new HashSet<Integer>());
 		cs.add(new USetSet<Integer>(new LinearHashTable<Integer>(-1)));
