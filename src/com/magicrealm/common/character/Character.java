@@ -1,12 +1,22 @@
-package com.magicrealm.common;
+package com.magicrealm.common.character;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import com.magicrealm.client.Main;
+import com.magicrealm.common.Config;
+import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.VictoryCondition;
+import com.magicrealm.common.Vulnerability;
 import com.magicrealm.common.weapon.*;
 
 public abstract class Character {
 	/*
 	 * Parameters
 	 */
-	Weapon weapon;
+	protected Weapon weapon;
 	//Armour
 	//Combat chits
 	//List of active chits
@@ -16,8 +26,9 @@ public abstract class Character {
 	//Unfriendly
 	//Ally
 	//Enemy
+	protected BufferedImage characterChit = null;
 	protected String name;
-	protected Vulnerability vulnerability;
+	public    Vulnerability vulnerability;
     protected int treasureCount, gold, notorietyCount, fameCount, spellCount;
 	protected VictoryCondition victoryCondition;
 	protected Dwellings startingPoint;
@@ -47,13 +58,17 @@ public abstract class Character {
      * Optional Cheat set startingPoint for potential to set start any of the dwellings
      */
     public void setStartingPoint(int startingDwelling){
-    	startingPoint.dwelling = startingDwelling;
-    	
+    	startingPoint.dwelling = startingDwelling;   	
     }
     
     protected void setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
     	victoryCondition = new VictoryCondition(treasure, fame, notoriety, gold, spell);   	
     }
     
+    public void setImage(String characterChitImg){
+		try {
+			characterChit = ImageIO.read(Main.class.getResource(Config.CHARACTER_CHIT_IMAGE_LOCATION + characterChitImg));
+		} catch (IOException e) {}		
+	}
             
 }

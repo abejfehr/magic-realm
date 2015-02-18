@@ -60,6 +60,7 @@ public class MainMenu extends Screen {
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrController.show(Game.class);
+				//scrController.show(Lobby.class);
 			}
 		});
 		buttonBox.add(createGameButton);

@@ -33,7 +33,7 @@ public class Dwellings {
 	/*
 	 * Parameters
 	 */
-	int dwelling;
+	public int dwelling;
 	BufferedImage dwellingImage = null;
 	
 	public Dwellings(int dwelling){
