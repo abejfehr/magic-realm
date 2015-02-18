@@ -1,4 +1,12 @@
-package com.magicrealm.common;
+package com.magicrealm.common.character;
+
+import java.awt.Dimension;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import com.magicrealm.client.ui.screen.CharacterSelectPanel;
 
 public class CharacterTest {
 
@@ -31,6 +39,14 @@ public class CharacterTest {
 		System.out.println(player5.victoryCondition.printVictoryCondition());
 		System.out.println(player6.toString());
 		System.out.println(player6.victoryCondition.printVictoryCondition());
+		
+		JFrame testFrame = new JFrame();
+		JLabel testImage = new JLabel(new ImageIcon(player1.characterChit));
+    	testFrame.getContentPane().add(testImage);
+    	testFrame.setVisible(true);
+		testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		testFrame.setSize(new Dimension(910,650));
+		testFrame.setResizable(false);
 		// TODO Auto-generated method stub
         //FIX NULL POINTER VICTORY CONDITION ISSUE
 	}

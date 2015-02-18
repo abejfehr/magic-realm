@@ -1,5 +1,6 @@
-package com.magicrealm.common;
+package com.magicrealm.common.character;
 
+import com.magicrealm.common.Vulnerability;
 import com.magicrealm.common.weapon.ThrustingSword;
 
 public class Swordsman extends Character{
@@ -7,6 +8,7 @@ public class Swordsman extends Character{
 		super(Vulnerability.LIGHT, name);
 		this.setStartingPoint();
 		this.weapon = new ThrustingSword();
+		setImage("swordsman.png");
 	}
 	
 	@Override

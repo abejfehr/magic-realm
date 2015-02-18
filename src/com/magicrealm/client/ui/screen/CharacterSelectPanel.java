@@ -8,6 +8,8 @@ import javax.swing.event.*;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
+import com.magicrealm.common.character.*;
+import com.magicrealm.common.character.Character;
 
 import java.awt.*;
 import java.io.IOException;
@@ -21,6 +23,7 @@ public class CharacterSelectPanel extends JPanel{
 	private JPanel      imagePanel = new JPanel();
 	private JScrollPane scrollPane;
 	
+	JPanel mainPanel = new JPanel();
 	
 	//image and label to change on different character clicks
     private JLabel        character    = new JLabel();
@@ -29,7 +32,8 @@ public class CharacterSelectPanel extends JPanel{
     private String[] characters = {"Amazon","Black Knight","Captain","Dwarf","Elf","Swordsman"};
     
     public CharacterSelectPanel(){
-    	
+    	mainPanel.setSize(new Dimension(910,650));
+    	mainPanel.setOpaque(false);
     	setLayout(new BorderLayout());
     	
     	Font font = new Font("sans serif", Font.PLAIN, 20);
@@ -39,7 +43,6 @@ public class CharacterSelectPanel extends JPanel{
     	characterList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     	characterList.setLayoutOrientation(JList.VERTICAL);
     	characterList.setVisibleRowCount(-1);
-    	characterList.setBackground(Color.LIGHT_GRAY);
     	characterList.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent evt) {				
     	    	  String img = characterList.getSelectedValue().toString().toLowerCase();  	    	  
@@ -47,23 +50,25 @@ public class CharacterSelectPanel extends JPanel{
     	    	  if (characterList.getSelectedValue().toString() == "Black Knight")   	    		  
     	    		  img = "black_knight";
     	    	 
-    	    	  updateCharImage(""+img + ".jpg");	    	
-    	      }
+    	    	  updateCharImage(""+img + ".jpg");
+    	    	  System.out.println(getCharacter().toString());
+    	    }
+			
     	});
     	
     	scrollPane = new JScrollPane(characterList);   
     	scrollPane.setPreferredSize(new Dimension(150, 600));
-    	scrollPane.setBackground(Color.LIGHT_GRAY);
-    	scrollPane.setBorder(null);
-    	this.add(scrollPane, BorderLayout.WEST);
+    	scrollPane.getViewport().setOpaque(false);
+    	scrollPane.setOpaque(false);
+    	mainPanel.add(scrollPane,BorderLayout.WEST);
     		
     	updateCharImage("amazon.jpg");
     	imagePanel.setLayout(new BorderLayout());
     	imagePanel.add(character, BorderLayout.CENTER);
     	imagePanel.setBackground(Color.LIGHT_GRAY);
-    	this.add(imagePanel, BorderLayout.EAST);
-    	this.setBackground(Color.LIGHT_GRAY);
-    	this.setSize(new Dimension(910,650));
+    	mainPanel.add(imagePanel, BorderLayout.EAST);
+    	this.add(mainPanel);
+    	this.setOpaque(false);
     	    	
     }   
     public void updateCharImage(String characterJPG){
@@ -71,7 +76,34 @@ public class CharacterSelectPanel extends JPanel{
 			characterImg = ImageIO.read(Main.class.getResource(Config.CHARACTER_IMAGE_LOCATION + characterJPG));
 		} catch (IOException e) {}
 		character.setIcon(new ImageIcon(characterImg));
+		
 	}
+    
+    public Character getCharacter(){
+    	String characterSelectString = characterList.getSelectedValue().toString();
+    	Character newCharacter = null;
+    	
+    	if(characterSelectString == "Amazon"){
+    		newCharacter = new Amazon("blank1");
+    	}
+    	else if(characterSelectString == "Black Knight"){
+    		newCharacter = new BlackKnight("blank2");
+    	}
+    	else if(characterSelectString == "Captain"){
+    		newCharacter = new Captain("blank3");
+    	}
+    	else if(characterSelectString == "Dwarf"){
+    		newCharacter = new Dwarf("blank4");
+    	}
+    	else if(characterSelectString == "Elf"){
+    		newCharacter = new Elf("blank5");
+    	}
+    	else if(characterSelectString == "Swordsman"){
+    		newCharacter = new Swordsman("blank6");
+    	}
+    	
+    	return newCharacter;
+    } 
     
     public static void main(String[] args) {
     	JFrame testFrame = new JFrame();
@@ -80,9 +112,7 @@ public class CharacterSelectPanel extends JPanel{
 		testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testFrame.setSize(new Dimension(910,650));
 		testFrame.setResizable(false);
-	}
-    
-   // public Character getCharacter(){
-   // 	
-   // }
+		
+		
+	}  
 }
