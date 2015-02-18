@@ -68,11 +68,8 @@ public class AdjacencyMatrix implements Graph {
 	
 	public static void main(String[] args) {
 		for (int n = 10; n < 500; n *= 2) {			
-			Graph am = new AdjacencyMatrix(n);
-			Graph al = new AdjacencyLists(n);
 			System.out.print("Running tests on graphs of size " + n + "...");
 			System.out.flush();
-		//	Testum.graphTests(am, al);
 			System.out.println("done");
 		}
 	}
