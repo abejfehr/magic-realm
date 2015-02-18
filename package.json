@@ -1,0 +1,22 @@
+{
+  "name": "MagicRealm",
+  "version": "0.0.0",
+  "description": "A Java-based clone of the original Magic Realm board game by Avalon Hill",
+  "main": "gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abejfehr/magic-realm.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abejfehr/magic-realm/issues"
+  },
+  "homepage": "https://github.com/abejfehr/magic-realm",
+  "devDependencies": {
+    "grunt-run-java": "^0.1.1"
+  }
+}

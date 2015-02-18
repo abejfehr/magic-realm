@@ -3,6 +3,7 @@ package com.magicrealm.client.ui.map;
 import ods.ArrayStack;
 
 import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.model.Map;
 import com.magicrealm.common.model.hextile.AwfulValley;
 import com.magicrealm.common.model.hextile.BadValley;
 import com.magicrealm.common.model.hextile.Borderland;

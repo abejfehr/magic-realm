@@ -1,4 +1,4 @@
-package com.magicrealm.client.ui.map;
+package com.magicrealm.common.model;
 
 import ods.ArrayStack;
 
@@ -20,7 +20,7 @@ public class Map {
 	 */
 	public HexTile[][] getTiles() { return tiles; }
 	
-	protected void setTiles(HexTile[][] tiles) { this.tiles = tiles; }
+	public void setTiles(HexTile[][] tiles) { this.tiles = tiles; }
 
 	public boolean isPathBetween(String origin, String destination) {
 		String oTileCode = origin.substring(0, 2);
@@ -69,7 +69,6 @@ public class Map {
 	
 	public int getTilePositionX(String code) {
 		String tileCode = code.substring(0, 2);
-		int clearingNumber = Integer.parseInt(code.substring(2));
 
 		for(int i=0;i<tiles.length;++i) {
 			for(int j=0;j<tiles[i].length;++j) {
@@ -87,7 +86,6 @@ public class Map {
 	
 	public int getTilePositionY(String code) {
 		String tileCode = code.substring(0, 2);
-		int clearingNumber = Integer.parseInt(code.substring(2));
 
 		for(int i=0;i<tiles.length;++i) {
 			for(int j=0;j<tiles[i].length;++j) {
@@ -120,7 +118,6 @@ public class Map {
 
 	public int getTileAngle(String code) {
 		String tileCode = code.substring(0, 2);
-		int clearingNumber = Integer.parseInt(code.substring(2));
 
 		for(int i=0;i<tiles.length;++i) {
 			for(int j=0;j<tiles[i].length;++j) {

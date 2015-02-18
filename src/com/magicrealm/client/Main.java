@@ -7,10 +7,12 @@ import javax.swing.JFrame;
 
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.client.ui.screen.Screen;
+import com.magicrealm.server.controller.GameController;
 
 @SuppressWarnings("serial")
 public class Main extends JFrame implements Observer {
 
+	// Used to switch between screens
 	ScreenController scrController;
 	
 	Main() {

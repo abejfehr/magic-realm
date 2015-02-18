@@ -4,9 +4,9 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.magicrealm.client.ui.map.Map;
 import com.magicrealm.client.ui.map.MapCanvas;
 import com.magicrealm.client.ui.map.MapFactory;
+import com.magicrealm.common.model.Map;
 
 public class MapCanvasTest {
 
