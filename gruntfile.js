@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
-//    pkg: grunt.file.readJSON('package.json'),
     run_java: {
       options: {
         stdout: false,
@@ -13,12 +12,10 @@ module.exports = function(grunt) {
         execOptions: {
           cwd: "."
         },
-        command: "jar",
-        jarName: "build.jar",
-        jarOptions: "cfm",
-        manifestName: "MANIFEST.MF",
+        command: "jar cfm build.jar MANIFEST.MF -C bin/ .",
+        jarName: "",
+        jarOptions: "",
         dir: "",
-        files: "src/"
       }
     }
   });
