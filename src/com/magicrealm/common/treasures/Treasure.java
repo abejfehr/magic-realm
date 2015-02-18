@@ -12,10 +12,12 @@ public class Treasure {
 	Die die = new Die(); 
 	int dieNumber = die.getCurrentNumber(); 
 	
+	
 	/* Constructor */
 	public Treasure() { } 
 	
 	/* Types of treasures 
-	 * 
+	 * Substitute cards: Exchanged for treasures in it's box. When used, it's removed from the game
+	 * Chest: Only way to open is with the lost keys
 	 */
 }
