@@ -92,6 +92,8 @@ public class MainMenu extends Screen {
 				
 				try {
 					NetworkController.StartClient(ipAddress, Config.GAME_PORT);
+					
+					JOptionPane.showMessageDialog(null, "Successfully connected to host!");
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(null, Errors.ERROR_CONNECTING_TO_HOST);
 				}
