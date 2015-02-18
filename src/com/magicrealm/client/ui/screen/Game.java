@@ -6,10 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-import com.magicrealm.client.ui.map.Map;
 import com.magicrealm.client.ui.map.MapCanvas;
-import com.magicrealm.client.ui.map.MapFactory;
 import com.magicrealm.client.ui.map.MapScroller;
+import com.magicrealm.common.NetworkController;
+import com.magicrealm.common.model.Map;
+import com.magicrealm.common.packet.RequestMapPacket;
 
 @SuppressWarnings("serial")
 public class Game extends Screen {
@@ -27,10 +28,15 @@ public class Game extends Screen {
 		});
 		add(test);
 		
-		Map map = MapFactory.createIteration1Map();
+		// Request the map from the server
+		NetworkController.sendToServer(RequestMapPacket.class);
+	}
+	
+	public void drawMap(Map map) {
+		
 		MapCanvas canvas = new MapCanvas(map);
 		MapScroller mapScroller = new MapScroller(canvas);
-		
 		add(mapScroller, BorderLayout.CENTER);
+		
 	}
 }

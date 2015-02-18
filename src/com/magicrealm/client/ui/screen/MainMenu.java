@@ -19,6 +19,7 @@ import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.NetworkController;
 import com.magicrealm.common.config.Errors;
+import com.magicrealm.server.controller.GameController;
 
 @SuppressWarnings("serial")
 public class MainMenu extends Screen {
@@ -70,7 +71,10 @@ public class MainMenu extends Screen {
 					NetworkController.StartClient("127.0.0.1", Config.GAME_PORT); 
 					// We're connected! Yay.
 
-					// Show the game
+					// Create a new game
+					GameController.startNewGame();
+					
+					// Show the game screen
 					scrController.show(Game.class);
 					
 				} catch (IOException ex) {
