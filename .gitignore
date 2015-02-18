@@ -13,3 +13,6 @@ hs_err_pid*
 
 # Ignore the bin directory
 bin
+
+# Ignore all of the node_modules
+node_modules
