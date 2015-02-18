@@ -27,6 +27,7 @@ public class Die implements Serializable {
 	public int getCurrentNumber() { return number; }
 	public int getId() { return id; }
 	
+	/** Set a number if you need to for some reason **/ 
 	public void setCurrentNumber(int n) { n = number; } 
 	public void setEnabled(boolean e) { e = enabled; }
 	
