@@ -1,9 +1,20 @@
 package com.magicrealm.client.controller;
 
+import java.awt.Graphics;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.Observable;
+
+import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
+
+import apple.laf.JRSUIUtils.Images;
 
 import com.magicrealm.client.ui.screen.MainMenu;
 import com.magicrealm.client.ui.screen.Screen;
+import com.magicrealm.common.Config;
 
 /*
  * ScreenController will manage which screen is currently shown in the game.
@@ -30,9 +41,19 @@ import com.magicrealm.client.ui.screen.Screen;
  * 
  */
 public class ScreenController extends Observable {
+	
+	/*
+	 * Private members
+	 */
 	// Stores the current screen
 	private Screen screen;
+	private static HashMap<String, BufferedImage> images = new HashMap<String, BufferedImage>();
 	
+	
+	
+	/*
+	 * Constructor
+	 */
 	public ScreenController() {
 		screen = new MainMenu();
 		screen.setController(this);
@@ -54,5 +75,36 @@ public class ScreenController extends Observable {
 
 	public Screen getScreen() {
 		return screen;
+	}
+	
+	
+	
+	/*
+	 * Paint - Can be used to paint the images on the display
+	 */
+	public static void paint(Graphics g, String imagePath, int x, int y, int angle) {
+
+		// Check if the image is already stored
+		if(!images.containsKey(imagePath)) {
+			
+			BufferedImage image = null;
+			
+			try {
+				image = ImageIO.read(ScreenController.class.getResource(imagePath));
+			} catch(Exception e) { }
+			
+			// Calculate the rotation of the tile to store for drawing
+			double angleInRadians = Math.toRadians(angle);
+			int locationX = image.getWidth() / 2;
+			int locationY = image.getHeight() / 2;
+			AffineTransform tx = AffineTransform.getRotateInstance(angleInRadians, locationX, locationY);	
+			AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+			image = op.filter(image, null);
+			
+			images.put(imagePath, image);
+
+		}
+		
+		g.drawImage(images.get(imagePath), x, y, null);
 	}
 }
