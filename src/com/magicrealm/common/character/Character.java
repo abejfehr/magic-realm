@@ -52,13 +52,13 @@ public abstract class Character {
      * Default Starting Position for Most Characters, at the INN
      */
     public void setStartingPoint(){
-    	startingPoint.dwelling = Dwellings.INN;
+    	startingPoint = new Dwellings(Dwellings.INN);
     }
     /*
      * Optional Cheat set startingPoint for potential to set start any of the dwellings
      */
     public void setStartingPoint(int startingDwelling){
-    	startingPoint.dwelling = startingDwelling;   	
+    	startingPoint = new Dwellings(startingDwelling);
     }
     
     protected void setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
