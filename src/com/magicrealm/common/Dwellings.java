@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.magicrealm.client.Main;
+import com.magicrealm.client.controller.ScreenController;
 
 public class Dwellings {
 	/*
@@ -29,65 +30,48 @@ public class Dwellings {
 	public static final int TWO_GHOSTS     = 8;
 	
 	private String location = null;
+	private String imageName;
 	
 	/*
 	 * Parameters
 	 */
 	int dwelling;
-	BufferedImage dwellingImage = null;
+	
+	public Dwellings() { dwelling = HUT; } // No-arg constructor for serialization
 	
 	public Dwellings(int dwelling){
 		this.dwelling = dwelling;
 		
 		switch (dwelling){
-		case 1:
-			setImage("inn.gif");
+		case INN:
+			imageName = "inn.gif";
 			break;
-		case 2:
-			setImage("chapel.gif");
+		case CHAPEL:
+			imageName = "chapel.gif";
 			break;
-		case 3:
-			setImage("small_fire.gif");
+		case SMALL_CAMPFIRE:
+			imageName = "small_fire.gif";
 			break;
-		case 4:
-			setImage("large_fire.gif");
+		case LARGE_CAMPFIRE:
+			imageName = "large_fire.gif";
 			break;
-		case 5:
-			setImage("hut.gif");
+		case HUT:
+			imageName = "hut.gif";
 			break;
-		case 6:
-			setImage("guard.gif");
+		case GUARD_HOUSE:
+			imageName = "guard.gif";
 			break;
-		case 7:
-			setImage("house.gif");
+		case HOUSE:
+			imageName = "house.gif";
 			break;
-		case 8:
-			//setImage("");
-			//SHOULD BE GHOST IMAGE BUT CAN'T FIND IT AT THE MOMENT
-			try {
-				dwellingImage = ImageIO.read(Main.class.getResource(Config.ERROR_IMAGE_LOCATION + "missingImage.png"));
-			} catch (IOException e) {}	
+		case TWO_GHOSTS:
+			imageName = "ghost.gif";
 			break;
 		default:
-			try {
-				dwellingImage = ImageIO.read(Main.class.getResource(Config.ERROR_IMAGE_LOCATION + "missingImage.png"));
-			} catch (IOException e) {}					
+			// Display some kind of error image here
 		}
 		
 	}
-	/*
-	 * Sets dwelling image to anyone of the 7 dwellings depending on what dwelling the particular instance is
-	 */
-	public void setImage(String dwellingGIF){
-		try {
-			dwellingImage = ImageIO.read(Main.class.getResource(Config.DWELLINGS_IMAGE_LOCATION + dwellingGIF));
-		} catch (IOException e) {}		
-	}
-	
-	/*
-	 * returns dwellingImage to be displayed
-	 */
-	public BufferedImage getImage(){ return dwellingImage; } 
 	
 	public String getLocation() { return location; }
 	public void setLocation(String location) { this.location = location; }
@@ -98,8 +82,8 @@ public class Dwellings {
 		double rotation = Math.toRadians(angle);
 		
 		// Get the center of the icon
-		double dwellingCenterX = dwellingImage.getWidth() / 2;
-		double dwellingCenterY = dwellingImage.getHeight() / 2;
+		double dwellingCenterX = 100 / 2;
+		double dwellingCenterY = 100 / 2;
 				
 		int centerX = Config.HEX_TILE_IMAGE_WIDTH / 2;
 		int centerY = Config.HEX_TILE_IMAGE_HEIGHT / 2;
@@ -108,7 +92,8 @@ public class Dwellings {
 		double newY = y + centerY + (oX-centerX)*Math.sin(rotation) + (oY-centerY)*Math.cos(rotation);
 		
 		// Draw the image
-		g.drawImage(dwellingImage, (int)(newX - dwellingCenterX), (int)(newY - dwellingCenterY), null);
+		ScreenController.paint(g, Config.DWELLINGS_IMAGE_LOCATION + imageName, (int)(newX - dwellingCenterX), (int)(newY - dwellingCenterY), 0);
+		//g.drawImage(dwellingImage, (int)(newX - dwellingCenterX), (int)(newY - dwellingCenterY), null);
 		
 	}
 }
