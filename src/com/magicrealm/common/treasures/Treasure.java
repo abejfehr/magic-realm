@@ -17,7 +17,9 @@ public class Treasure {
 	public Treasure() { } 
 	
 	/* Types of treasures 
-	 * Substitute cards: Exchanged for treasures in it's box. When used, it's removed from the game
-	 * Chest: Only way to open is with the lost keys
+	 * Substitute cards (Has-a relationship): Exchanged for treasures in it's box. When used, it's removed from the game
+	 * Chest (Has-a relationship): Only way to open is with the lost keys
+	 * Mouldy Skeleton: Reveal, roll for a curse. When exchanged, player does not keep treasures 
+	 * Remains of thief: Reveal, roll for a curse. Keep treasures, add 20 gold. 
 	 */
 }
