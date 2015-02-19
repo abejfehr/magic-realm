@@ -1,6 +1,8 @@
 package com.magicrealm.common;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
@@ -17,8 +19,9 @@ public class NetworkController {
 	/*
 	 * Private members
 	 */
-	private static Server server;	
+	private static Server server;
 	private static Client client;
+	private static HashMap<Integer, ArrayList<NetworkObserver>> subscribers = null;
 	
 	
 	
@@ -48,9 +51,7 @@ public class NetworkController {
 	            		MapPacket mp = new MapPacket(GameController.getMap());
 	            		
 	            		server.sendToAllTCP(mp);
-	            		
-	            		//server.sendToAllTCP(new LindenWoods(0));
-	            		
+	            			            		
 	            		System.out.println("Sending a map to all connected clients");
 	            	}
 	            	
@@ -80,6 +81,9 @@ public class NetworkController {
 	    		if(object instanceof Packet) {
 	    			
 	    			if(object instanceof MapPacket) {
+	    				
+	    				fireEvent(NetworkEvents.MAP_UPDATED);
+	    				
 	            		System.out.println("Received an updated map");
 	    			}
 	    			
@@ -91,11 +95,20 @@ public class NetworkController {
 
 	    // Register the classes for serialization
 	    registerClasses(client.getKryo());
-
+	    
 	}
 
 	
 	
+	protected static void fireEvent(int event) {
+		
+		// Goes through the list of subscribers for that event, and updates them
+		for( NetworkObserver n : subscribers.get(event) ) {
+			n.eventFired(event);
+		}
+		
+	}
+
 	/*
 	 * Sends an object to the server
 	 */
@@ -179,5 +192,32 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.hextile.PineWoods.class);
 	    kryo.register(com.magicrealm.common.model.hextile.Ruins.class);
 	    
+	}
+	
+	
+	
+	/*
+	 * Registers a subscriber to a particular event
+	 */
+	public static void subscribe(int event, NetworkObserver subscriber) {
+		
+		// Initialize the list if it hasn't already been done
+		if(subscribers == null) {
+			subscribers = new HashMap<Integer, ArrayList<NetworkObserver>>();
+		}
+		
+		// Check if that event has not yet been registered
+		if(!subscribers.containsKey(event)) {
+			
+			ArrayList<NetworkObserver> list = new ArrayList<NetworkObserver>();
+			
+			subscribers.put(event, list);
+		}
+		
+		// Add the subscriber to the list
+		ArrayList<NetworkObserver> list = subscribers.get(event);
+		list.add(subscriber);
+		subscribers.put(event, list);
+		
 	}
 }
