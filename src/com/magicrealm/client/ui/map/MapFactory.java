@@ -1,6 +1,6 @@
 package com.magicrealm.client.ui.map;
 
-import ods.ArrayStack;
+import java.util.ArrayList;
 
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.model.Map;
@@ -76,7 +76,7 @@ public abstract class MapFactory {
 		tiles[5][1] = new AwfulValley(5);
 		tiles[5][2] = new LindenWoods(0);
 
-		ArrayStack<Dwellings> dwellings = new ArrayStack<Dwellings>(Dwellings.class);
+		ArrayList<Dwellings> dwellings = new ArrayList<Dwellings>();
 		
 		// Inn
 		Dwellings inn = new Dwellings(Dwellings.INN);

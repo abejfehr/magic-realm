@@ -4,8 +4,31 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class Ledges extends HexTile {
 	
-	public Ledges(int step) {
-		super(step, "ledges1.gif");
+	/*
+	 * Constructors
+	 */
+	public Ledges() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public Ledges(int angle) {
+		
+		super(angle, "ledges1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 
 		code = "LE";
 		
@@ -18,17 +41,17 @@ public class Ledges extends HexTile {
 		Clearing c6 = new Clearing(6, 171, 351);
 			
 		// Define their paths
-		c3.addAdjacentByPath(c6);
-		c6.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(6);
+		c6.addAdjacentByPath(3);
 
-		c6.addAdjacentByPath(c1);
-		c1.addAdjacentByPath(c6);
+		c6.addAdjacentByPath(1);
+		c1.addAdjacentByPath(6);
 
-		c1.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(4);
+		c4.addAdjacentByPath(1);
 
-		c2.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(5);
+		c5.addAdjacentByPath(2);
 		
 		// Add them to the HexTile
 		pathNodes.add(c1);

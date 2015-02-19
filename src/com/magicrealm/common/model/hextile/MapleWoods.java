@@ -4,8 +4,32 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class MapleWoods extends HexTile {
 	
-	public MapleWoods(int step) {
-		super(step, "maplewoods1.gif");
+	/*
+	 * Constructors
+	 */
+	public MapleWoods() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public MapleWoods(int angle) {
+		
+		super(angle, "maplewoods1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
+
 		code = "MW";
 		
 		// Define the clearings
@@ -14,8 +38,8 @@ public class MapleWoods extends HexTile {
 		Clearing c5 = new Clearing(5, 143, 216);
 			
 		// Define their paths
-		c2.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(4);
+		c4.addAdjacentByPath(2);
 
 		// Add them to the HexTile
 		pathNodes.add(c2);

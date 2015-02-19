@@ -3,9 +3,32 @@ package com.magicrealm.common.model.hextile;
 import com.magicrealm.common.model.path.Clearing;
 
 public class Borderland extends HexTile {
+
+	/*
+	 * Constructors
+	 */
+	public Borderland() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
 	
-	public Borderland(int step) {
-		super(step, "borderland1.gif");
+	public Borderland(int angle) {
+		
+		super(angle, "borderland1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 
 		code = "BV";
 		
@@ -18,23 +41,23 @@ public class Borderland extends HexTile {
 		Clearing c6 = new Clearing(6, 230, 183);
 		
 		// Define their paths
-		c1.addAdjacentByPath(c6);
-		c6.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(6);
+		c6.addAdjacentByPath(1);
 
-		c6.addAdjacentByPath(c3);
-		c3.addAdjacentByPath(c6);
+		c6.addAdjacentByPath(3);
+		c3.addAdjacentByPath(6);
 
-		c6.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c6);
+		c6.addAdjacentByPath(4);
+		c4.addAdjacentByPath(6);
 
-		c3.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(5);
+		c5.addAdjacentByPath(3);
 
-		c3.addAdjacentByPath(c2);
-		c2.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(2);
+		c2.addAdjacentByPath(3);
 
-		c4.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c4);
+		c4.addAdjacentByPath(5);
+		c5.addAdjacentByPath(4);
 
 		// Add them to the HexTile
 		pathNodes.add(c1);

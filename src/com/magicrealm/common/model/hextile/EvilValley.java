@@ -4,8 +4,31 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class EvilValley extends HexTile {
 	
-	public EvilValley(int step) {
-		super(step, "evilvalley1.gif");
+	/*
+	 * Constructors
+	 */
+	public EvilValley() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public EvilValley(int angle) {
+		
+		super(angle, "evilvalley1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 		
 		code = "EV";
 		
@@ -16,11 +39,11 @@ public class EvilValley extends HexTile {
 		Clearing c5 = new Clearing(5, 363, 279);
 			
 		// Define their paths
-		c1.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(4);
+		c4.addAdjacentByPath(1);
 
-		c2.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(5);
+		c5.addAdjacentByPath(2);
 		
 		// Add them to the HexTile
 		pathNodes.add(c1);

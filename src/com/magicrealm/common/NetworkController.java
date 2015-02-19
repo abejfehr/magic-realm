@@ -8,7 +8,6 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.magicrealm.common.packet.MapPacket;
-import com.magicrealm.common.packet.MapTilesPacket;
 import com.magicrealm.common.packet.Packet;
 import com.magicrealm.common.packet.RequestMapPacket;
 import com.magicrealm.server.controller.GameController;
@@ -41,11 +40,16 @@ public class NetworkController {
 	        public void received (Connection connection, Object object) {
 	            if (object instanceof Packet) {
 	            	
+	            	/*
+	            	 * RequestMapPacket
+	            	 */
 	            	if(object instanceof RequestMapPacket) {
 	            		// We've received a request for  a new map.
-	            		MapTilesPacket mp = new MapTilesPacket(GameController.getMap().getTiles());
+	            		MapPacket mp = new MapPacket(GameController.getMap());
 	            		
 	            		server.sendToAllTCP(mp);
+	            		
+	            		//server.sendToAllTCP(new LindenWoods(0));
 	            		
 	            		System.out.println("Sending a map to all connected clients");
 	            	}
@@ -143,12 +147,13 @@ public class NetworkController {
 	    kryo.register(float[].class);
 	    kryo.register(int[].class);
 	    kryo.register(short[].class);
+	    kryo.register(java.util.ArrayList.class);
 	    kryo.register(java.util.Hashtable.class);
-	    kryo.register(ods.ArrayStack.class);
 	    
 	    // Model
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[].class);
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[][].class);
+	    kryo.register(com.magicrealm.common.model.path.Clearing.class);
 	    kryo.register(com.magicrealm.common.model.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
 
@@ -173,17 +178,6 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.hextile.OakWoods.class);
 	    kryo.register(com.magicrealm.common.model.hextile.PineWoods.class);
 	    kryo.register(com.magicrealm.common.model.hextile.Ruins.class);
-	    
-	    // UI
-	    kryo.register(java.awt.color.ICC_ColorSpace.class);
-	    kryo.register(java.awt.color.ICC_ProfileRGB.class);
-	    kryo.register(java.awt.image.BufferedImage.class);
-	    kryo.register(java.awt.image.DataBufferByte.class);
-	    kryo.register(java.awt.image.DirectColorModel.class);
-	    kryo.register(java.awt.image.IndexColorModel.class);
-	    kryo.register(sun.awt.image.BufImgSurfaceData.ICMColorData.class);
-	    kryo.register(sun.awt.image.ByteInterleavedRaster.class);
-	    kryo.register(sun.awt.image.IntegerInterleavedRaster.class);
 	    
 	}
 }
