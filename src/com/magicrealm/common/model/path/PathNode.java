@@ -7,20 +7,20 @@ public abstract class PathNode {
 	/*
 	 * Private members
 	 */
-	ArrayList<PathNode> adjacentByPath = new ArrayList<PathNode>();
-	ArrayList<PathNode> adjacentByHiddenPath = new ArrayList<PathNode>();
+	ArrayList<Integer> adjacentByPath = new ArrayList<Integer>();
+	ArrayList<Integer> adjacentByHiddenPath = new ArrayList<Integer>();
 
 
 	
 	/*
 	 * Add methods
 	 */
-	public void addAdjacentByPath(PathNode node) {
-		adjacentByPath.add(node);	
+	public void addAdjacentByPath(int clearingNumber) {
+		adjacentByPath.add(clearingNumber);	
 	}
 
-	public void addAdjacentByHiddenPath(PathNode node) {
-		adjacentByHiddenPath.add(node);
+	public void addAdjacentByHiddenPath(int clearingNumber) {
+		adjacentByHiddenPath.add(clearingNumber);
 	}
 	
 	
@@ -29,11 +29,9 @@ public abstract class PathNode {
 	 * Gets whether or not the requested clearing number is adjacent to this one
 	 */
 	public boolean isAdjacentTo(int clearingNo) {
-		for(PathNode node : adjacentByPath) {
-			if(node instanceof Clearing) {
-				if(((Clearing) node).getNumber() == clearingNo) {
-					return true;
-				}
+		for(int i : adjacentByPath) {
+			if(i == clearingNo) {
+				return true;
 			}
 		}
 		

@@ -16,6 +16,12 @@ public class Clearing extends PathNode {
 	/*
 	 * Constructors
 	 */
+	public Clearing() { // This is required for serialization
+		number = 0;
+		x = 0;
+		y = 0;
+	}
+	
 	public Clearing(int i, int x, int y) {
 		number = i;
 		this.x = x;
