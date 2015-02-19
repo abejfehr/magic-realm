@@ -4,8 +4,31 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class Cavern extends HexTile {
 	
-	public Cavern(int step) {
-		super(step, "cavern1.gif");
+	/*
+	 * Constructors
+	 */
+	public Cavern() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public Cavern(int angle) {
+		
+		super(angle, "cavern1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 
 		code = "CN";
 		
@@ -18,20 +41,20 @@ public class Cavern extends HexTile {
 		Clearing c6 = new Clearing(6, 298, 269);
 		
 		// Define their paths
-		c1.addAdjacentByPath(c3);
-		c3.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(3);
+		c3.addAdjacentByPath(1);
 
-		c3.addAdjacentByPath(c2);
-		c2.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(2);
+		c2.addAdjacentByPath(3);
 
-		c3.addAdjacentByPath(c6);
-		c6.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(6);
+		c6.addAdjacentByPath(3);
 
-		c6.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c6);
+		c6.addAdjacentByPath(4);
+		c4.addAdjacentByPath(6);
 
-		c4.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c4);
+		c4.addAdjacentByPath(5);
+		c5.addAdjacentByPath(4);
 
 		// Add them to the HexTile
 		pathNodes.add(c1);

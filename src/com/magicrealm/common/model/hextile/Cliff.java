@@ -4,8 +4,31 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class Cliff extends HexTile {
 	
+	/*
+	 * Constructors
+	 */
+	public Cliff() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
 	public Cliff(int angle) {
+		
 		super(angle, "cliff1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 		code = "CL";
 		
 		// Define the clearings
@@ -17,17 +40,17 @@ public class Cliff extends HexTile {
 		Clearing c6 = new Clearing(6, 250, 88);
 			
 		// Define their paths
-		c1.addAdjacentByPath(c6);
-		c6.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(6);
+		c6.addAdjacentByPath(1);
 
-		c6.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c6);
+		c6.addAdjacentByPath(4);
+		c4.addAdjacentByPath(6);
 
-		c2.addAdjacentByPath(c3);
-		c3.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(3);
+		c3.addAdjacentByPath(2);
 
-		c3.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(5);
+		c5.addAdjacentByPath(3);
 		
 		// Add them to the HexTile
 		pathNodes.add(c1);

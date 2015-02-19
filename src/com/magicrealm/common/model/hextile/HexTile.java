@@ -1,15 +1,9 @@
 package com.magicrealm.common.model.hextile;
 
 import java.awt.Graphics;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
-
-import ods.ArrayStack;
-
+import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.PathNode;
@@ -19,19 +13,14 @@ public abstract class HexTile {
 	/*
 	 * Private/protected members
 	 */
-	private int angle = 0;	
+	private int angle = 0;
 	protected String imageFilename = "caves1.gif";
 	protected String code = null;
 	protected boolean enchanted = false;
-	protected ArrayStack<PathNode> pathNodes = new ArrayStack<PathNode>(PathNode.class);
-	protected ArrayStack<PathNode> enchantedPathNodes = new ArrayStack<PathNode>(PathNode.class);
-	protected BufferedImage tileImage = null;
+	protected ArrayList<PathNode> pathNodes = new ArrayList<PathNode>();
+	protected ArrayList<PathNode> enchantedPathNodes = new ArrayList<PathNode>();
 
-	private double angleInRadians = 0;
-	private double locationX, locationY;
-	private AffineTransformOp op = null;
-	private AffineTransform tx;
-	private BufferedImage filteredImage = null;
+	
 	
 	/*
 	 * Constructors
@@ -40,28 +29,22 @@ public abstract class HexTile {
 
 		imageFilename = filename;
 		angle = rotationStep * 60;
-		try {
-			tileImage = ImageIO.read(getClass().getResource(Config.TILE_IMAGE_LOCATION + imageFilename));
-		} catch(Exception e) {
-			JOptionPane.showMessageDialog(null, "The tile could not be drawn.");
-		}
-		
-		// Calculate the rotation of the tile to store for drawing
-		angleInRadians = Math.toRadians(angle);
-		locationX = tileImage.getWidth() / 2;
-		locationY = tileImage.getHeight() / 2;
-		tx = AffineTransform.getRotateInstance(angleInRadians, locationX, locationY);	
-		op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-		filteredImage = op.filter(tileImage, null);
+
 	}
 	
+	public HexTile() { // For the serialization
+		imageFilename = "cavern1.gif";
+		angle = 0;
+	}
+
 	/*
 	 * Paints the contents of the tile to the graphics object passed in
 	 */
 	public void paint(Graphics g, int x, int y) {
 
 		// Draw a single tile
-		g.drawImage(filteredImage, x, y, null);
+		ScreenController.paint(g, Config.TILE_IMAGE_LOCATION + imageFilename, x, y, angle);
+		
 	}
 
 	
@@ -88,7 +71,7 @@ public abstract class HexTile {
 		return null;
 	}
 
-	public ArrayStack<PathNode> getClearings() { return (enchanted ? enchantedPathNodes : pathNodes); }
+	public ArrayList<PathNode> getClearings() { return (enchanted ? enchantedPathNodes : pathNodes); }
 
 	public int getAngle() { return angle; }
 }

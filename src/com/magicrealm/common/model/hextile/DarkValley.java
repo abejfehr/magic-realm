@@ -4,8 +4,31 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class DarkValley extends HexTile {
 	
-	public DarkValley(int step) {
-		super(step, "darkvalley1.gif");
+	/*
+	 * Constructors
+	 */
+	public DarkValley() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public DarkValley(int angle) {
+		
+		super(angle, "darkvalley1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 		code = "DV";
 		
 		// Define the clearings
@@ -15,11 +38,11 @@ public class DarkValley extends HexTile {
 		Clearing c5 = new Clearing(5, 363, 279);
 			
 		// Define their paths
-		c1.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(4);
+		c4.addAdjacentByPath(1);
 
-		c2.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(5);
+		c5.addAdjacentByPath(2);
 		
 		// Add them to the HexTile
 		pathNodes.add(c1);

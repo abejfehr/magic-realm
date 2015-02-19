@@ -4,8 +4,32 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class Ruins extends HexTile {
 	
-	public Ruins(int step) {
-		super(step, "ruins1.gif");
+	/*
+	 * Constructors
+	 */
+	public Ruins() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public Ruins(int angle) {
+		
+		super(angle, "ruins1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
+
 		code = "RN";
 
 		// Define the clearings
@@ -17,20 +41,20 @@ public class Ruins extends HexTile {
 		Clearing c6 = new Clearing(6, 329, 183);
 		
 		// Define their paths
-		c1.addAdjacentByPath(c2);
-		c2.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(2);
+		c2.addAdjacentByPath(1);
 
-		c1.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(4);
+		c4.addAdjacentByPath(1);
 
-		c4.addAdjacentByPath(c6);
-		c6.addAdjacentByPath(c4);
+		c4.addAdjacentByPath(6);
+		c6.addAdjacentByPath(4);
 
-		c6.addAdjacentByPath(c3);
-		c3.addAdjacentByPath(c6);
+		c6.addAdjacentByPath(3);
+		c3.addAdjacentByPath(6);
 		
-		c3.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c3);
+		c3.addAdjacentByPath(5);
+		c5.addAdjacentByPath(3);
 		
 		// Add them to the HexTile
 		pathNodes.add(c1);

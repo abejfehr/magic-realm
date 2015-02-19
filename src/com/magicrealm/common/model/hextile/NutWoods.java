@@ -4,8 +4,31 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class NutWoods extends HexTile {
 
-	public NutWoods(int step) {
-		super(step, "nutwoods1.gif");
+	/*
+	 * Constructors
+	 */
+	public NutWoods() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public NutWoods(int angle) {
+		
+		super(angle, "nutwoods1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+	private void init() {
 		
 		code = "NW";
 
@@ -15,8 +38,8 @@ public class NutWoods extends HexTile {
 		Clearing c5 = new Clearing(5, 247, 282);
 			
 		// Define their paths
-		c2.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(4);
+		c4.addAdjacentByPath(2);
 
 		// Add them to the HexTile
 		pathNodes.add(c2);

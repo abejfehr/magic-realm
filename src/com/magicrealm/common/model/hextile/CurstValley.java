@@ -4,8 +4,32 @@ import com.magicrealm.common.model.path.Clearing;
 
 public class CurstValley extends HexTile {
 	
-	public CurstValley(int step) {
-		super(step, "curstvalley1.gif");
+	/*
+	 * Constructors
+	 */
+	public CurstValley() { // Parameter-less constructor for serialization
+		
+		super();
+		
+		init();
+		
+	}
+	
+	public CurstValley(int angle) {
+		
+		super(angle, "curstvalley1.gif");
+
+		init();
+		
+	}
+	
+	
+	
+	/*
+	 * Initializes the tile, because the info will be the same no matter which constructor is called
+	 */
+
+	private void init() {
 		
 		code = "CV";
 
@@ -16,11 +40,11 @@ public class CurstValley extends HexTile {
 		Clearing c5 = new Clearing(5, 355, 145);
 			
 		// Define their paths
-		c1.addAdjacentByPath(c4);
-		c4.addAdjacentByPath(c1);
+		c1.addAdjacentByPath(4);
+		c4.addAdjacentByPath(1);
 
-		c2.addAdjacentByPath(c5);
-		c5.addAdjacentByPath(c2);
+		c2.addAdjacentByPath(5);
+		c5.addAdjacentByPath(2);
 		
 		// Add them to the HexTile
 		pathNodes.add(c1);
