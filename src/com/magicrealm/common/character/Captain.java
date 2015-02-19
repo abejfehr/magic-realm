@@ -1,5 +1,6 @@
-package com.magicrealm.common;
+package com.magicrealm.common.character;
 
+import com.magicrealm.common.Vulnerability;
 import com.magicrealm.common.weapon.ShortSword;
 
 public class Captain extends Character{
@@ -7,6 +8,7 @@ public class Captain extends Character{
 		super(Vulnerability.MEDIUM, name);
 		//Needs to set starting point between INN, HOUSE, GUARD_HOUSE
 		this.weapon = new ShortSword();
+		setImage("captain.png");
 	}
 	
 	@Override

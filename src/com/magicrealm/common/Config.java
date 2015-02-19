@@ -13,10 +13,14 @@ public class Config {
 	public static final String ERROR_IMAGE_LOCATION = "/res/errors/";
 	public static final String CHARACTER_IMAGE_LOCATION = "/res/characterInfo/";
 
+	public static final String CHARACTER_CHIT_IMAGE_LOCATION ="/res/characterChits/";
+
+
 	/*
 	 * Networking configuration
 	 */
 	public static final int GAME_PORT = 54321;
 	public static final String DEFAULT_IP_ADDRESS = "127.0.0.1";
+
 	
 }

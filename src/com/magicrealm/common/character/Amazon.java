@@ -1,5 +1,6 @@
-package com.magicrealm.common;
+package com.magicrealm.common.character;
 
+import com.magicrealm.common.Vulnerability;
 import com.magicrealm.common.weapon.ShortSword;
 
 public class Amazon extends Character{
@@ -7,6 +8,7 @@ public class Amazon extends Character{
 		super(Vulnerability.MEDIUM, name);
 		this.setStartingPoint();
 		this.weapon = new ShortSword();
+		setImage("amazon.png");
 	}
 	
 	@Override

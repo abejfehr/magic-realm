@@ -81,7 +81,7 @@ public class Dwellings {
 		// The angle, in radians
 		double rotation = Math.toRadians(angle);
 		
-		// Get the center of the icon
+		// Get the center of the icon TODO: fix this, this is a terrible approximate of the icon size
 		double dwellingCenterX = 100 / 2;
 		double dwellingCenterY = 100 / 2;
 				
@@ -93,7 +93,6 @@ public class Dwellings {
 		
 		// Draw the image
 		ScreenController.paint(g, Config.DWELLINGS_IMAGE_LOCATION + imageName, (int)(newX - dwellingCenterX), (int)(newY - dwellingCenterY), 0);
-		//g.drawImage(dwellingImage, (int)(newX - dwellingCenterX), (int)(newY - dwellingCenterY), null);
 		
 	}
 }
