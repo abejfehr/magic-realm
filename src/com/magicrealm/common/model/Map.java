@@ -1,6 +1,6 @@
 package com.magicrealm.common.model;
 
-import ods.ArrayStack;
+import java.util.ArrayList;
 
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
@@ -13,7 +13,7 @@ public class Map {
 	 * Private members
 	 */
 	private HexTile[][] tiles;
-	private ArrayStack<Dwellings> dwellings = new ArrayStack<Dwellings>(Dwellings.class);
+	private ArrayList<Dwellings> dwellings = new ArrayList<Dwellings>();
 		
 	/*
 	 * Getters and setters
@@ -65,7 +65,7 @@ public class Map {
 		return null;
 	}
 
-	public ArrayStack<Dwellings> getDwellings() { return dwellings; }
+	public ArrayList<Dwellings> getDwellings() { return dwellings; }
 	
 	public int getTilePositionX(String code) {
 		String tileCode = code.substring(0, 2);
@@ -114,7 +114,7 @@ public class Map {
 		return tile.getClearing(clearingNumber);
 	}
 
-	public void setDwellings(ArrayStack<Dwellings> dwellings) { this.dwellings = dwellings; }
+	public void setDwellings(ArrayList<Dwellings> dwellings) { this.dwellings = dwellings; }
 
 	public int getTileAngle(String code) {
 		String tileCode = code.substring(0, 2);
