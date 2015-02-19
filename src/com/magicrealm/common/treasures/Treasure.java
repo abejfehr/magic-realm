@@ -10,7 +10,8 @@ public class Treasure {
 	
 	/* Variables */
 	Die die = new Die(); 
-	int dieNumber = die.getCurrentNumber(); 
+	int dieNumber = die.getCurrentNumber();
+	private int gold;
 	
 	
 	/* Constructor */
@@ -22,4 +23,7 @@ public class Treasure {
 	 * Mouldy Skeleton: Reveal, roll for a curse. When exchanged, player does not keep treasures 
 	 * Remains of thief: Reveal, roll for a curse. Keep treasures, add 20 gold. 
 	 */
+	
+
+	
 }
