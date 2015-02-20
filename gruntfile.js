@@ -12,7 +12,7 @@ module.exports = function(grunt) {
         execOptions: {
           cwd: "."
         },
-        command: "jar cfm build.jar MANIFEST.MF -C bin/ .",
+        command: "jar cfm build.jar Manifest.txt -C bin/ .",
         jarName: "",
         jarOptions: "",
         dir: "",

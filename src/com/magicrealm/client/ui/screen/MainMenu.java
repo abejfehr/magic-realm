@@ -64,10 +64,7 @@ public class MainMenu extends Screen {
 		createGameButton.setFont(font);
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				scrController.show(Game.class);
-				//scrController.show(Lobby.class);
 
-				/*
 				try {
 					NetworkController.StartServer(Config.GAME_PORT);
 					// Connects to localhost, since we started our own server
@@ -83,7 +80,6 @@ public class MainMenu extends Screen {
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(null, Errors.ERROR_STARTING_SERVER);
 				}
-				*/
 
 			}
 		});

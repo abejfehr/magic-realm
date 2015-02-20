@@ -1,4 +1,4 @@
-package com.magicrealm.common;
+package com.magicrealm.common.network;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class NetworkController {
 	 */
 	private static Server server;
 	private static Client client;
-	private static HashMap<Integer, ArrayList<NetworkObserver>> subscribers = null;
+	private static HashMap<Integer, ArrayList<Subscriber>> subscribers = null;
 	
 	
 	
@@ -82,7 +82,7 @@ public class NetworkController {
 	    			
 	    			if(object instanceof MapPacket) {
 	    				
-	    				fireEvent(NetworkEvents.MAP_UPDATED);
+	    				fireEvent(Events.MAP_UPDATED);
 	    				
 	            		System.out.println("Received an updated map");
 	    			}
@@ -103,7 +103,7 @@ public class NetworkController {
 	protected static void fireEvent(int event) {
 		
 		// Goes through the list of subscribers for that event, and updates them
-		for( NetworkObserver n : subscribers.get(event) ) {
+		for( Subscriber n : subscribers.get(event) ) {
 			n.eventFired(event);
 		}
 		
@@ -167,7 +167,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[].class);
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[][].class);
 	    kryo.register(com.magicrealm.common.model.path.Clearing.class);
-	    kryo.register(com.magicrealm.common.model.Map.class);
+	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
 
 	    // Tiles(part of the model)
@@ -199,23 +199,23 @@ public class NetworkController {
 	/*
 	 * Registers a subscriber to a particular event
 	 */
-	public static void subscribe(int event, NetworkObserver subscriber) {
+	public static void subscribe(int event, Subscriber subscriber) {
 		
 		// Initialize the list if it hasn't already been done
 		if(subscribers == null) {
-			subscribers = new HashMap<Integer, ArrayList<NetworkObserver>>();
+			subscribers = new HashMap<Integer, ArrayList<Subscriber>>();
 		}
 		
 		// Check if that event has not yet been registered
 		if(!subscribers.containsKey(event)) {
 			
-			ArrayList<NetworkObserver> list = new ArrayList<NetworkObserver>();
+			ArrayList<Subscriber> list = new ArrayList<Subscriber>();
 			
 			subscribers.put(event, list);
 		}
 		
 		// Add the subscriber to the list
-		ArrayList<NetworkObserver> list = subscribers.get(event);
+		ArrayList<Subscriber> list = subscribers.get(event);
 		list.add(subscriber);
 		subscribers.put(event, list);
 		
