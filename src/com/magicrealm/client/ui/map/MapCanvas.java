@@ -9,8 +9,8 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JPanel;
 
 import com.magicrealm.common.Dwellings;
-import com.magicrealm.common.model.Map;
 import com.magicrealm.common.model.hextile.HexTile;
+import com.magicrealm.common.model.map.Map;
 
 @SuppressWarnings("serial")
 public class MapCanvas extends JPanel {

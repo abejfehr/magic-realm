@@ -3,7 +3,6 @@ package com.magicrealm.client.ui.map;
 import java.util.ArrayList;
 
 import com.magicrealm.common.Dwellings;
-import com.magicrealm.common.model.Map;
 import com.magicrealm.common.model.hextile.AwfulValley;
 import com.magicrealm.common.model.hextile.BadValley;
 import com.magicrealm.common.model.hextile.Borderland;
@@ -25,6 +24,7 @@ import com.magicrealm.common.model.hextile.NutWoods;
 import com.magicrealm.common.model.hextile.OakWoods;
 import com.magicrealm.common.model.hextile.PineWoods;
 import com.magicrealm.common.model.hextile.Ruins;
+import com.magicrealm.common.model.map.Map;
 
 public abstract class MapFactory {
 

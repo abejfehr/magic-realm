@@ -1,18 +1,16 @@
 package com.magicrealm.common.model.map.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
 import com.magicrealm.common.model.map.Map;
-import com.magicrealm.common.model.map.MapFactory;
+import com.magicrealm.server.controller.GameController;
 
 public class MapTest {
-
-	// Create a map for these tests
-	Map testMap = MapFactory.createTestMap();
 
 	/*
 	 * Describe: The Map's layout
@@ -23,6 +21,8 @@ public class MapTest {
 	 */
 	@Test
 	public void testMapLayoutNotNull() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
 		assertNotNull(testMap.getTiles());
 	}
 	
@@ -35,6 +35,8 @@ public class MapTest {
 	 */
 	@Test
 	public void testMapPathExistsInOneTile() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
 		ArrayList<String> result = testMap.getPathBetween("CL6", "CL4", false);
 		assertNotNull(result);
 	}
@@ -44,6 +46,8 @@ public class MapTest {
 	 */
 	@Test
 	public void testMapNoPathInOneTile() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
 		ArrayList<String> result = testMap.getPathBetween("CL1", "CL2", false);
 		assertNull(result);
 	}
@@ -53,6 +57,8 @@ public class MapTest {
 	 */
 	@Test 
 	public void testMapPathBetweenTwoTiles() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
 		ArrayList<String> result = testMap.getPathBetween("CL1", "EV5", false);
 		assertNotNull(result);		
 	}

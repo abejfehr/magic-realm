@@ -1,6 +1,6 @@
 package com.magicrealm.common.packet;
 
-import com.magicrealm.common.model.Map;
+import com.magicrealm.common.model.map.Map;
 
 public class MapPacket extends Packet {
 

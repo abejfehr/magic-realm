@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
-import com.magicrealm.common.NetworkController;
 import com.magicrealm.common.config.Errors;
+import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.server.controller.GameController;
 
 @SuppressWarnings("serial")
