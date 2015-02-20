@@ -8,23 +8,36 @@ public class Treasure {
 	 * When a card Is found, its treasures become available in some way. 
 	*/
 	
+	// weight enum? 
+	// 1 - large - more treasure
+	// 2 - small - less treasure'
+	
+	
 	/* Variables */
 	Die die = new Die(); 
 	int dieNumber = die.getCurrentNumber();
-	private int gold;
+	private int gold;	
 	
+	private int fameBonus; //May affect player's fame. 
+	private int famePrice; // Player may be able to sell a Treasure card to an NPC for fame. 
+	private boolean canMove; //Some treasures cannot be moved
 	
 	/* Constructor */
-	public Treasure() { } 
-	
-	/* Types of treasures 
-	 * Substitute cards (Has-a relationship): Exchanged for treasures in it's box. When used, it's removed from the game
-	 * Chest (Has-a relationship): Only way to open is with the lost keys
-	 * Mouldy Skeleton: Reveal, roll for a curse. When exchanged, player does not keep treasures 
-	 * Remains of thief: Reveal, roll for a curse. Keep treasures, add 20 gold. 
-	 */
-	
-	/* TODO: needs more phase treasures, how are we talking care of phases?*/
+	public Treasure(boolean canMove) { 
+		this.setCanMove(canMove); 
+		} 
 
+	public int getTreasureGold() { return gold; }
+	public void setTreasureGold(int gold) { this.gold = gold; }
+
+	public boolean getCanMove() {
+		return canMove;
+	}
+
+	public void setCanMove(boolean canMove) {
+		this.canMove = canMove;
+	} 
+
+	/*TODO: Creare a print method for all treasure description*/
 	
 }

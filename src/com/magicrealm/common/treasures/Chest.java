@@ -1,13 +1,9 @@
 package com.magicrealm.common.treasures;
 
-// Chest is not a type of treasure, chest CONTAINS treasure 
+/* Chest is not a type of treasure, chest CONTAINS treasure 
+ * Only way to open is with the lost keys */
 public class Chest {
-	 /* Chest: Only way to open is with the lost keys
-		* is LostKey active?
-		* is  chest active?
-		* bool chestIsOpen 
-	*/
-	
+
 	//Will be used later on to check if the chest is open.
 	private boolean isOpen;
 	
@@ -19,14 +15,15 @@ public class Chest {
 
 	private boolean hasLostKey;
 	
+	// this item cannot move, ever, this is static 
+	private static boolean canMove = false; 
+	
+	
 	// Create new treasure item that is given to the player once the chest is open
-	Treasure treasure = new Treasure();
+	Treasure treasure = new Treasure(false);
 	
 	private int gold; 
 	private int goldBonus = 50; 
-	
-	
-	
 	
 	
 	/* Constructor */
