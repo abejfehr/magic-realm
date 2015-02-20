@@ -24,6 +24,7 @@ public class Treasure {
 	 * Remains of thief: Reveal, roll for a curse. Keep treasures, add 20 gold. 
 	 */
 	
+	/* TODO: needs more phase treasures, how are we talking care of phases?*/
 
 	
 }
