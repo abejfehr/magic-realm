@@ -1,11 +1,13 @@
 package com.magicrealm.common.character;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
 import com.magicrealm.client.Main;
+import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.VictoryCondition;
@@ -26,7 +28,7 @@ public abstract class Character {
 	//Unfriendly
 	//Ally
 	//Enemy
-	protected BufferedImage characterChit = null;
+	//protected BufferedImage characterChit = null;
 	protected String name;
 	public    Vulnerability vulnerability;
     protected int treasureCount, gold, notorietyCount, fameCount, spellCount;
@@ -48,6 +50,17 @@ public abstract class Character {
     	
     }
     
+    public Character(){ //for serialization
+    	this.vulnerability  = new Vulnerability(1);
+    	this.startingPoint  = new Dwellings(Dwellings.NOT_SET);
+    	this.name           = "new character";
+    	this.gold           = 10;
+    	this.treasureCount  = 0;
+    	this.notorietyCount = 0;
+    	this.fameCount      = 0;
+    	this.spellCount     = 0;
+    }
+    
     /*
      * Default Starting Position for Most Characters, at the INN
      */
@@ -66,9 +79,14 @@ public abstract class Character {
     }
     
     public void setImage(String characterChitImg){
-		try {
-			characterChit = ImageIO.read(Main.class.getResource(Config.CHARACTER_CHIT_IMAGE_LOCATION + characterChitImg));
-		} catch (IOException e) {}		
+		//try {
+			//characterChit = ImageIO.read(Main.class.getResource(Config.CHARACTER_CHIT_IMAGE_LOCATION + characterChitImg));
+		//} catch (IOException e) {}		
 	}
-            
+    public void paint(Graphics g, int x, int y) {
+
+		// Draw a single tile
+		//ScreenController.paint(g, Config.TILE_IMAGE_LOCATION + imageFilename, x, y, angle);
+    	
+    }
 }

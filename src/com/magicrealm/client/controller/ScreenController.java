@@ -107,4 +107,26 @@ public class ScreenController extends Observable {
 		
 		g.drawImage(images.get(imagePath), x, y, null);
 	}
+	
+	/*
+	 * Store image
+	 */
+	public static void storeImage(String imagePath) {
+		// Check if the image is already stored
+		if(!images.containsKey(imagePath)) {
+			
+			BufferedImage image = null;
+			
+			try {
+				image = ImageIO.read(ScreenController.class.getResource(imagePath));
+			} catch(Exception e) { }
+
+			images.put(imagePath, image);
+		}
+
+	}
+		
+	public static BufferedImage getImage(String imagePath) {
+		return images.get(imagePath);
+	}
 }

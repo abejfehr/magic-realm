@@ -17,8 +17,8 @@ import javax.swing.JOptionPane;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
-import com.magicrealm.common.NetworkController;
 import com.magicrealm.common.config.Errors;
+import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.server.controller.GameController;
 
 @SuppressWarnings("serial")
@@ -77,7 +77,7 @@ public class MainMenu extends Screen {
 					GameController.startNewGame();
 					
 					// Show the game screen
-					scrController.show(Game.class);
+					scrController.show(Lobby.class);
 					
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(null, Errors.ERROR_STARTING_SERVER);
