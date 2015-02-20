@@ -12,13 +12,15 @@ public class RemainsOfThief {
 	private int gold;
 	private int goldBonus = 20; 
 	Die die = new Die();
+	
+	@SuppressWarnings("unused") //really though, leave me alone. 
 	private static boolean canMove = false; 
 	
 	/*TODO: Constructor */
 	public RemainsOfThief() { 
 		this.isActive = false;
 		this.isOpen = false; 
-		}
+	}
 
 	/* Get and Set Methods */ 
 	public boolean getActive() { return isActive; }
@@ -50,7 +52,7 @@ public class RemainsOfThief {
 		System.out.println("Closing your treasure (Remains of thief)....");
 		gold = gold + goldBonus;
 		
-		// I'm making things up, I dont know where the player can store his/her gold/ D:
+		// I'm making things up, I don't know where the player can store his/her gold/ D:
 		System.out.println( gold + " has been added to your pocket 'o gold.");
 	}
 
