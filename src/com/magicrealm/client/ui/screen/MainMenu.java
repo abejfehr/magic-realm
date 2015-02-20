@@ -64,6 +64,8 @@ public class MainMenu extends Screen {
 		createGameButton.setFont(font);
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//scrController.show(Game.class);
+				//scrController.show(Lobby.class);
 
 				try {
 					NetworkController.StartServer(Config.GAME_PORT);
