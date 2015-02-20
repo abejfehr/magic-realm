@@ -32,7 +32,8 @@ public class CharacterSelectPanel extends JPanel{
     private String[] characters = {"Amazon","Black Knight","Captain","Dwarf","Elf","Swordsman"};
     
     public CharacterSelectPanel(){
-    	mainPanel.setSize(new Dimension(910,650));
+    	this.setPreferredSize(new Dimension(910,650));
+    	mainPanel.setPreferredSize(new Dimension(910,650));
     	mainPanel.setOpaque(false);
     	setLayout(new BorderLayout());
     	
@@ -60,17 +61,18 @@ public class CharacterSelectPanel extends JPanel{
     	scrollPane.setPreferredSize(new Dimension(150, 600));
     	scrollPane.getViewport().setOpaque(false);
     	scrollPane.setOpaque(false);
+    	mainPanel.setLayout(new BorderLayout());
     	mainPanel.add(scrollPane,BorderLayout.WEST);
     		
     	updateCharImage("amazon.jpg");
-    	imagePanel.setLayout(new BorderLayout());
-    	imagePanel.add(character, BorderLayout.CENTER);
-    	imagePanel.setBackground(Color.LIGHT_GRAY);
-    	mainPanel.add(imagePanel, BorderLayout.EAST);
+
+    	character.setPreferredSize(new Dimension(750,650));
+    	mainPanel.add(character, BorderLayout.EAST);
     	this.add(mainPanel);
     	this.setOpaque(false);
     	    	
     }   
+    
     public void updateCharImage(String characterJPG){
 		try {
 			characterImg = ImageIO.read(Main.class.getResource(Config.CHARACTER_IMAGE_LOCATION + characterJPG));
