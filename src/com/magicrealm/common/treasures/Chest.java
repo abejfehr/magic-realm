@@ -23,7 +23,7 @@ public class Chest {
 	// Create new treasure item that is given to the player once the chest is open
 	Treasure treasure = new Treasure(false);
 	
-	private int gold; 
+	private int gold = treasure.getTreasureGold(); 
 	private int goldBonus = 50; 
 	
 	
@@ -45,13 +45,17 @@ public class Chest {
 	}
 	
 	/* TODO: Create void remove(): check if chest is open, if so remove chest card */
+	public void remove() { } 
 	
-	/* TODO: Create void open(): check if canOpen if T then add coins = coins + 50. Player keeps treasures*/
+	/* TODO: Create void open(): check if canOpen if then add coins = coins + 50. Player keeps treasures*/
 	public void open() {
 		if((isOpen == false) && this.canOpen()) {
+			
+			gold = gold + goldBonus; 
+			/*TODO: Keep Treasures inside*/ 
+			
 			// might need some try catch here because the chest would be called from the map which
 			// would  be on the server
-			/*TODO: Talk to team mates about how this can be done*/  
 			
 		}
 		else {
@@ -61,10 +65,8 @@ public class Chest {
 
 	/* Get and Set methods for the gold in the chest, but we might not need these, so we'll see */ 
 	public int getGold() { return gold; }
-
-	public void setGold(int gold) { this.gold = gold; }
-
 	public int getGoldBonus() { return goldBonus; }
 
+	public void setGold(int gold) { this.gold = gold; }
 	public void setGoldBonus(int goldBonus) { this.goldBonus = goldBonus; }
 }

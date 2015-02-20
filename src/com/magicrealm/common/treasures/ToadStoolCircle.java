@@ -16,18 +16,28 @@ Roll:	Effect on the searching character:
 public class ToadStoolCircle extends SiteCard {
 
 	/* Variables to consider for this card */
-	@SuppressWarnings("unused") //really though, leave me alone. 
-	private static boolean canMove = false; 
+	@SuppressWarnings("unused") //really though, leave me alone.
+	
+	private static boolean canMove = false; // this card cannot move, ever. 
 	private boolean active; 
 	
 	
 	/*TODO: Create Toad stool circle constructor */ 
 	public ToadStoolCircle() { 
-		super(false);	
+		super(false);	//Created, doesn't mean it's found thoooo so that's why it's set to false. Have to find a way to find stuff. 
 	}
 
 	/* Get and Set methods */
 	public boolean isActive() { return active; }
-
 	public void setActive(boolean active) { this.active = active; }
+	
+	/* TODO: public void open() */
+	public void open() {
+		if((active == true) && (this.isFound() == true)) {
+			//open this card
+		}
+		
+		
+	}
+	
 }

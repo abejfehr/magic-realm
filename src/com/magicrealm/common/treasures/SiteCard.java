@@ -37,7 +37,7 @@ public class SiteCard {
 	public void setFound(boolean found) { this.found = found; }
 	
 	/*TODO: void open() - what happens when you open site cards? */
-	// Cross off Discoveries
+	public void open() { /*TODO*/ }
 	
 	/* TODO: public void boolean */
 	/* Searching
@@ -46,25 +46,33 @@ public class SiteCard {
 	
 	/*TODO: Get the high roll */
 	public int getHighestRoll(Die die1, Die die2) {
-		int highestRoll = 0; 
+		// Just clear everything before you roll
+		int highestRoll = 0;
+		resetDice();
+		
+		// Okay we're ready to roll!
 		rollDice(); 
 		System.out.println("Your first roll is: " + number1); 
 		System.out.println("Your second roll is: " + number2); 
 
-
+		// Find the highest roll between the two outputs 
 		highestRoll = Math.max(number1, number2);
 		System.out.println("The highest roll is: " + highestRoll);
 		
-		return highestRoll; 
-
-		
+		// and display it
+		return highestRoll; 		
 	}
+	
+	/* Roll Two die*/
 	public void rollDice() {
 		die1.roll();
 		die2.roll(); 
 	}
 
+	/* Reset Dice rolls */ 
 	public void resetDice() {
+		// reset calls die.roll(); 
+		// which just means this also rerolls them. 
 		die1.reset();
 		die2.reset(); 
 	}

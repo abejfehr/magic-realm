@@ -14,14 +14,12 @@ public class Treasure {
 	
 	
 	/* Variables */
-	
+	Die die = new Die();
 	private int gold;	
 	private int fameBonus; //May affect player's fame. 
 	private int famePrice; // Player may be able to sell a Treasure card to an NPC for fame.
-	Die die = new Die(); 
 	protected int dieNumber = die.getCurrentNumber();
-	
-	private boolean canMove; //Some treasures cannot be moved
+	private static boolean canMove; //Some treasures cannot be moved
 	
 	/* Constructor */
 	public Treasure(boolean canMove) { 
@@ -34,7 +32,7 @@ public class Treasure {
 	public int getFameBonus() 		{ return fameBonus; }
 	public int getFamePrice() 		{ return famePrice; }
 
-	public void setCanMove(boolean canMove) { this.canMove = canMove; }
+	public void setCanMove(boolean canMove) { Treasure.canMove = canMove; }
 	public void setFameBonus(int fameBonus) { this.fameBonus = fameBonus; }
 	public void setTreasureGold(int gold) 	{ this.gold = gold; }
 	public void setFamePrice(int famePrice) { this.famePrice = famePrice; } 
