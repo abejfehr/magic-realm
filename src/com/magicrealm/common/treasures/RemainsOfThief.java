@@ -7,27 +7,28 @@ import com.magicrealm.common.die.Die;
 public class RemainsOfThief {
 
 	/*Variables*/
-	private boolean isActive;
-	private boolean isOpen; 
+	private boolean active;
+	private boolean open; 
 	private int gold;
 	private int goldBonus = 20; 
 	Die die = new Die();
+	private int dieNumber = die.getCurrentNumber();
 	
 	@SuppressWarnings("unused") //really though, leave me alone. 
 	private static boolean canMove = false; 
 	
 	/*TODO: Constructor */
 	public RemainsOfThief() { 
-		this.isActive = false;
-		this.isOpen = false; 
+		this.active = false;
+		this.open = false; 
 	}
 
 	/* Get and Set Methods */ 
-	public boolean getActive() { return isActive; }
+	public boolean isActive() { return active; }
 	public int getGold() { return gold; }
-	public boolean getOpen() { return isOpen; }
+	public boolean getOpen() { return open; }
 	
-	public void setActive(boolean isActive) { this.isActive = isActive; }
+	public void setActive(boolean active) { this.active = active; }
 	public void setGold(int gold) { this.gold = gold + goldBonus; }
 	
 	// I rather not, but just in case :3 
@@ -36,24 +37,32 @@ public class RemainsOfThief {
 	
 	/*TODO: void open() - reveal and roll for a curse*/
 	public void open() {
-		if(isActive == true) {
+		if(active == true) {
 			System.out.println("Congrats! You Opened: Remains of Thief");
 			System.out.println("Roll for a curse!"); 
 			die.roll();
-			System.out.println("You rolled: " + die.getCurrentNumber() + " Yay!"); 
+			System.out.println("You rolled: " + dieNumber + " Yay!");
+			open = true; 
 		}
 		else {
 			System.out.println("This item cannot be open");
+			open = false;
 		}
 	}
 
 	/*TODO: void close() - keep treasure, coins = coins + 20*/
 	public void close() {
-		System.out.println("Closing your treasure (Remains of thief)....");
-		gold = gold + goldBonus;
-		
-		// I'm making things up, I don't know where the player can store his/her gold/ D:
-		System.out.println( gold + " has been added to your pocket 'o gold.");
+		if(open == true) {
+			System.out.println("Closing your treasure (Remains of thief)....");
+			gold = gold + goldBonus;
+			
+			// I'm making things up, I don't know where the player can store his/her gold/ D:
+			System.out.println( gold + " has been added to your pocket 'o gold.");
+		}
+		else  {
+			System.out.println("The Chest was not open, gonna try to open it now....");
+			this.open();
+		}
 	}
 
 }

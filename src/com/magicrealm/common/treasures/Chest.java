@@ -8,7 +8,7 @@ public class Chest {
 	private boolean isOpen;
 	
 	// we can assume for now that the chest is active and ready to be used at all times 
-	private boolean isActive  = true;
+	private boolean active  = true;
 	
 	// This might have to be it's own class instead of a variable
 	// lost keys can be found on the map, not in chests. 
@@ -35,7 +35,7 @@ public class Chest {
 	
 	/* TODO: Create bool canOpen(): check if haslostkey and a chest object */
 	public boolean canOpen() {
-		if((hasLostKey == true) && (isActive == true)) {
+		if((hasLostKey == true) && (active == true)) {
 			return true;
 		}
 		else {
