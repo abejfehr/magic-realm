@@ -16,6 +16,7 @@ public class Chest {
 	private boolean hasLostKey;
 	
 	// this item cannot move, ever, this is static 
+	@SuppressWarnings("unused") //We'll take care of this later
 	private static boolean canMove = false; 
 	
 	
@@ -33,7 +34,7 @@ public class Chest {
 		this.isOpen = false; 
 	}
 	
-	/* TODO: Create bool canOpen(): check if haslostkey and a chest object */
+	/* TODO: Create boolean canOpen(): check if it has a lost key and a chest object */
 	public boolean canOpen() {
 		if((hasLostKey == true) && (active == true)) {
 			return true;
@@ -51,7 +52,6 @@ public class Chest {
 			// might need some try catch here because the chest would be called from the map which
 			// would  be on the server
 			/*TODO: Talk to team mates about how this can be done*/  
-			
 			
 		}
 		else {

@@ -23,16 +23,11 @@ public class ToadStoolCircle extends SiteCard {
 	
 	/*TODO: Create Toad stool circle constructor */ 
 	public ToadStoolCircle() { 
-		
+		super(false);	
 	}
 
+	/* Get and Set methods */
+	public boolean isActive() { return active; }
 
-	public boolean isActive() {
-		return active;
-	}
-
-
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+	public void setActive(boolean active) { this.active = active; }
 }
