@@ -2,6 +2,7 @@ package com.magicrealm.common.treasures;
 
 import com.magicrealm.common.die.Die;
 
+
 /*
  * When a character draws one of these cards, he turns it face up and crosses it off his Discoveries list 
  * (this is the only way a Site card can be discovered by searching). 
@@ -23,7 +24,6 @@ public class SiteCard {
 	private boolean found; // If this is true, you found a site card and now you can roll some sweet dice. 
 	private int number1 = die1.getCurrentNumber();
 	private int number2 = die2.getCurrentNumber(); 
-	private int highestRoll; 
 	
 	
 	/*TODO: Create constructor */
@@ -33,7 +33,6 @@ public class SiteCard {
 
 	/* Get and Set Methods */
 	public boolean isFound() { return found; }
-
 
 	public void setFound(boolean found) { this.found = found; }
 	
@@ -47,24 +46,18 @@ public class SiteCard {
 	
 	/*TODO: Get the high roll */
 	public int getHighestRoll(Die die1, Die die2) {
+		int highestRoll = 0; 
 		rollDice(); 
 		System.out.println("Your first roll is: " + number1); 
+		System.out.println("Your second roll is: " + number2); 
+
+
+		highestRoll = Math.max(number1, number2);
+		System.out.println("The highest roll is: " + highestRoll);
 		
-		if(number1 > number2) {
-			number1 = highestRoll;
-			return highestRoll;
-		}
-		else if(number1 < number2 ) {
-			number2 = highestRoll;
-			return highestRoll;
-		}
-		else {
-			System.out.println("Something went wrong, gonna refreshing...");
-			resetDice();
-			System.out.println("Re-rolling!");
-			rollDice(); 
-		}
 		return highestRoll; 
+
+		
 	}
 	public void rollDice() {
 		die1.roll();
@@ -72,7 +65,6 @@ public class SiteCard {
 	}
 
 	public void resetDice() {
-		highestRoll = 0;
 		die1.reset();
 		die2.reset(); 
 	}
