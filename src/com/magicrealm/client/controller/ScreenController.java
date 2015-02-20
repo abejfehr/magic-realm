@@ -10,7 +10,7 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import apple.laf.JRSUIUtils.Images;
+//import apple.laf.JRSUIUtils.Images;
 
 import com.magicrealm.client.ui.screen.MainMenu;
 import com.magicrealm.client.ui.screen.Screen;
