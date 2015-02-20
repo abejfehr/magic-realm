@@ -1,9 +1,8 @@
 package com.magicrealm.common.die;
 
-import java.io.Serializable; 
 
-public class Die implements Serializable {
-	private static final long serialVersionUID = -8806212193103753231L;
+
+public class Die{
 	/** Variables **/
 	int number;
 	int id;
