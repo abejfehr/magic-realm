@@ -8,7 +8,12 @@ public class Captain extends Character{
 		super(Vulnerability.MEDIUM, name);
 		//Needs to set starting point between INN, HOUSE, GUARD_HOUSE
 		this.weapon = new ShortSword();
-		setImage("captain.png");
+		//setImage("captain.png");
+	}
+	public Captain(){ // no-args for serialization
+		super(Vulnerability.MEDIUM, "new captain");
+		this.setStartingPoint();
+		this.weapon = new ShortSword();
 	}
 	
 	@Override

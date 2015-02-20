@@ -2,7 +2,6 @@ package com.magicrealm.client.ui.screen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -12,7 +11,6 @@ import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +20,8 @@ import javax.swing.JTextArea;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
+import com.magicrealm.common.network.NetworkController;
+import com.magicrealm.common.packet.RegisterPlayer;
 
 @SuppressWarnings("serial")
 public class Lobby extends Screen{
@@ -88,13 +88,15 @@ public class Lobby extends Screen{
 		selectCharacterButton.setPreferredSize(new Dimension(450,80));
 		selectCharacterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				characterPanel.getCharacter();
+				RegisterPlayer newPlayer = new RegisterPlayer();
+				newPlayer.setPlayer(characterPanel.getCharacter());
+				NetworkController.sendToServer(newPlayer);
 			}
 		});
 		startGameButton.setPreferredSize(new Dimension(450,80));
 		startGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//scrController.show(Game.class);
+				scrController.show(Game.class);
 			}
 		});
 		optionPanel.setLayout(new FlowLayout());

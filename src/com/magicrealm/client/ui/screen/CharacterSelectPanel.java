@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 
 import com.magicrealm.client.Main;
+import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.character.*;
 import com.magicrealm.common.character.Character;
@@ -27,7 +28,7 @@ public class CharacterSelectPanel extends JPanel{
 	
 	//image and label to change on different character clicks
     private JLabel        character    = new JLabel();
-    private BufferedImage characterImg = null;
+    //private BufferedImage characterImg = null;
     
     private String[] characters = {"Amazon","Black Knight","Captain","Dwarf","Elf","Swordsman"};
     
@@ -74,10 +75,10 @@ public class CharacterSelectPanel extends JPanel{
     }   
     
     public void updateCharImage(String characterJPG){
-		try {
-			characterImg = ImageIO.read(Main.class.getResource(Config.CHARACTER_IMAGE_LOCATION + characterJPG));
-		} catch (IOException e) {}
-		character.setIcon(new ImageIcon(characterImg));
+
+    	ScreenController.storeImage(Config.CHARACTER_IMAGE_LOCATION + characterJPG);
+    	BufferedImage characterImage = ScreenController.getImage(Config.CHARACTER_IMAGE_LOCATION + characterJPG);
+		character.setIcon(new ImageIcon(characterImage));
 		
 	}
     

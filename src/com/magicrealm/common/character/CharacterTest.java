@@ -41,8 +41,8 @@ public class CharacterTest {
 		System.out.println(player6.victoryCondition.printVictoryCondition());
 		
 		JFrame testFrame = new JFrame();
-		JLabel testImage = new JLabel(new ImageIcon(player1.characterChit));
-    	testFrame.getContentPane().add(testImage);
+		//JLabel testImage = new JLabel(new ImageIcon(player1.characterChit));
+    	//testFrame.getContentPane().add(testImage);
     	testFrame.setVisible(true);
 		testFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		testFrame.setSize(new Dimension(910,650));

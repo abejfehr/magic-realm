@@ -8,7 +8,12 @@ public class Amazon extends Character{
 		super(Vulnerability.MEDIUM, name);
 		this.setStartingPoint();
 		this.weapon = new ShortSword();
-		setImage("amazon.png");
+		//setImage("amazon.png");
+	}
+	public Amazon(){ // no-args for serialization
+		super(Vulnerability.MEDIUM, "new amazon");
+		this.setStartingPoint();
+		this.weapon = new ShortSword();
 	}
 	
 	@Override

@@ -11,6 +11,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.magicrealm.common.packet.MapPacket;
 import com.magicrealm.common.packet.Packet;
+import com.magicrealm.common.packet.RegisterPlayer;
 import com.magicrealm.common.packet.RequestMapPacket;
 import com.magicrealm.server.controller.GameController;
 
@@ -54,7 +55,12 @@ public class NetworkController {
 	            			            		
 	            		System.out.println("Sending a map to all connected clients");
 	            	}
-	            	
+	            	if(object instanceof RegisterPlayer) {
+	    				
+	    				GameController.addPlayer(connection, ((RegisterPlayer) object).getPlayer());
+	    				
+	            		System.out.println("new Player registered");
+	    			}
 	            }
 	         }
 
@@ -85,10 +91,8 @@ public class NetworkController {
 	    				fireEvent(Events.MAP_UPDATED);
 	    				
 	            		System.out.println("Received an updated map");
-	    			}
-	    			
-	    		}
-	    			
+	    			}    			
+	    		} 			
 	    	}
 	    	
 	    });
@@ -153,6 +157,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.packet.MapTilesPacket.class);
 	    kryo.register(com.magicrealm.common.packet.Packet.class);
 	    kryo.register(com.magicrealm.common.packet.RequestMapPacket.class);
+	    kryo.register(com.magicrealm.common.packet.RegisterPlayer.class);
 	    
 	    // Primitives and Utils
 	    kryo.register(byte[].class);
@@ -169,6 +174,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.path.Clearing.class);
 	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
+	    kryo.register(com.magicrealm.common.Vulnerability.class);
 
 	    // Tiles(part of the model)
 	    kryo.register(com.magicrealm.common.model.hextile.AwfulValley.class);
@@ -191,6 +197,30 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.hextile.OakWoods.class);
 	    kryo.register(com.magicrealm.common.model.hextile.PineWoods.class);
 	    kryo.register(com.magicrealm.common.model.hextile.Ruins.class);
+	    
+	    //Characters(part of the model)
+	    kryo.register(com.magicrealm.common.character.Amazon.class);
+	    kryo.register(com.magicrealm.common.character.BlackKnight.class);
+	    kryo.register(com.magicrealm.common.character.Captain.class);
+	    kryo.register(com.magicrealm.common.character.Dwarf.class);
+	    kryo.register(com.magicrealm.common.character.Elf.class);
+	    kryo.register(com.magicrealm.common.character.Swordsman.class);
+	    
+	    //Weapons(part of the model)
+	    kryo.register(com.magicrealm.common.weapon.Axe.class);
+	    kryo.register(com.magicrealm.common.weapon.BroadSword.class);
+	    kryo.register(com.magicrealm.common.weapon.Crossbow.class);
+	    kryo.register(com.magicrealm.common.weapon.DevilSword.class);
+	    kryo.register(com.magicrealm.common.weapon.GreatAxe.class);
+	    kryo.register(com.magicrealm.common.weapon.GreatSword.class);
+	    kryo.register(com.magicrealm.common.weapon.LightBow.class);
+	    kryo.register(com.magicrealm.common.weapon.Mace.class);
+	    kryo.register(com.magicrealm.common.weapon.MediumBow.class);
+	    kryo.register(com.magicrealm.common.weapon.MorningStar.class);
+	    kryo.register(com.magicrealm.common.weapon.ShortSword.class);
+	    kryo.register(com.magicrealm.common.weapon.Spear.class);
+	    kryo.register(com.magicrealm.common.weapon.Staff.class);
+	    kryo.register(com.magicrealm.common.weapon.ThrustingSword.class);
 	    
 	}
 	
@@ -220,4 +250,7 @@ public class NetworkController {
 		subscribers.put(event, list);
 		
 	}
+	public static void sendToServer(Packet packet) {			
+		client.sendTCP(packet);
+    }
 }

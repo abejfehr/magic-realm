@@ -77,7 +77,7 @@ public class MainMenu extends Screen {
 					GameController.startNewGame();
 					
 					// Show the game screen
-					scrController.show(Game.class);
+					scrController.show(Lobby.class);
 					
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(null, Errors.ERROR_STARTING_SERVER);

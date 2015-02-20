@@ -4,7 +4,11 @@ import java.util.HashMap;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.magicrealm.client.ui.map.MapFactory;
+
 import com.magicrealm.common.model.map.Map;
+
+import com.magicrealm.common.character.Character;
+
 
 public class GameController {
 
