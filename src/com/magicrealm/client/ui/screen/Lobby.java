@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -24,6 +25,15 @@ import com.magicrealm.common.Config;
 
 @SuppressWarnings("serial")
 public class Lobby extends Screen{
+		
+	/*
+	 * the 4 Panels
+	 */
+	
+	JPanel               titlePanel     = new JPanel();               //NORTH PANEL
+	JPanel               optionPanel    = new JPanel();               //SOUTH PANEL
+	CharacterSelectPanel characterPanel = new CharacterSelectPanel(); //EAST PANEL
+	JPanel               chatPanel      = new JPanel();               //WEST PANEL
 	
 	public Lobby(){
 		setLayout(new BorderLayout());
@@ -42,18 +52,20 @@ public class Lobby extends Screen{
 	    } catch(Exception e) {}
 	    background = new JLabel(new ImageIcon(imgBackground));
 		background.setLayout(new BorderLayout());
+		
 
+				
 		/*
 		 *  Setting Up Title Panel
 		 */
-		JPanel titlePanel = new JPanel();
-
-	    JLabel logo = null;
-	    JLabel gameTitle = new JLabel("GAME TITLE");
-	    gameTitle.setFont(font);
-	    BufferedImage imgLogo = null;		
+		
+	    JLabel logo           = null;
+	    JLabel gameTitle      = new JLabel("GAME TITLE");
+	    BufferedImage imgLogo = null;
+	    
+	    gameTitle.setFont(font);	    		
 	    try {
-			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo.png"));
+			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2glowSmall.png"));
 		} catch(Exception e) { } // Should fail silently if images aren't available
 		logo = new JLabel(new ImageIcon(imgLogo));
 		logo.setAlignmentX(CENTER_ALIGNMENT);
@@ -66,8 +78,7 @@ public class Lobby extends Screen{
 		/*
 		 * OptionPanel, start game/ other notes on the bottom
 		 */
-		JPanel optionPanel = new JPanel();
-		
+				
 		JLabel info = new JLabel("<html>**Based On Magic Realm, by Avalon Hills**<br> **Code Written by: Abe, Nataly, Nathan**</html>");
 		info.setFont(font);
 		info.setForeground(Color.CYAN);
@@ -75,35 +86,38 @@ public class Lobby extends Screen{
 		JButton startGameButton = new JButton("Start Game");
 		JButton selectCharacterButton = new JButton("Select Character");
 		selectCharacterButton.setPreferredSize(new Dimension(450,80));
+		selectCharacterButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				characterPanel.getCharacter();
+			}
+		});
 		startGameButton.setPreferredSize(new Dimension(450,80));
+		startGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//scrController.show(Game.class);
+			}
+		});
 		optionPanel.setLayout(new FlowLayout());
 		optionPanel.setOpaque(false);
 		optionPanel.add(info);
 		optionPanel.add(selectCharacterButton);
 		optionPanel.add(startGameButton);
 		
-		
-
-	    /*
-	     * Character selection panel
-	     */
-	    CharacterSelectPanel characterPanel = new CharacterSelectPanel();
-	    
 	    /*
 	     * Chat Panel
 	     */
-	    
-	    JPanel chatPanel = new JPanel();
+	    	    
 	    chatPanel.setOpaque(false);
 	    chatPanel.setPreferredSize(new Dimension(500,650));
 	    chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
-	    
-	    
+	    	    
 	    JPanel    chatTopPanel     = new JPanel();
 	    JTextArea chatText         = new JTextArea();
 	    JTextArea connectedPlayers = new JTextArea();
+	    chatText.setBorder(BorderFactory.createEtchedBorder());
 	    chatText.setText("chat text");
 	    connectedPlayers.setText("Players Connected text");
+	    connectedPlayers.setBorder(BorderFactory.createEtchedBorder());
 	    chatTopPanel.setPreferredSize(new Dimension(500,490));
 	    chatText.setPreferredSize(new Dimension(350,490));
 	    connectedPlayers.setPreferredSize(new Dimension(120,490));
@@ -120,6 +134,7 @@ public class Lobby extends Screen{
 	    sendButton.setPreferredSize(new Dimension(120,130));
 	    sendText.setPreferredSize(new Dimension(350,130));
 	    sendText.setLineWrap(true);
+	    sendText.setBorder(BorderFactory.createEtchedBorder());
 	    chatBottomPanel.setLayout(new FlowLayout());
 	    chatBottomPanel.add(sendText);
 	    chatBottomPanel.add(sendButton);
