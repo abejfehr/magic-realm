@@ -1,4 +1,5 @@
 package com.magicrealm.common.treasures;
+ 
 
 import com.magicrealm.common.die.Die;
 
@@ -33,7 +34,6 @@ public class SiteCard {
 
 	/* Get and Set Methods */
 	public boolean isFound() { return found; }
-
 	public void setFound(boolean found) { this.found = found; }
 	
 	/*TODO: void open() - what happens when you open site cards? */
@@ -45,7 +45,7 @@ public class SiteCard {
 	- if so, call open()*/
 	
 	/*TODO: Get the high roll */
-	public int getHighestRoll(Die die1, Die die2) {
+	public int highestRoll(Die die1, Die die2) {
 		// Just clear everything before you roll
 		int highestRoll = 0;
 		resetDice();
@@ -72,7 +72,7 @@ public class SiteCard {
 	/* Reset Dice rolls */ 
 	public void resetDice() {
 		// reset calls die.roll(); 
-		// which just means this also rerolls them. 
+		// which just means this also re-rolls them. 
 		die1.reset();
 		die2.reset(); 
 	}
