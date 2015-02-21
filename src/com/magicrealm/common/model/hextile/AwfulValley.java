@@ -1,9 +1,15 @@
 package com.magicrealm.common.model.hextile;
 
+import java.io.Serializable;
+
 import com.magicrealm.common.model.path.Clearing;
 
-public class AwfulValley extends HexTile {
+public class AwfulValley extends HexTile implements Serializable {
 	
+	private static final long serialVersionUID = -8472137688063818895L;
+
+
+
 	/*
 	 * Constructors
 	 */

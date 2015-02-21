@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.model.path.Clearing;
-import com.magicrealm.common.model.path.PathNode;
+import com.magicrealm.common.model.path.Edge;
+import com.magicrealm.common.model.path.Node;
 
 public abstract class HexTile {
 
@@ -17,8 +18,8 @@ public abstract class HexTile {
 	protected String imageFilename = "caves1.gif";
 	protected String code = null;
 	protected boolean enchanted = false;
-	protected ArrayList<PathNode> pathNodes = new ArrayList<PathNode>();
-	protected ArrayList<PathNode> enchantedPathNodes = new ArrayList<PathNode>();
+	protected ArrayList<Node> pathNodes = new ArrayList<Node>();
+	protected ArrayList<Node> enchantedPathNodes = new ArrayList<Node>();
 
 	
 	
@@ -58,10 +59,10 @@ public abstract class HexTile {
 	
 	public void enchant() { enchanted = true; }
 
-	public Object getCode() { return code; }
+	public String getCode() { return code; }
 
 	public Clearing getClearing(int oClearingNumber) {
-		for(PathNode p: (enchanted ? enchantedPathNodes : pathNodes)) {
+		for(Node p: (enchanted ? enchantedPathNodes : pathNodes)) {
 			if(p instanceof Clearing) {
 				if(((Clearing)p).getNumber() == oClearingNumber) {
 					return ((Clearing) p);
@@ -71,7 +72,20 @@ public abstract class HexTile {
 		return null;
 	}
 
-	public ArrayList<PathNode> getClearings() { return (enchanted ? enchantedPathNodes : pathNodes); }
+	public ArrayList<Node> getClearings() { return (enchanted ? enchantedPathNodes : pathNodes); }
 
 	public int getAngle() { return angle; }
+
+	public Edge getEdge(int edgeNumber) {
+		
+		for(Node node : pathNodes) {
+			if(node instanceof Edge) {
+				if(((Edge)node).getEdgeNumber() == edgeNumber) {
+					return (Edge)node;
+				}
+			}
+		}
+		
+		return null;
+	}
 }
