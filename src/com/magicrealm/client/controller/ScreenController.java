@@ -91,7 +91,9 @@ public class ScreenController extends Observable {
 			
 			try {
 				image = ImageIO.read(ScreenController.class.getResource(imagePath));
-			} catch(Exception e) { }
+			} catch(Exception e) { 
+				System.out.println("Something failed");
+			}
 			
 			// Calculate the rotation of the tile to store for drawing
 			double angleInRadians = Math.toRadians(angle);

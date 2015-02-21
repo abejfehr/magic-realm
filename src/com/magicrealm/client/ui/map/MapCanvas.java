@@ -9,6 +9,7 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JPanel;
 
 import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.map.Map;
 
@@ -82,6 +83,33 @@ public class MapCanvas extends JPanel {
 					map.getClearing(dwelling.getLocation()).getOffsetX(),
 					map.getClearing(dwelling.getLocation()).getOffsetY(),
 					map.getTileAngle(dwelling.getLocation()));
+		}
+		
+		/*
+		 * Paint the characters
+		 */
+		for (Character c : map.getCharacterList()) {
+			
+			//int index = map.getDwellings().indexOf(c.getStartingPoint());
+			int x, y;
+			//String characterLocation = map.getDwellings().get(index).getLocation();
+			int j = 0;
+			for(int i=0;i<map.getDwellings().size();++i) {
+				if(map.getDwellings().get(i).getDwellingType() == c.getStartingPoint().getDwellingType()) {
+					j=i;
+				}
+			}
+			String characterLocation = map.getDwellings().get(j).getLocation();
+			x = map.getTilePositionX(characterLocation);
+			y = map.getTilePositionY(characterLocation);
+			
+			c.paint(ourGraphics,
+					x, 
+					y, 
+					map.getClearing(characterLocation).getOffsetX(), 
+					map.getClearing(characterLocation).getOffsetY(),
+					map.getTileAngle(characterLocation));
+			
 		}
 	}
 	

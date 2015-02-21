@@ -1,6 +1,7 @@
 package com.magicrealm.client.ui.screen;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -26,6 +27,16 @@ import com.magicrealm.common.Config;
 import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.common.packet.RegisterPlayer;
 
+/*
+ * Pre-Game Lobby, to be Displayed after Main Menu
+ * CreateGame from main menu allows client to start game
+ * If the client is joining the game client can only wait for host to start game
+ * 
+ * Functions
+ * ----------
+ * -none
+ */
+
 @SuppressWarnings("serial")
 public class Lobby extends Screen{
 		
@@ -39,7 +50,9 @@ public class Lobby extends Screen{
 	JPanel               chatPanel      = new JPanel();               //WEST PANEL
 	
 	/*
-	 * Spinner and Models for Victory Points
+	 * Spinner and Spinner Models for Victory Points
+	 * -option of 0-5
+	 * -a total of 5 points must be selected
 	 */
 	
     SpinnerNumberModel gold      = new SpinnerNumberModel(0,0,5,1);
@@ -54,6 +67,9 @@ public class Lobby extends Screen{
     JSpinner treasurePointsSpinner  = new JSpinner(treasure);	    
     JSpinner spellPointsSpinner     = new JSpinner(spell);
     
+    /*
+     * Lobby Screen Constructor
+     */
     
 	public Lobby(){
 		
@@ -78,18 +94,24 @@ public class Lobby extends Screen{
 				
 		/*
 		 *  Setting Up Title Panel
+		 *  Contains:
+		 *  -Label for game logo
+		 *  -label for name of game
 		 */
 		
-	    JLabel logo           = null;
-	    JLabel gameTitle      = new JLabel("GAME TITLE");
-	    BufferedImage imgLogo = null;
+	    JLabel        logo      = null;
+	    JLabel        gameTitle = new JLabel("GAME TITLE");
+	    BufferedImage imgLogo   = null;
 	    
-	    gameTitle.setFont(font);	    		
+	    gameTitle.setFont(font);
+	    
+	    //Setting Game Logo Label's image
 	    try {
 			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2glowSmall.png"));
 		} catch(Exception e) { } // Should fail silently if images aren't available
 		logo = new JLabel(new ImageIcon(imgLogo));
 		logo.setAlignmentX(CENTER_ALIGNMENT);
+		
 		titlePanel.setLayout(new FlowLayout());
 		titlePanel.setPreferredSize(new Dimension(1000,200));
 		titlePanel.setOpaque(false);
@@ -97,7 +119,11 @@ public class Lobby extends Screen{
 		titlePanel.add(gameTitle);
 		
 		/*
-		 * OptionPanel, start game/ other notes on the bottom
+		 * OptionPanel,
+		 * Contains:
+		 * -start game button
+		 * -Create Character Button
+		 * -JLabel for text display
 		 */
 				
 		JLabel info = new JLabel("<html>**Based On Magic Realm, by Avalon Hills**<br> **Code Written by: Abe, Nataly, Nathan**</html>");
@@ -111,6 +137,7 @@ public class Lobby extends Screen{
 		/*
 		 * create character button actionlistener with error checking
 		 */
+		
 		createCharacterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int totalVictory = 0;
@@ -131,9 +158,11 @@ public class Lobby extends Screen{
 				}
 			}
 		});
+		
 		/*
 		 * Start Game Button actionlistener to display board
 		 */
+		
 		startGameButton.setPreferredSize(new Dimension(450,80));
 		startGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -149,21 +178,32 @@ public class Lobby extends Screen{
 		
 	    /*
 	     * Chat Panel
+	     * -Designed to have A textarea display chat text
+	     * -A text area to send text
+	     * -a send text button
+	     * -a list of all the players currently connected and in the chat/lobby
+	     * -also has the spinners for victory point selection
 	     */
 	    	    
 	    chatPanel.setOpaque(false);
 	    chatPanel.setPreferredSize(new Dimension(500,650));
 	    chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
 	    
+	    /*
+	     * ChatPanel-Top Panel
+	     * -Victory point JSpinners
+	     */
+	    
 	    JPanel chatTopPanel       = new JPanel();
 	    JPanel spinnerPanel       = new JPanel();
+	    JPanel victorySpinners    = new JPanel();
 	    JLabel victoryPointsLabel = new JLabel("Distribute your 5 Victory Points");
+	    
 	    victoryPointsLabel.setFont(font);
 	        
 	    spinnerPanel.setLayout(new BorderLayout());
-	    spinnerPanel.add(victoryPointsLabel, BorderLayout.NORTH);
+	    spinnerPanel.add(victoryPointsLabel, BorderLayout.NORTH);	    
 	    
-	    JPanel victorySpinners = new JPanel();
 	    victorySpinners.setLayout(new BoxLayout(victorySpinners, BoxLayout.X_AXIS));
 	    victorySpinners.add(new JLabel("Gold:"));
 	    victorySpinners.add(goldPointsSpinner);
@@ -181,9 +221,16 @@ public class Lobby extends Screen{
 	    chatTopPanel.setOpaque(false);
 	    chatTopPanel.add(spinnerPanel);	    
 	    
+	    /*
+	     * ChatPanel-Middle Panel 
+	     * -Chat Box
+	     * -Players connected
+	     */
+	    
 	    JPanel    chatMiddlePanel  = new JPanel();
 	    JTextArea chatText         = new JTextArea();
 	    JTextArea connectedPlayers = new JTextArea();
+	    
 	    chatText.setBorder(BorderFactory.createEtchedBorder());
 	    chatText.setText("chat text");
 	    connectedPlayers.setText("Players Connected text");
@@ -196,7 +243,12 @@ public class Lobby extends Screen{
 	    chatMiddlePanel.add(connectedPlayers);
 	    chatMiddlePanel.setOpaque(false);
 	    
-	    
+	    /*
+	     * ChatPanel-Bottom Panel
+	     * -Textarea for game development info
+	     * -startgame button
+	     * -createcharacter button
+	     */
 	    JPanel    chatBottomPanel  = new JPanel();	   	    
 	    JTextArea sendText         = new JTextArea("text to be sent");	    
 	    JButton   sendButton       = new JButton("Send Message");

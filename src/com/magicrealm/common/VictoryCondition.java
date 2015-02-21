@@ -1,29 +1,33 @@
 package com.magicrealm.common;
 
+/*
+ * VictoryCondition class that every character has to fulfill to win the game
+ * 
+ * Functions
+ * ----------
+ *-checkForVictory(int,int,int,int,int) takes in characters 5 victory points to compare against needed values to win 
+ *-printVictoryCondition() returns string containing needed victory points to win (mostly for testing)
+ */
 public class VictoryCondition {
-	
-	/*/
-	 * List of Functions
-	 *-checkForVictory(int,int,int,int,int) takes in 5 ints to compare against needed values to win 
-	 *-printVictoryCondition() returns string containing needed victory points to win (mostly for testing)
-	 */
-	
 	
 	/*
 	 * Parameters
 	 */
+	
 	private int treasurePoints, famePoints, notorietyPoints, goldPoints, spellPoints;
 	
 	/*
 	 * Constructor
 	 * 0-5 Victory points for each victory category, 5 in total
 	 */
-	public VictoryCondition(int treasureVictory, int fameVictory, int notorietyVictory ,int goldVictory, int spellVictory){			
+	public VictoryCondition(int treasureVictory, int fameVictory, int notorietyVictory ,int goldVictory, int spellVictory){	
+		
 		treasurePoints  = treasureVictory;
 		famePoints      = 10*fameVictory;
 		notorietyPoints = 20*notorietyVictory;
 		goldPoints      = 30*goldVictory;
 		spellPoints     = 2*spellVictory;
+		
 	}
 	
 	public boolean checkForVictory(int treasure, int fame, int notoriety,int gold, int spell){
