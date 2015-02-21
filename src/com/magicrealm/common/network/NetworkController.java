@@ -59,7 +59,7 @@ public class NetworkController {
 	    				
 	    				GameController.addPlayer(connection, ((RegisterPlayer) object).getPlayer());
 	    				
-	            		System.out.println("new Player registered");
+	            		System.out.println("new Player " + GameController.getPlayer(connection).toString()+", has been registered");
 	    			}
 	            }
 	         }

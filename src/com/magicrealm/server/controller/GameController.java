@@ -33,4 +33,7 @@ public class GameController {
 	}
 
 	public static Map getMap() { return map; }
+	public static Character getPlayer(Connection connection){
+		return players.get(connection);
+	}
 }
