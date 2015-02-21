@@ -3,7 +3,7 @@ package com.magicrealm.common.model.map;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.PriorityQueue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
@@ -11,7 +11,6 @@ import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
 import com.magicrealm.common.model.path.Node;
-import com.magicrealm.common.model.path.Path;
 import com.magicrealm.server.controller.GameController;
 
 public class Map {
@@ -29,27 +28,7 @@ public class Map {
 	
 	public void setTiles(HexTile[][] tiles) { this.tiles = tiles; }
 
-	public boolean isPathBetween(String origin, String destination) {
-		String oTileCode = origin.substring(0, 2);
-		String dTileCode = destination.substring(0, 2);
-		
-		int oClearingNumber = Integer.parseInt(origin.substring(2));
-		int dClearingNumber = Integer.parseInt(destination.substring(2));
-		
-		// If the destination and origin tile are the same
-		if(dTileCode.equals(oTileCode)) {
-			// Loop through the tile numbers in the origin and see if there's a path between the numbers
-			HexTile originTile = getTile(oTileCode);
-			Clearing originClearing = originTile.getClearing(oClearingNumber);
-			if(originClearing.isAdjacentTo(dClearingNumber)) {
-				return true;
-			}
-		}
-		else { return false; }
-		
-		// There must be no path between the tiles
-		return false;
-	}
+	
 	
 	/*
 	 * Returns the requested tile(by the tile code)
@@ -181,16 +160,16 @@ public class Map {
 		Node source = GameController.getMap().getClearing(origin);
 		Node target = GameController.getMap().getClearing(destination);
 		
-        PriorityQueue<Node> nodeQueue = new PriorityQueue<Node>();
+        ArrayBlockingQueue<Node> nodeQueue = new ArrayBlockingQueue<Node>(5);
         nodeQueue.add(source);
         source.discovered = true;
         
         while(!nodeQueue.isEmpty()) {
         	Node v = nodeQueue.poll();
         	
-        	for(Path e: v.getAdjacencyList(hidden)) {
-        		if(!e.target.discovered) {
-        			Node w = e.target;
+        	for(Node e: v.getAdjacencyList(hidden)) {
+        		if(!e.discovered) {
+        			Node w = e;
                     if(w instanceof Edge) {
                     	int xCoord = GameController.getMap().getTileCoordinateX(w.getTileCode());
                     	int yCoord = GameController.getMap().getTileCoordinateY(w.getTileCode());

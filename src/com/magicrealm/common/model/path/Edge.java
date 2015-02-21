@@ -19,5 +19,5 @@ public class Edge extends Node {
 	 * 
 	 * It's only ever possible for one to be connected, and it can never be hidden, so I've just returned it like this.
 	 */
-	public Clearing getConnectedClearing() { return (Clearing) newAdjacentByPath.get(0).target; }
+	public Clearing getConnectedClearing() { return (Clearing) adjacencyListByNormalPath.get(0); }
 }

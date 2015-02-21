@@ -17,7 +17,7 @@ public class Crag extends HexTile {
 	
 	public Crag(int angle) {
 		
-		super(angle, "crag1.gif");
+		super(angle, "crag1.gif", "crag-e01.gif");
 
 		init();
 		

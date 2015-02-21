@@ -176,7 +176,6 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[].class);
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[][].class);
 	    kryo.register(com.magicrealm.common.model.path.Clearing.class);
-	    kryo.register(com.magicrealm.common.model.path.Path.class);
 	    kryo.register(com.magicrealm.common.model.path.Edge.class);
 	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);

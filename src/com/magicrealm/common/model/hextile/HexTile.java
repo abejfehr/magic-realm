@@ -16,6 +16,8 @@ public abstract class HexTile {
 	 */
 	private int angle = 0;
 	protected String imageFilename = "caves1.gif";
+	protected String normalImageFilename = "caves1.gif";
+	protected String enchantedImageFilename = "caves-e1.gif";
 	protected String code = null;
 	protected boolean enchanted = false;
 	protected ArrayList<Node> pathNodes = new ArrayList<Node>();
@@ -26,9 +28,12 @@ public abstract class HexTile {
 	/*
 	 * Constructors
 	 */
-	public HexTile(int rotationStep, String filename) {
+	public HexTile(int rotationStep, String normalFilename, String enchantedFilename) {
 
-		imageFilename = filename;
+		normalImageFilename = normalFilename;
+		enchantedImageFilename = enchantedFilename;
+		
+		imageFilename = normalFilename;
 		angle = rotationStep * 60;
 
 	}
@@ -57,11 +62,24 @@ public abstract class HexTile {
 	
 	public boolean isEnchanted() { return enchanted; }
 	
-	public void enchant() { enchanted = true; }
+	public void enchant() {
+
+		enchanted = true;
+		imageFilename = enchantedImageFilename;
+		
+	}
+	
+	public void unenchant() {
+		
+		enchanted = false;
+		imageFilename = normalImageFilename;
+		
+	}
 
 	public String getCode() { return code; }
 
 	public Clearing getClearing(int oClearingNumber) {
+		
 		for(Node p: (enchanted ? enchantedPathNodes : pathNodes)) {
 			if(p instanceof Clearing) {
 				if(((Clearing)p).getNumber() == oClearingNumber) {
@@ -69,7 +87,9 @@ public abstract class HexTile {
 				}
 			}
 		}
+		
 		return null;
+		
 	}
 
 	public ArrayList<Node> getClearings() { return (enchanted ? enchantedPathNodes : pathNodes); }
@@ -78,7 +98,7 @@ public abstract class HexTile {
 
 	public Edge getEdge(int edgeNumber) {
 		
-		for(Node node : pathNodes) {
+		for(Node node : (enchanted ? enchantedPathNodes : pathNodes)) {
 			if(node instanceof Edge) {
 				if(((Edge)node).getEdgeNumber() == edgeNumber) {
 					return (Edge)node;
