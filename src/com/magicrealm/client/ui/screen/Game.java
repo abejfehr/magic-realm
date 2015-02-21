@@ -24,15 +24,6 @@ public class Game extends Screen implements Subscriber {
 
 		setLayout(new BorderLayout());
 		
-		// Create a back button for testing
-		JButton test = new JButton("Back to Main Menu");
-		test.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				scrController.show(MainMenu.class);
-			}
-		});
-		add(test, BorderLayout.NORTH);
-		
 		// Request the map from the server
 		NetworkController.subscribe(Events.MAP_UPDATED, this);
 		NetworkController.sendToServer(RequestMapPacket.class);
