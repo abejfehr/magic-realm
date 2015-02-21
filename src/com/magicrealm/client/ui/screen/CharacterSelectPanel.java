@@ -1,21 +1,33 @@
 package com.magicrealm.client.ui.screen;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-import com.magicrealm.client.Main;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
-import com.magicrealm.common.character.*;
+import com.magicrealm.common.character.Amazon;
+import com.magicrealm.common.character.BlackKnight;
+import com.magicrealm.common.character.Captain;
 import com.magicrealm.common.character.Character;
+import com.magicrealm.common.character.Dwarf;
+import com.magicrealm.common.character.Elf;
+import com.magicrealm.common.character.Swordsman;
 
-import java.awt.*;
-import java.io.IOException;
 
-
+@SuppressWarnings("serial")
 public class CharacterSelectPanel extends JPanel{
 	
 	private JList       characterList;
@@ -53,7 +65,7 @@ public class CharacterSelectPanel extends JPanel{
     	    		  img = "black_knight";
     	    	 
     	    	  updateCharImage(""+img + ".jpg");
-    	    	  System.out.println(getCharacter().toString());
+    	    	  //System.out.println(getCharacter().toString());
     	    }
 			
     	});
@@ -86,23 +98,25 @@ public class CharacterSelectPanel extends JPanel{
     	String characterSelectString = characterList.getSelectedValue().toString();
     	Character newCharacter = null;
     	
+    	String name = JOptionPane.showInputDialog(null, "What's your Characters name?", "Name");
+    	
     	if(characterSelectString == "Amazon"){
-    		newCharacter = new Amazon("blank1");
+    		newCharacter = new Amazon(name);
     	}
     	else if(characterSelectString == "Black Knight"){
-    		newCharacter = new BlackKnight("blank2");
+    		newCharacter = new BlackKnight(name);
     	}
     	else if(characterSelectString == "Captain"){
-    		newCharacter = new Captain("blank3");
+    		newCharacter = new Captain(name);
     	}
     	else if(characterSelectString == "Dwarf"){
-    		newCharacter = new Dwarf("blank4");
+    		newCharacter = new Dwarf(name);
     	}
     	else if(characterSelectString == "Elf"){
-    		newCharacter = new Elf("blank5");
+    		newCharacter = new Elf(name);
     	}
     	else if(characterSelectString == "Swordsman"){
-    		newCharacter = new Swordsman("blank6");
+    		newCharacter = new Swordsman(name);
     	}
     	
     	return newCharacter;
@@ -117,5 +131,8 @@ public class CharacterSelectPanel extends JPanel{
 		testFrame.setResizable(false);
 		
 		
-	}  
+	}
+    public JList getCharacterList(){
+    	return characterList;
+    }
 }

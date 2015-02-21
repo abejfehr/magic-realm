@@ -15,8 +15,11 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
@@ -35,25 +38,43 @@ public class Lobby extends Screen{
 	CharacterSelectPanel characterPanel = new CharacterSelectPanel(); //EAST PANEL
 	JPanel               chatPanel      = new JPanel();               //WEST PANEL
 	
+	/*
+	 * Spinner and Models for Victory Points
+	 */
+	
+    SpinnerNumberModel gold      = new SpinnerNumberModel(0,0,5,1);
+    SpinnerNumberModel fame      = new SpinnerNumberModel(0,0,5,1);
+    SpinnerNumberModel notoriety = new SpinnerNumberModel(0,0,5,1);
+    SpinnerNumberModel treasure  = new SpinnerNumberModel(0,0,5,1);
+    SpinnerNumberModel spell     = new SpinnerNumberModel(0,0,5,1);
+    
+    JSpinner goldPointsSpinner      = new JSpinner(gold);
+    JSpinner famePointsSpinner      = new JSpinner(fame);
+    JSpinner notorietyPointsSpinner = new JSpinner(notoriety);
+    JSpinner treasurePointsSpinner  = new JSpinner(treasure);	    
+    JSpinner spellPointsSpinner     = new JSpinner(spell);
+    
+    
 	public Lobby(){
+		
+		//setLayout Manager
 		setLayout(new BorderLayout());
 		
 		// Larger font to use
 		Font font = new Font("sans serif", Font.PLAIN, 20);
 		
+		
 		/*
 		 *  Setting Up Background image
 		 */
 		
-	    JLabel background = null;
+	    JLabel        background    = null;
 	    BufferedImage imgBackground = null;
 	    try {
 			imgBackground = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "LobbyBackground.png"));
 	    } catch(Exception e) {}
 	    background = new JLabel(new ImageIcon(imgBackground));
 		background.setLayout(new BorderLayout());
-		
-
 				
 		/*
 		 *  Setting Up Title Panel
@@ -83,26 +104,47 @@ public class Lobby extends Screen{
 		info.setFont(font);
 		info.setForeground(Color.CYAN);
 		info.setPreferredSize(new Dimension(500,80));
-		JButton startGameButton = new JButton("Start Game");
-		JButton selectCharacterButton = new JButton("Select Character");
-		selectCharacterButton.setPreferredSize(new Dimension(450,80));
-		selectCharacterButton.addActionListener(new ActionListener() {
+		JButton startGameButton       = new JButton("Start Game");
+		JButton createCharacterButton = new JButton("Create Character");
+		createCharacterButton.setPreferredSize(new Dimension(450,80));
+		
+		/*
+		 * create character button actionlistener with error checking
+		 */
+		createCharacterButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegisterPlayer newPlayer = new RegisterPlayer();
-				newPlayer.setPlayer(characterPanel.getCharacter());
-				NetworkController.sendToServer(newPlayer);
+				int totalVictory = 0;
+				totalVictory += (Integer)goldPointsSpinner.getValue();
+				totalVictory += (Integer)famePointsSpinner.getValue();
+				totalVictory += (Integer)notorietyPointsSpinner.getValue();
+				totalVictory += (Integer)treasurePointsSpinner.getValue();
+				totalVictory += (Integer)spellPointsSpinner.getValue();				
+				if (totalVictory != 5){
+					JOptionPane.showMessageDialog(null, "Victory Points not properly set");
+					
+				}else if(characterPanel.getCharacterList().getSelectedValue() == null){
+					JOptionPane.showMessageDialog(null, "No character class selected");
+				}else {
+					RegisterPlayer newPlayer = new RegisterPlayer();
+					newPlayer.setPlayer(characterPanel.getCharacter());
+					NetworkController.sendToServer(newPlayer);
+				}
 			}
 		});
+		/*
+		 * Start Game Button actionlistener to display board
+		 */
 		startGameButton.setPreferredSize(new Dimension(450,80));
 		startGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scrController.show(Game.class);
 			}
 		});
+		
 		optionPanel.setLayout(new FlowLayout());
 		optionPanel.setOpaque(false);
 		optionPanel.add(info);
-		optionPanel.add(selectCharacterButton);
+		optionPanel.add(createCharacterButton);
 		optionPanel.add(startGameButton);
 		
 	    /*
@@ -112,21 +154,47 @@ public class Lobby extends Screen{
 	    chatPanel.setOpaque(false);
 	    chatPanel.setPreferredSize(new Dimension(500,650));
 	    chatPanel.setLayout(new BoxLayout(chatPanel, BoxLayout.Y_AXIS));
-	    	    
-	    JPanel    chatTopPanel     = new JPanel();
+	    
+	    JPanel chatTopPanel       = new JPanel();
+	    JPanel spinnerPanel       = new JPanel();
+	    JLabel victoryPointsLabel = new JLabel("Distribute your 5 Victory Points");
+	    victoryPointsLabel.setFont(font);
+	        
+	    spinnerPanel.setLayout(new BorderLayout());
+	    spinnerPanel.add(victoryPointsLabel, BorderLayout.NORTH);
+	    
+	    JPanel victorySpinners = new JPanel();
+	    victorySpinners.setLayout(new BoxLayout(victorySpinners, BoxLayout.X_AXIS));
+	    victorySpinners.add(new JLabel("Gold:"));
+	    victorySpinners.add(goldPointsSpinner);
+	    victorySpinners.add(new JLabel("Fame:"));
+	    victorySpinners.add(famePointsSpinner);
+	    victorySpinners.add(new JLabel("Notoriety:"));
+	    victorySpinners.add(notorietyPointsSpinner);
+	    victorySpinners.add(new JLabel("Treasure:"));
+	    victorySpinners.add(treasurePointsSpinner);
+	    victorySpinners.add(new JLabel("Spell:"));
+	    victorySpinners.add(spellPointsSpinner);
+	    
+	    spinnerPanel.add(victorySpinners,BorderLayout.SOUTH);
+	    
+	    chatTopPanel.setOpaque(false);
+	    chatTopPanel.add(spinnerPanel);	    
+	    
+	    JPanel    chatMiddlePanel  = new JPanel();
 	    JTextArea chatText         = new JTextArea();
 	    JTextArea connectedPlayers = new JTextArea();
 	    chatText.setBorder(BorderFactory.createEtchedBorder());
 	    chatText.setText("chat text");
 	    connectedPlayers.setText("Players Connected text");
 	    connectedPlayers.setBorder(BorderFactory.createEtchedBorder());
-	    chatTopPanel.setPreferredSize(new Dimension(500,490));
+	    chatMiddlePanel.setPreferredSize(new Dimension(500,490));
 	    chatText.setPreferredSize(new Dimension(350,490));
 	    connectedPlayers.setPreferredSize(new Dimension(120,490));
-	    chatTopPanel.setLayout(new FlowLayout());
-	    chatTopPanel.add(chatText);
-	    chatTopPanel.add(connectedPlayers);
-	    chatTopPanel.setOpaque(false);
+	    chatMiddlePanel.setLayout(new FlowLayout());
+	    chatMiddlePanel.add(chatText);
+	    chatMiddlePanel.add(connectedPlayers);
+	    chatMiddlePanel.setOpaque(false);
 	    
 	    
 	    JPanel    chatBottomPanel  = new JPanel();	   	    
@@ -143,11 +211,13 @@ public class Lobby extends Screen{
 	    chatBottomPanel.setOpaque(false);
 	    
 	    chatPanel.add(chatTopPanel);
+	    chatPanel.add(chatMiddlePanel);
 	    chatPanel.add(chatBottomPanel);
 	    
 	    /*
 	     * Orient the 4 Panels on top of the background
 	     */
+	    
 		background.add(characterPanel, BorderLayout.EAST);
 		background.add(titlePanel,BorderLayout.NORTH);
 		background.add(chatPanel,BorderLayout.WEST);
