@@ -6,9 +6,12 @@ import com.esotericsoftware.kryonet.Connection;
 import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.map.Map;
 import com.magicrealm.common.model.map.MapFactory;
+import com.magicrealm.common.network.Events;
+import com.magicrealm.common.network.NetworkController;
+import com.magicrealm.common.network.Subscriber;
 
 
-public class GameController {
+public class GameController implements Subscriber {
 
 	/*
 	 * Private members
@@ -30,10 +33,28 @@ public class GameController {
 		chatHistory = "";
 		map = MapFactory.createIteration1Map();
 		players = new HashMap<Connection, Character>();
+		
+		// Create an instance of this class to subscribe to events
+		GameController gc = new GameController();
+		
+		// Subscribes to network events
+		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
 	}
 
 	public static Map getMap() { return map; }
 	public static Character getPlayer(Connection connection){
 		return players.get(connection);
 	}
+
+	public static void setMap(Map newMap) {
+		map = newMap;
+	}
+
+	@Override
+	public void eventFired(int event) {
+		if(event == Events.PLAYER_REGISTERED) {
+			map.setCharacterList(players.values());
+		}
+	}
+	
 }
