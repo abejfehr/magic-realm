@@ -1,13 +1,18 @@
 package com.magicrealm.common.model.map;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.PriorityQueue;
 
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.path.Clearing;
-import com.magicrealm.common.model.path.PathNode;
+import com.magicrealm.common.model.path.Edge;
+import com.magicrealm.common.model.path.Node;
+import com.magicrealm.common.model.path.Path;
+import com.magicrealm.server.controller.GameController;
 
 public class Map {
 	
@@ -99,6 +104,40 @@ public class Map {
 		// If there was no tile
 		return 0;
 	}
+	
+	public int getTileCoordinateX(String code) {
+		String tileCode = code.substring(0, 2);
+
+		for(int i=0;i<tiles.length;++i) {
+			for(int j=0;j<tiles[i].length;++j) {
+				if(tiles[i][j]!=null){
+					if(tiles[i][j].getCode().equals(tileCode)) {
+						return i;
+					}
+				}
+			}
+		}
+		
+		// If there was no tile
+		return 0;
+	}
+	
+	public int getTileCoordinateY(String code) {
+		String tileCode = code.substring(0, 2);
+
+		for(int i=0;i<tiles.length;++i) {
+			for(int j=0;j<tiles[i].length;++j) {
+				if(tiles[i][j]!=null){
+					if(tiles[i][j].getCode().equals(tileCode)) {
+						return j;
+					}
+				}
+			}
+		}
+		
+		// If there was no tile
+		return 0;
+	}
 
 	public static int getTilePositionX(int xIndex, int yIndex) { return xIndex*Config.HEX_TILE_IMAGE_WIDTH-(Config.HEX_TILE_IMAGE_WIDTH/4)*xIndex; }
 	
@@ -135,38 +174,88 @@ public class Map {
 	
 	
 	/*
-	 * Uses a variation of Djikstra's algorithm to calculate the shortest *allowable* path between two points on the map
+	 * Uses breadth first search to calculate the shortest *allowable* path between two points on the map
 	 */
-	public ArrayList<String> getPathBetween(String origin, String destination, boolean hidden) {
+	public List<Node> getPathBetween(String origin, String destination, boolean hidden) {
 		
-		// Store the minimum distance so far
-		int minDistance = 0;
+		Node source = GameController.getMap().getClearing(origin);
+		Node target = GameController.getMap().getClearing(destination);
 		
-		// Store the path
-		ArrayList<String> path = new ArrayList<String>();
-		
-		// For traversal
-		PriorityQueue<PathNode> nodeQueue = new PriorityQueue<PathNode>();
-		
-		// Add the origin, since it's inevitable that we'll start from there
-		path.add(origin);
-		nodeQueue.add(getClearing(origin));
-		
-		// Traverse the tree
-		while(!nodeQueue.isEmpty()) {
-			PathNode u = nodeQueue.poll();
-			
-			// Visit each path coming from u
-//			for(PathNode e : u.getAdjacentList(hidden)) {
-				// This definitely needs to be fixed.
-//			}
-		}
-		
-		// If no path exists
-		if(minDistance < 1)
-			return null;
-		else
-			return path;
-		
+        PriorityQueue<Node> nodeQueue = new PriorityQueue<Node>();
+        nodeQueue.add(source);
+        source.discovered = true;
+        
+        while(!nodeQueue.isEmpty()) {
+        	Node v = nodeQueue.poll();
+        	
+        	for(Path e: v.getAdjacencyList(hidden)) {
+        		if(!e.target.discovered) {
+        			Node w = e.target;
+                    if(w instanceof Edge) {
+                    	int xCoord = GameController.getMap().getTileCoordinateX(w.getTileCode());
+                    	int yCoord = GameController.getMap().getTileCoordinateY(w.getTileCode());
+               			int ctr  = GameController.getMap().getTile(w.getTileCode()).getAngle() / 60;
+                    	int sideEdgeIsOn = ((((((Edge) w).getEdgeNumber()) + ctr) % 6) == 0 ? 6 : ((((Edge) w).getEdgeNumber()) + ctr) % 6);
+                    	int complementarySide = ((sideEdgeIsOn + 3) % 6 == 0 ? 6 : (sideEdgeIsOn + 3) % 6);
+                    	switch(sideEdgeIsOn) {
+                    		case 1:
+                    			xCoord = xCoord + 1;
+                    			yCoord = yCoord - 1;
+                    			break;
+                    		case 2:
+                    			xCoord = xCoord + 1;
+                    			break;
+                    		case 3:
+                    			yCoord = yCoord + 1;
+                    			break;
+                    		case 4: 
+                    			yCoord = yCoord + 1;
+                    			xCoord = xCoord - 1;
+                    			break;
+                    		case 5:
+                    			xCoord = xCoord - 1;
+                    			break;
+                    		case 6: 
+                    			yCoord = yCoord - 1;
+                    			break;
+                    	}
+                    	if(xCoord < 0 || yCoord < 0) {
+                    		// The tile must have been on the edge of the map, the connecting tile doesn't exist
+                    		break;
+                    	}
+                    	else {
+	            			HexTile tile = GameController.getMap().getTile(xCoord, yCoord);
+	            			if(tile != null) {
+		                    	//currentTile = tile.getCode();
+	                   			int vctr  = GameController.getMap().getTile(tile.getCode()).getAngle() / 60;
+	                        	complementarySide = (((complementarySide + 6 - vctr) % 6) == 0 ? 6 : (complementarySide + 6 - vctr) % 6);
+	            				if(!tile.getEdge(complementarySide).getConnectedClearing().discovered)
+	            					w = tile.getEdge(complementarySide).getConnectedClearing();
+	            			}
+                    	}
+                    }
+                    
+        			nodeQueue.add(w);
+        			w.discovered = true;
+        			w.previous = v;
+        		}
+        	}
+        }
+        
+        List<Node> path = new ArrayList<Node>();
+        for (Node node = target; node != null; node = node.previous)
+            path.add(node);
+
+        Collections.reverse(path);
+        if(path.size() > 1) {
+        	return path;
+        }
+        else {
+        	return null;
+        }
+        
 	}
+
+	private HexTile getTile(int i, int j) { return tiles[i][j]; }
+
 }

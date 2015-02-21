@@ -1,13 +1,13 @@
 package com.magicrealm.common.model.map.test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
 import com.magicrealm.common.model.map.Map;
+import com.magicrealm.common.model.path.Node;
 import com.magicrealm.server.controller.GameController;
 
 public class MapTest {
@@ -27,6 +27,35 @@ public class MapTest {
 	}
 	
 	/*
+	 * Describe Map tile retrieval
+	 */
+	
+	/*
+	 * It should allow you to get a map tile's X values based on the tile code
+	 */
+	@Test
+	public void testMapGetTileXFromCode() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
+		int x = testMap.getTileCoordinateX("CL");
+		assertEquals(x, 0);
+	}
+
+	/*
+	 * It should allow you to get a map tile's Y values based on the tile code
+	 */
+	@Test
+	public void testMapGetTileYFromCode() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
+		int y = testMap.getTileCoordinateY("CL");
+		assertEquals(y, 2);
+	}
+
+	
+	
+	
+	/*
 	 * Describe: Map pathfinding
 	 */
 	
@@ -37,7 +66,29 @@ public class MapTest {
 	public void testMapPathExistsInOneTile() {
 		GameController.startNewGame();
 		Map testMap = GameController.getMap();
-		ArrayList<String> result = testMap.getPathBetween("CL6", "CL4", false);
+		List<Node> result = testMap.getPathBetween("CL1", "CL4", false);
+		assertEquals(result.size(), 3);
+	}
+
+	/*
+	 * It doesn't show hidden paths in one tile unless you ask for it
+	 */
+	@Test
+	public void testMapHiddenPathInaccessibleInOneTile() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
+		List<Node> result = testMap.getPathBetween("CL1", "CL3", false);
+		assertNull(result);
+	}
+
+	/*
+	 * It should be able to find hidden paths in one tile
+	 */
+	@Test
+	public void testMapHiddenPathExistsInOneTile() {
+		GameController.startNewGame();
+		Map testMap = GameController.getMap();
+		List<Node> result = testMap.getPathBetween("CL1", "CL3", true);
 		assertNotNull(result);
 	}
 
@@ -48,7 +99,7 @@ public class MapTest {
 	public void testMapNoPathInOneTile() {
 		GameController.startNewGame();
 		Map testMap = GameController.getMap();
-		ArrayList<String> result = testMap.getPathBetween("CL1", "CL2", false);
+		List<Node> result = testMap.getPathBetween("CL1", "CL2", false);
 		assertNull(result);
 	}
 	
@@ -59,7 +110,8 @@ public class MapTest {
 	public void testMapPathBetweenTwoTiles() {
 		GameController.startNewGame();
 		Map testMap = GameController.getMap();
-		ArrayList<String> result = testMap.getPathBetween("CL1", "EV5", false);
-		assertNotNull(result);		
+		List<Node> result = testMap.getPathBetween("CL1", "EV5", false);
+		System.out.println(result);
+		assertNotNull(result);
 	}
 }
