@@ -2,6 +2,7 @@ package com.magicrealm.common.treasures;
  
 
 import com.magicrealm.common.die.Die;
+import com.magicrealm.common.weapon.*;
 
 
 /*
@@ -25,6 +26,8 @@ public class SiteCard {
 	private boolean found; // If this is true, you found a site card and now you can roll some sweet dice. 
 	private int number1 = die1.getCurrentNumber();
 	private int number2 = die2.getCurrentNumber(); 
+	protected Weapon weapon; 
+	protected Treasure treasure;
 	
 	
 	/*TODO: Create constructor */
