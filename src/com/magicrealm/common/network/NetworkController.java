@@ -60,8 +60,8 @@ public class NetworkController {
 	            	if(object instanceof RegisterPlayer) {
 	    				
 	    				GameController.addPlayer(connection, ((RegisterPlayer) object).getPlayer());
-	    				
-	            		System.out.println("new Player registered");
+	    				server.sendToAllTCP(object);
+	            		System.out.println("new Player " + GameController.getPlayer(connection).toString()+", has been registered");
 	    			}
 	            }
 	         }
@@ -90,10 +90,21 @@ public class NetworkController {
 	    			
 	    			if(object instanceof MapPacket) {
 	    				
+	    				GameController.setMap(((MapPacket)object).getMap());
+	    				
 	    				fireEvent(Events.MAP_UPDATED);
 	    				
 	            		System.out.println("Received an updated map");
-	    			}    			
+	    			}  
+	    			if(object instanceof RegisterPlayer) {
+	    				
+	    				GameController.addPlayer(connection, ((RegisterPlayer) object).getPlayer());
+	    				
+	    				System.out.println("This many events are subscribed to" + subscribers.size());
+	    				fireEvent(Events.PLAYER_REGISTERED);
+	    				
+	    				System.out.println("Received Registered Player");	    				
+	    			}
 	    		} 			
 	    	}
 	    	

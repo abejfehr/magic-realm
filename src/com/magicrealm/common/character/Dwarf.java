@@ -2,22 +2,41 @@ package com.magicrealm.common.character;
 
 import com.magicrealm.common.Vulnerability;
 import com.magicrealm.common.weapon.GreatAxe;
-import com.magicrealm.common.weapon.ShortSword;
+
+/*
+ * Dwarf sub-class of Character
+ * 
+ * Functions
+ * ----------
+ * -toString() prints out info for testing
+ */
 
 public class Dwarf extends Character{
+	
+	/*
+	 * Constructors
+	 */
+	
 	public Dwarf(String name){
-		super(Vulnerability.HEAVY, name);
-		//Needs to set starting dwelling between INN or GUARD_HOUSE
+		
+		super(Vulnerability.HEAVY, name, "dwarf.png");
 		this.weapon = new GreatAxe();
-		//setImage("dwarf.png");
+	
 	}
-	public Dwarf(){ // no-args for serialization
-		super(Vulnerability.HEAVY, "new dwarf");
+	
+	// no-args for serialization
+	
+	public Dwarf(){ 
+		
+		super(Vulnerability.HEAVY, "new dwarf", "dwarf.png");
 		this.setStartingPoint();
 		this.weapon = new GreatAxe();
+	
 	}
+	
+	/*
+	 * Overrides javas toString method
+	 */
 	@Override
-	public String toString(){
-		return (""+ this.name + ", the Dwarf");
-	}
+	public String toString(){return (""+ this.name + ", the Dwarf");}
 }

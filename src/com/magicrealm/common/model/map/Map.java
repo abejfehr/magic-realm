@@ -1,12 +1,18 @@
 package com.magicrealm.common.model.map;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
+=======
+import java.util.Collection;
+import java.util.PriorityQueue;
+>>>>>>> f62193ac952e0dc4ca124c4dbc21d9d245b7fefc
 
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
@@ -20,6 +26,7 @@ public class Map {
 	 */
 	private HexTile[][] tiles;
 	private ArrayList<Dwellings> dwellings = new ArrayList<Dwellings>();
+	private ArrayList<Character> characters = new ArrayList<Character>();
 		
 	/*
 	 * Getters and setters
@@ -237,4 +244,11 @@ public class Map {
 
 	private HexTile getTile(int i, int j) { return tiles[i][j]; }
 
+	public ArrayList<Character>  getCharacterList() { return characters; }
+
+	public void setCharacterList(Collection<Character> values) {
+		
+		characters = new ArrayList<Character>(values);
+		
+	}
 }
