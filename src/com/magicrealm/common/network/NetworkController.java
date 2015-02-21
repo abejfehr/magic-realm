@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.serializers.JavaSerializer;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.magicrealm.common.model.hextile.Cliff;
 import com.magicrealm.common.packet.MapPacket;
 import com.magicrealm.common.packet.Packet;
 import com.magicrealm.common.packet.RegisterPlayer;
@@ -32,7 +34,7 @@ public class NetworkController {
 	public static void StartServer(int serverPort) throws IOException {
 	    
 		// Create the server
-		server = new Server();
+		server = new Server(16438, 4096);
 		
 		// Start the server
 	    server.start();
@@ -52,7 +54,7 @@ public class NetworkController {
 	            		MapPacket mp = new MapPacket(GameController.getMap());
 	            		
 	            		server.sendToAllTCP(mp);
-	            			            		
+	            		
 	            		System.out.println("Sending a map to all connected clients");
 	            	}
 	            	if(object instanceof RegisterPlayer) {
@@ -73,7 +75,7 @@ public class NetworkController {
 	public static void StartClient(String serverIP, int serverPort) throws IOException {
 	    
 		// Create the client
-		client = new Client();
+		client = new Client(16438, 4096);
 		
 		// Connect to the server
 	    client.start();
@@ -152,6 +154,8 @@ public class NetworkController {
 	 */
 	public static void registerClasses(Kryo kryo) {
 
+		JavaSerializer javaSerializer = new JavaSerializer();
+		
 		// Packets
 	    kryo.register(com.magicrealm.common.packet.MapPacket.class);
 	    kryo.register(com.magicrealm.common.packet.MapTilesPacket.class);
@@ -172,31 +176,33 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[].class);
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[][].class);
 	    kryo.register(com.magicrealm.common.model.path.Clearing.class);
+	    kryo.register(com.magicrealm.common.model.path.Path.class);
+	    kryo.register(com.magicrealm.common.model.path.Edge.class);
 	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
 	    kryo.register(com.magicrealm.common.Vulnerability.class);
 
 	    // Tiles(part of the model)
-	    kryo.register(com.magicrealm.common.model.hextile.AwfulValley.class);
-	    kryo.register(com.magicrealm.common.model.hextile.BadValley.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Borderland.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Cavern.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Caves.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Cliff.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Crag.class);
-	    kryo.register(com.magicrealm.common.model.hextile.CurstValley.class);
-	    kryo.register(com.magicrealm.common.model.hextile.DarkValley.class);
-	    kryo.register(com.magicrealm.common.model.hextile.DeepWoods.class);
-	    kryo.register(com.magicrealm.common.model.hextile.EvilValley.class);
-	    kryo.register(com.magicrealm.common.model.hextile.HighPass.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Ledges.class);
-	    kryo.register(com.magicrealm.common.model.hextile.LindenWoods.class);
-	    kryo.register(com.magicrealm.common.model.hextile.MapleWoods.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Mountain.class);
-	    kryo.register(com.magicrealm.common.model.hextile.NutWoods.class);
-	    kryo.register(com.magicrealm.common.model.hextile.OakWoods.class);
-	    kryo.register(com.magicrealm.common.model.hextile.PineWoods.class);
-	    kryo.register(com.magicrealm.common.model.hextile.Ruins.class);
+	    kryo.register(com.magicrealm.common.model.hextile.AwfulValley.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.BadValley.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Borderland.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Cavern.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Caves.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Cliff.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Crag.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.CurstValley.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.DarkValley.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.DeepWoods.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.EvilValley.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.HighPass.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Ledges.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.LindenWoods.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.MapleWoods.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Mountain.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.NutWoods.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.OakWoods.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.PineWoods.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.hextile.Ruins.class, javaSerializer);
 	    
 	    //Characters(part of the model)
 	    kryo.register(com.magicrealm.common.character.Amazon.class);

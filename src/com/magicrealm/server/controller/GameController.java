@@ -28,7 +28,8 @@ public class GameController {
 	public static void startNewGame() {
 		name = "GameName1";
 		chatHistory = "";
-		map = MapFactory.createIteration1Map();
+		//map = MapFactory.createIteration1Map();
+		map = MapFactory.createTestMap();
 		players = new HashMap<Connection, Character>();
 	}
 
