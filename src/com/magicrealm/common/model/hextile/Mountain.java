@@ -1,11 +1,21 @@
 package com.magicrealm.common.model.hextile;
 
+import java.io.Serializable;
+
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
 import com.magicrealm.common.model.path.Node;
 
-public class Mountain extends HexTile {
+public class Mountain extends HexTile implements Serializable{
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8240381353369832568L;
+
+
+
 	/*
 	 * Constructors
 	 */

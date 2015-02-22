@@ -1,10 +1,19 @@
 package com.magicrealm.common.model.hextile;
 
+import java.io.Serializable;
+
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
 import com.magicrealm.common.model.path.Node;
 
-public class NutWoods extends HexTile {
+public class NutWoods extends HexTile implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3192155406322948088L;
+
+
 
 	/*
 	 * Constructors
