@@ -1,14 +1,10 @@
 package com.magicrealm.common.model.map;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
-=======
-import java.util.Collection;
-import java.util.PriorityQueue;
->>>>>>> f62193ac952e0dc4ca124c4dbc21d9d245b7fefc
 
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
