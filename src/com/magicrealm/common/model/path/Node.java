@@ -1,11 +1,11 @@
 package com.magicrealm.common.model.path;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import com.magicrealm.server.controller.GameController;
+public abstract class Node implements Serializable {
 
-public abstract class Node {
-
+	private static final long serialVersionUID = 3303820687554897134L;
 	/*
 	 * Private/public members
 	 */

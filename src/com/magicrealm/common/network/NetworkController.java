@@ -10,7 +10,13 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.magicrealm.common.model.hextile.AwfulValley;
+import com.magicrealm.common.model.hextile.BadValley;
+import com.magicrealm.common.model.hextile.Borderland;
+import com.magicrealm.common.model.hextile.Cavern;
+import com.magicrealm.common.model.hextile.Caves;
 import com.magicrealm.common.model.hextile.Cliff;
+import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.packet.MapPacket;
 import com.magicrealm.common.packet.Packet;
 import com.magicrealm.common.packet.RegisterPlayer;
@@ -34,7 +40,7 @@ public class NetworkController {
 	public static void StartServer(int serverPort) throws IOException {
 	    
 		// Create the server
-		server = new Server(16438, 4096);
+		server = new Server(65536*4, 65536*4);
 		
 		// Start the server
 	    server.start();
@@ -75,7 +81,7 @@ public class NetworkController {
 	public static void StartClient(String serverIP, int serverPort) throws IOException {
 	    
 		// Create the client
-		client = new Client(16438, 4096);
+		client = new Client(65536*4, 65536*4);
 		
 		// Connect to the server
 	    client.start();
@@ -184,10 +190,11 @@ public class NetworkController {
 	    kryo.register(java.util.Hashtable.class);
 	    
 	    // Model
+	    kryo.register(com.magicrealm.common.model.hextile.HexTile.class);
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[].class);
 	    kryo.register(com.magicrealm.common.model.hextile.HexTile[][].class);
-	    kryo.register(com.magicrealm.common.model.path.Clearing.class);
-	    kryo.register(com.magicrealm.common.model.path.Edge.class);
+	    kryo.register(com.magicrealm.common.model.path.Clearing.class, javaSerializer);
+	    kryo.register(com.magicrealm.common.model.path.Edge.class, javaSerializer);
 	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
 	    kryo.register(com.magicrealm.common.Vulnerability.class);

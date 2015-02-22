@@ -1,6 +1,10 @@
 package com.magicrealm.common.model.path;
 
-public class Clearing extends Node {
+import java.io.Serializable;
+
+public class Clearing extends Node implements Serializable {
+
+	private static final long serialVersionUID = -1948441044656692582L;
 
 	/*
 	 * Private members
