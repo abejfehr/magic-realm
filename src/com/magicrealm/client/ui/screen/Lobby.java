@@ -107,7 +107,7 @@ public class Lobby extends Screen{
 	    
 	    //Setting Game Logo Label's image
 	    try {
-			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2glowSmall.png"));
+			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2smaller.png"));
 		} catch(Exception e) { } // Should fail silently if images aren't available
 		logo = new JLabel(new ImageIcon(imgLogo));
 		logo.setAlignmentX(CENTER_ALIGNMENT);
@@ -129,7 +129,7 @@ public class Lobby extends Screen{
 		JLabel info = new JLabel("<html>**Based On Magic Realm, by Avalon Hills**<br> **Code Written by: Abe, Nataly, Nathan**</html>");
 		info.setFont(font);
 		info.setForeground(Color.CYAN);
-		info.setPreferredSize(new Dimension(500,80));
+		info.setPreferredSize(new Dimension(515,80));
 		JButton startGameButton       = new JButton("Start Game");
 		JButton createCharacterButton = new JButton("Create Character");
 		createCharacterButton.setPreferredSize(new Dimension(450,80));
