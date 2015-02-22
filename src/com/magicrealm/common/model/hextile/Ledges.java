@@ -1,11 +1,17 @@
 package com.magicrealm.common.model.hextile;
 
+import java.io.Serializable;
+
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
 import com.magicrealm.common.model.path.Node;
 
-public class Ledges extends HexTile {
+public class Ledges extends HexTile implements Serializable {
 	
+	private static final long serialVersionUID = -4621160263614937541L;
+
+
+
 	/*
 	 * Constructors
 	 */

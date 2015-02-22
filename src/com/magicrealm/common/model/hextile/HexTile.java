@@ -1,6 +1,7 @@
 package com.magicrealm.common.model.hextile;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.magicrealm.client.controller.ScreenController;
@@ -9,8 +10,9 @@ import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
 import com.magicrealm.common.model.path.Node;
 
-public abstract class HexTile {
+public abstract class HexTile implements Serializable {
 
+	private static final long serialVersionUID = 1417044500219733536L;
 	/*
 	 * Private/protected members
 	 */
