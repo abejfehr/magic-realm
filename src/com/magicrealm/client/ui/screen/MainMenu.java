@@ -17,8 +17,11 @@ import javax.swing.JOptionPane;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
+import com.magicrealm.common.Player;
 import com.magicrealm.common.config.Errors;
 import com.magicrealm.common.network.NetworkController;
+import com.magicrealm.common.packet.RegisterPlayer;
+import com.magicrealm.common.packet.RequestConnection;
 import com.magicrealm.server.controller.GameController;
 
 @SuppressWarnings("serial")
@@ -75,6 +78,9 @@ public class MainMenu extends Screen {
 
 					// Create a new game
 					GameController.startNewGame();
+
+					// Request the connection info for our game controller
+					NetworkController.sendToServer(RequestConnection.class);
 					
 					// Show the game screen
 					scrController.show(Lobby.class);
@@ -100,6 +106,15 @@ public class MainMenu extends Screen {
 					NetworkController.StartClient(ipAddress, Config.GAME_PORT);
 					
 					JOptionPane.showMessageDialog(null, "Successfully connected to host!");
+					
+					// Request your own connection ID
+					NetworkController.sendToServer(new RequestConnection());
+					
+					GameController.joinNewGame();
+					
+					// Show the game screen
+					scrController.show(Lobby.class);
+
 				} catch (IOException ex) {
 					JOptionPane.showMessageDialog(null, Errors.ERROR_CONNECTING_TO_HOST);
 				}

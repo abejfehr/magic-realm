@@ -1,6 +1,7 @@
 package com.magicrealm.common;
 
 import java.util.Random;
+import com.magicrealm.common.character.Character;
 
 public class Player {
 
@@ -27,6 +28,26 @@ public class Player {
 			"Garwyn",
 			"Kacrowacar",
 			"Ceo",
+			"Leofnas",
+			"Doded",
+			"Kimmax",
+			"Irich",
+			"Werdfer",
+			"Fridjo",
+			"Naldsean",
+			"Lesferum",
+			"Artol",
+			"Leofuphia",
+			"Cynbet",
+			"Dogard",
+			"Tonris",
+			"Dobardthy",
+			"Drytard",
+			"Dinoald",
+			"Joanste",
+			"Ja-red",
+			"Eli-anne",
+			"Crowchris",
 			"Ing-ri",
 			"Ri"
 			};
@@ -55,4 +76,9 @@ public class Player {
 	public void setCharacter(Character character) { this.character = character; }
 	
 	public Character getCharacter() { return character; }
+	
+	@Override
+	public String toString() {
+		return "Player: " + name;
+	}
 }

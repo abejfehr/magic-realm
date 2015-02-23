@@ -9,6 +9,7 @@ import java.awt.geom.AffineTransform;
 import javax.swing.JPanel;
 
 import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.map.Map;
@@ -88,7 +89,13 @@ public class MapCanvas extends JPanel {
 		/*
 		 * Paint the characters
 		 */
-		for (Character c : map.getCharacterList()) {
+		for (Player p : map.getPlayerList()) {
+			
+			Character c = p.getCharacter();
+			
+			// Some players may not have a character set for some reason. If that's the case, just ignore those players
+			if(c == null)
+				break;
 			
 			//int index = map.getDwellings().indexOf(c.getStartingPoint());
 			int x, y;
@@ -96,16 +103,14 @@ public class MapCanvas extends JPanel {
 			int j = 0;
 			for(int i=0;i<map.getDwellings().size();++i) {
 				if(map.getDwellings().get(i).getDwellingType() == c.getStartingPoint().getDwellingType()) {
-					j=i;
+					j = i;
 				}
 			}
 			String characterLocation = map.getDwellings().get(j).getLocation();
 			x = map.getTilePositionX(characterLocation);
 			y = map.getTilePositionY(characterLocation);
 			
-			c.paint(ourGraphics,
-					x, 
-					y, 
+			c.paint(ourGraphics, x, y, 
 					map.getClearing(characterLocation).getOffsetX(), 
 					map.getClearing(characterLocation).getOffsetY(),
 					map.getTileAngle(characterLocation));
