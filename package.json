@@ -17,6 +17,14 @@
   },
   "homepage": "https://github.com/abejfehr/magic-realm",
   "devDependencies": {
-    "grunt-run-java": "^0.1.1"
+    "grunt-run-java": "^0.1.1",
+    "grunt-mkdir": "^0.1.2",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-rename": "0.0.3",
+    "grunt-indent": "^0.1.4",
+    "grunt-banner": "^0.3.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-markdown-pdf": "^2.1.1"
   }
 }
