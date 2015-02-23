@@ -8,6 +8,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.path.Clearing;
@@ -22,7 +23,7 @@ public class Map {
 	 */
 	private HexTile[][] tiles;
 	private ArrayList<Dwellings> dwellings = new ArrayList<Dwellings>();
-	private ArrayList<Character> characters = new ArrayList<Character>();
+	private ArrayList<Player> players = new ArrayList<Player>();
 		
 	/*
 	 * Getters and setters
@@ -240,11 +241,13 @@ public class Map {
 
 	private HexTile getTile(int i, int j) { return tiles[i][j]; }
 
-	public ArrayList<Character>  getCharacterList() { return characters; }
+	public void setPlayerList(Collection<Player> values) {
+		
+		players = new ArrayList<Player>(values);
+		
+	}
 
-	public void setCharacterList(Collection<Character> values) {
-		
-		characters = new ArrayList<Character>(values);
-		
+	public ArrayList<Player> getPlayerList() {
+		return players;
 	}
 }

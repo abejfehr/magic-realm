@@ -1,8 +1,10 @@
 package com.magicrealm.server.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
-import com.esotericsoftware.kryonet.Connection;
+import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.map.Map;
 import com.magicrealm.common.model.map.MapFactory;
@@ -16,24 +18,46 @@ public class GameController implements Subscriber {
 	/*
 	 * Private members
 	 */
-	private static String name; // The name of the game
+	private static String name; // The name of the game(not yet used)
 	private static String chatHistory; // For the chat box in the lobby screen
 	private static Map map; // The game board
-	private static HashMap<Connection, Character> players; // The list of connected players
+	private static HashMap<Integer, Player> players; // The list of connected players
+	private static int ownConnectionID;
 	
 	/*
 	 * Add a player
 	 */
-	public static void addPlayer(Connection connection, Character character) {
-		players.put(connection, character);
+	public static void addPlayer(int connectionID, Player player) {
+		players.put(connectionID, player);
+	}
+	
+	public static ArrayList<Player> getPlayerList() {
+		return new ArrayList<Player>(players.values());
 	}
 
+	public static void joinNewGame() {
+
+		// A bunch of default values until we get the actual info
+		name = "";
+		chatHistory = "";
+		map = null;
+		players = new HashMap<Integer, Player>();
+		
+		// Create an instance of this class to subscribe to events
+		GameController gc = new GameController();
+		
+		// Subscribes to network events
+		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
+		NetworkController.subscribe(Events.CONNECTION_INFO_RECEIVED, gc);
+
+	}
+	
 	public static void startNewGame() {
 		name = "GameName1";
 		chatHistory = "";
 		map = MapFactory.createIteration1Map();
 		//map = MapFactory.createTestMap();
-		players = new HashMap<Connection, Character>();
+		players = new HashMap<Integer, Player>();
 		
 		// Create an instance of this class to subscribe to events
 		GameController gc = new GameController();
@@ -43,8 +67,9 @@ public class GameController implements Subscriber {
 	}
 
 	public static Map getMap() { return map; }
-	public static Character getPlayer(Connection connection){
-		return players.get(connection);
+	
+	public static Player getPlayer(int i){
+		return players.get(i);
 	}
 
 	public static void setMap(Map newMap) {
@@ -54,8 +79,43 @@ public class GameController implements Subscriber {
 	@Override
 	public void eventFired(int event) {
 		if(event == Events.PLAYER_REGISTERED) {
-			map.setCharacterList(players.values());
+			if(map != null) {
+				map.setPlayerList(players.values());
+			}
 		}
 	}
 	
+	public static String getChatHistory() {
+		return chatHistory;
+	}
+	
+	public static void updateChatHistory(Player player, String message) {
+		chatHistory += player.getName() + ": " + message + "\n";
+	}
+	
+	public static Player myself() {
+		return players.get(ownConnectionID);
+	}
+	
+	public static void setOwnConnectionID(int i) { ownConnectionID = i; }
+
+	public static void setNewPlayerList(HashMap<Integer, Player> newPlayers) {
+		players = newPlayers;
+	}
+	
+	public static HashMap<Integer, Player> getPlayerHashMap() {
+		return players;
+	}
+
+	public static void setCharacter(Player player, Character character) {
+		// Loop through the list of players and see if we can find the player, and add their character
+	    Iterator it = players.entrySet().iterator();
+	    while (it.hasNext()) {
+	        java.util.Map.Entry pair = (java.util.Map.Entry)it.next();
+	        
+	        Player p = (Player) pair.getValue();
+	        p.setCharacter(character);
+	    }
+
+	}
 }

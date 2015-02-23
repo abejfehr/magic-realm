@@ -1,14 +1,17 @@
 package com.magicrealm.client.ui.screen;
 
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+
+import javafx.scene.input.KeyCode;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -16,6 +19,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
@@ -24,8 +28,12 @@ import javax.swing.SpinnerNumberModel;
 
 import com.magicrealm.client.Main;
 import com.magicrealm.common.Config;
+import com.magicrealm.common.network.Events;
 import com.magicrealm.common.network.NetworkController;
-import com.magicrealm.common.packet.RegisterPlayer;
+import com.magicrealm.common.network.Subscriber;
+import com.magicrealm.common.packet.Message;
+import com.magicrealm.common.packet.RegisterCharacter;
+import com.magicrealm.server.controller.GameController;
 
 /*
  * Pre-Game Lobby, to be Displayed after Main Menu
@@ -38,7 +46,7 @@ import com.magicrealm.common.packet.RegisterPlayer;
  */
 
 @SuppressWarnings("serial")
-public class Lobby extends Screen{
+public class Lobby extends Screen implements Subscriber {
 		
 	/*
 	 * the 4 Panels
@@ -66,6 +74,13 @@ public class Lobby extends Screen{
     JSpinner notorietyPointsSpinner = new JSpinner(notoriety);
     JSpinner treasurePointsSpinner  = new JSpinner(treasure);	    
     JSpinner spellPointsSpinner     = new JSpinner(spell);
+    
+    /*
+     * Things that should've been globally available
+     */
+    JTextArea sendText;
+    JTextArea chatText;
+    JList connectedPlayers;
     
     /*
      * Lobby Screen Constructor
@@ -109,7 +124,8 @@ public class Lobby extends Screen{
 	    try {
 			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2smaller.png"));
 		} catch(Exception e) { } // Should fail silently if images aren't available
-		logo = new JLabel(new ImageIcon(imgLogo));
+		//logo = new JLabel(new ImageIcon(imgLogo));
+		logo = new JLabel();
 		logo.setAlignmentX(CENTER_ALIGNMENT);
 		
 		titlePanel.setLayout(new FlowLayout());
@@ -152,9 +168,10 @@ public class Lobby extends Screen{
 				}else if(characterPanel.getCharacterList().getSelectedValue() == null){
 					JOptionPane.showMessageDialog(null, "No character class selected");
 				}else {
-					RegisterPlayer newPlayer = new RegisterPlayer();
-					newPlayer.setPlayer(characterPanel.getCharacter());
-					NetworkController.sendToServer(newPlayer);
+					RegisterCharacter newCharacter = new RegisterCharacter();
+					newCharacter.setPlayer(GameController.myself());
+					newCharacter.setCharacter(characterPanel.getCharacter());
+					NetworkController.sendToServer(newCharacter);
 				}
 			}
 		});
@@ -228,12 +245,11 @@ public class Lobby extends Screen{
 	     */
 	    
 	    JPanel    chatMiddlePanel  = new JPanel();
-	    JTextArea chatText         = new JTextArea();
-	    JTextArea connectedPlayers = new JTextArea();
+	    chatText        	       = new JTextArea(GameController.getChatHistory());
+	    connectedPlayers           = new JList(GameController.getPlayerList().toArray());
 	    
 	    chatText.setBorder(BorderFactory.createEtchedBorder());
-	    chatText.setText("chat text");
-	    connectedPlayers.setText("Players Connected text");
+	    chatText.setEnabled(false);
 	    connectedPlayers.setBorder(BorderFactory.createEtchedBorder());
 	    chatMiddlePanel.setPreferredSize(new Dimension(500,490));
 	    chatText.setPreferredSize(new Dimension(350,490));
@@ -250,13 +266,30 @@ public class Lobby extends Screen{
 	     * -createcharacter button
 	     */
 	    JPanel    chatBottomPanel  = new JPanel();	   	    
-	    JTextArea sendText         = new JTextArea("text to be sent");	    
+	    sendText         		   = new JTextArea();	    
 	    JButton   sendButton       = new JButton("Send Message");
 	    chatBottomPanel.setPreferredSize(new Dimension(500,160));
 	    sendButton.setPreferredSize(new Dimension(120,130));
+	    sendButton.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		// Get the user's message and send it out
+	    		sendMessage();
+	    	}
+	    });
 	    sendText.setPreferredSize(new Dimension(350,130));
 	    sendText.setLineWrap(true);
 	    sendText.setBorder(BorderFactory.createEtchedBorder());
+	    sendText.addKeyListener(new KeyListener() {
+
+			public void keyTyped(KeyEvent e) { }
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+					sendMessage();
+				}
+			}
+			public void keyPressed(KeyEvent e) { }
+	    	
+	    });
 	    chatBottomPanel.setLayout(new FlowLayout());
 	    chatBottomPanel.add(sendText);
 	    chatBottomPanel.add(sendButton);
@@ -275,7 +308,38 @@ public class Lobby extends Screen{
 		background.add(chatPanel,BorderLayout.WEST);
 		background.add(optionPanel,BorderLayout.SOUTH);
 		add(background);
+		
+		/*
+		 * Subscribe to get chat updates and players being added to the game
+		 */
+		NetworkController.subscribe(Events.MESSAGE_RECEIVED, this);
+		NetworkController.subscribe(Events.PLAYER_REGISTERED, this);
 
+	}
+
+	protected void sendMessage() {
+		String message = sendText.getText();
+		
+		Message messagePacket = new Message();
+		messagePacket.setMessage(message);
+		messagePacket.setPlayer(GameController.myself());
+		
+		NetworkController.sendToServer(messagePacket);
+		
+		// Clear the text
+		sendText.setText("");
+	}
+
+	@Override
+	public void eventFired(int event) {
+		if(event == Events.PLAYER_REGISTERED) {
+			// Update the list of players
+			
+		}
+		if(event == Events.MESSAGE_RECEIVED) {
+			// Update the message text up in here
+			chatText.setText(GameController.getChatHistory());
+		}
 	}
 
 }
