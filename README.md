@@ -10,7 +10,7 @@ A Java-based clone of the orginal Magic Realm board game by Avalon Hill.
 
 Environment
 ===========
-Project was made in Eclipse on Mac OS X and Windows. To view the source, open any of the .java files in the `src/` directory in your editor of choice.
+This project was made in Eclipse on Mac OS X and Windows. To view the source, open any of the .java files in the `src/` directory in your editor of choice.
 
 The project can be imported to Eclipse if necessary, as long as the [Kryonet](https://github.com/EsotericSoftware/kryonet) library is copied to the libs directory.
 
