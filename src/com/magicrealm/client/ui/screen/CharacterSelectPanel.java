@@ -126,7 +126,7 @@ public class CharacterSelectPanel extends JPanel{
      *in the JList scrollpane.
      */
     
-    public Character getCharacter(){
+    public Character getCharacter(int treasure, int fame, int notoriety, int gold, int spell){
     	
     	String    characterSelectString = characterList.getSelectedValue().toString();
     	Character newCharacter          = null;   	
@@ -197,7 +197,7 @@ public class CharacterSelectPanel extends JPanel{
     	else if(characterSelectString == "Swordsman"){
     		newCharacter = new Swordsman(name);
     	}
-    	
+    	newCharacter.setVictoryCondition(treasure, fame, notoriety, gold, spell);
     	return newCharacter;
     } 
     

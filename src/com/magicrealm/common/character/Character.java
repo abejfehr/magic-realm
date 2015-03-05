@@ -108,7 +108,7 @@ public abstract class Character {
     public    Dwellings getStartingPoint()                    { return startingPoint; }
     public    void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }
     public    void      setStartingPoint(int startingDwelling){ startingPoint = new Dwellings(startingDwelling); }
-    protected void      setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
+    public    void      setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
     	victoryCondition = new VictoryCondition(treasure, fame, notoriety, gold, spell);   	
     }
     
