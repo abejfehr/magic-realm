@@ -198,6 +198,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
 	    kryo.register(com.magicrealm.common.Vulnerability.class);
+	    kryo.register(com.magicrealm.common.VictoryCondition.class);
 
 	    // Tiles(part of the model)
 	    kryo.register(com.magicrealm.common.model.hextile.AwfulValley.class, javaSerializer);

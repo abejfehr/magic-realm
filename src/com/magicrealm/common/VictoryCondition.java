@@ -30,6 +30,14 @@ public class VictoryCondition {
 		
 	}
 	
+	public VictoryCondition(){
+		treasurePoints  = 0;
+		famePoints      = 0;
+		notorietyPoints = 0;
+		goldPoints      = 0;
+		spellPoints     = 0;
+	}
+	
 	public boolean checkForVictory(int treasure, int fame, int notoriety,int gold, int spell){
 		if(treasure >= treasurePoints && fame >= famePoints && notoriety >= notorietyPoints 
 				&& gold >= goldPoints && spell >= spellPoints){
@@ -44,4 +52,14 @@ public class VictoryCondition {
 		return ("This player needs " + treasurePoints + " Treasure, " + famePoints + " fame points, " + notorietyPoints + 
 				" notoriety points, " + goldPoints + " gold points and, " + spellPoints + " spell points to win the Game.");
 	}
+	
+	/*
+	 * getters
+	 */
+	
+	public int getGoldPoints()     {return goldPoints;}
+	public int getTresurePoints()  {return treasurePoints;}
+	public int getFamePoints()     {return famePoints;}
+	public int getSpellPoints()    {return spellPoints;}
+	public int getNotorietyPoints(){return notorietyPoints;}
 }

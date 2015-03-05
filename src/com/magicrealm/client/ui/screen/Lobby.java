@@ -153,7 +153,11 @@ public class Lobby extends Screen{
 					JOptionPane.showMessageDialog(null, "No character class selected");
 				}else {
 					RegisterPlayer newPlayer = new RegisterPlayer();
-					newPlayer.setPlayer(characterPanel.getCharacter());
+					newPlayer.setPlayer(characterPanel.getCharacter((Integer)treasurePointsSpinner.getValue(), 
+																	(Integer)famePointsSpinner.getValue(),
+																	(Integer)notorietyPointsSpinner.getValue(),
+																	(Integer)goldPointsSpinner.getValue(),
+																	(Integer)spellPointsSpinner.getValue()));
 					NetworkController.sendToServer(newPlayer);
 				}
 			}
