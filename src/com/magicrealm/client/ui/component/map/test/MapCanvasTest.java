@@ -1,10 +1,10 @@
-package com.magicrealm.client.ui.map.test;
+package com.magicrealm.client.ui.component.map.test;
 
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-import com.magicrealm.client.ui.map.MapCanvas;
+import com.magicrealm.client.ui.component.map.MapCanvas;
 import com.magicrealm.common.model.map.Map;
 import com.magicrealm.common.model.map.MapFactory;
 

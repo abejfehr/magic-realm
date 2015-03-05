@@ -19,3 +19,6 @@ node_modules
 
 # Ignore that massive pdf with all the source code
 sourceTeam17.pdf
+
+# Ignore the pdfbuild folder entirely
+pdfbuild

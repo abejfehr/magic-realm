@@ -1,4 +1,4 @@
-package com.magicrealm.client.ui.map.test;
+package com.magicrealm.client.ui.component.map.test;
 
 import static org.junit.Assert.*;
 

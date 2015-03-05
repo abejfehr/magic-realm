@@ -1,4 +1,4 @@
-package com.magicrealm.client.ui.screen;
+package com.magicrealm.client.ui.component;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;

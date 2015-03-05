@@ -1,4 +1,4 @@
-package com.magicrealm.client.ui.map;
+package com.magicrealm.client.ui.component.map;
 
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;

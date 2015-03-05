@@ -1,16 +1,10 @@
 package com.magicrealm.client.ui.screen;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-
-import com.magicrealm.client.ui.map.MapCanvas;
-import com.magicrealm.client.ui.map.MapScroller;
-
+import com.magicrealm.client.ui.component.map.MapCanvas;
+import com.magicrealm.client.ui.component.map.MapScroller;
 import com.magicrealm.common.model.map.Map;
-
 import com.magicrealm.common.network.Events;
 import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.common.network.Subscriber;

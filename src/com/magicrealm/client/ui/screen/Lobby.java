@@ -11,8 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-import javafx.scene.input.KeyCode;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -27,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
 import com.magicrealm.client.Main;
+import com.magicrealm.client.ui.component.CharacterSelectPanel;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.network.Events;
 import com.magicrealm.common.network.NetworkController;
