@@ -34,7 +34,7 @@ import com.magicrealm.common.packet.Message;
 import com.magicrealm.common.packet.RegisterCharacter;
 import com.magicrealm.server.controller.GameController;
 
-/*
+/**
  * Pre-Game Lobby, to be Displayed after Main Menu
  * CreateGame from main menu allows client to start game
  * If the client is joining the game client can only wait for host to start game
@@ -42,6 +42,8 @@ import com.magicrealm.server.controller.GameController;
  * Functions
  * ----------
  * -none
+ * 
+ * @author: Abe Fehr
  */
 
 @SuppressWarnings("serial")
