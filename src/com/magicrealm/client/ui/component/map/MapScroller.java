@@ -76,7 +76,7 @@ public class MapScroller extends JComponent {
 		public void mouseReleased(MouseEvent e) {}
 	}
  
-	private static class ScaleHandler implements MouseWheelListener {
+	public static class ScaleHandler implements MouseWheelListener {
 		public void mouseWheelMoved(MouseWheelEvent e) {
 			if(e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
 								
