@@ -43,7 +43,7 @@ import com.magicrealm.server.controller.GameController;
  * ----------
  * -none
  * 
- * @author: Abe Fehr
+ * @author: Nathan Barton
  */
 
 @SuppressWarnings("serial")
