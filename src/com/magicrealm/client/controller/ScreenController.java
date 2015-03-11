@@ -51,8 +51,8 @@ public class ScreenController extends Observable {
 	
 	
 	
-	/*
-	 * Constructor
+	/**
+	 * The Constructor
 	 */
 	public ScreenController() {
 		screen = new MainMenu();
@@ -79,7 +79,7 @@ public class ScreenController extends Observable {
 	
 	
 	
-	/*
+	/**
 	 * Paint - Can be used to paint the images on the display
 	 */
 	public static void paint(Graphics g, String imagePath, int x, int y, int angle) {

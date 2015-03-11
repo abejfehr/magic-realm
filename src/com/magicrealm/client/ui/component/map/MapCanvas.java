@@ -50,7 +50,7 @@ public class MapCanvas extends JPanel {
 		Graphics2D ourGraphics = (Graphics2D) g;
 		
 		// Paint the background white before each print
-		ourGraphics.setColor(Color.WHITE);
+		ourGraphics.setColor(Color.LIGHT_GRAY);
 		ourGraphics.fillRect(0, 0, getWidth(), getHeight());
 		ourGraphics.setTransform(tx);
 		ourGraphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
