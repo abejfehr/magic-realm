@@ -169,10 +169,16 @@ public class Lobby extends Screen implements Subscriber {
 				}else if(characterPanel.getCharacterList().getSelectedValue() == null){
 					JOptionPane.showMessageDialog(null, "No character class selected");
 				}else {
+
 					RegisterCharacter newCharacter = new RegisterCharacter();
 					newCharacter.setPlayer(GameController.myself());
-					newCharacter.setCharacter(characterPanel.getCharacter());
+					newCharacter.setCharacter(characterPanel.getCharacter((Integer)treasurePointsSpinner.getValue(), 
+																		 (Integer)famePointsSpinner.getValue(),
+																		 (Integer)notorietyPointsSpinner.getValue(),
+																		 (Integer)goldPointsSpinner.getValue(),
+																		 (Integer)spellPointsSpinner.getValue()));
 					NetworkController.sendToServer(newCharacter);
+
 				}
 			}
 		});
