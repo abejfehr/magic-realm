@@ -12,6 +12,7 @@ public class Config {
 	public static final String DWELLINGS_IMAGE_LOCATION = "/res/dwellings/";
 	public static final String ERROR_IMAGE_LOCATION = "/res/errors/";
 	public static final String CHARACTER_IMAGE_LOCATION = "/res/characterInfo/";
+	public static final String SOUNDS_LOCATION = "/res/sounds/";
 
 	public static final String CHARACTER_CHIT_IMAGE_LOCATION ="/res/characterChits/";
 

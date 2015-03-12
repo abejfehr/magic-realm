@@ -2,9 +2,15 @@ package com.magicrealm.client.ui.screen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.BufferedInputStream;
 
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.SwingConstants;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.Player;
 
 import com.magicrealm.client.ui.component.ActionBar1;
 import com.magicrealm.client.ui.component.CharacterHUD;
@@ -18,6 +24,7 @@ import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.common.network.Subscriber;
 import com.magicrealm.common.packet.RequestMapPacket;
 import com.magicrealm.server.controller.GameController;
+
 
 /**
  * The Game screen is what displays all of the game, including the map, the
@@ -38,6 +45,9 @@ public class Game extends Screen implements Subscriber {
 
 	private int MARGIN = 30;
 	
+	private JLabel loadingLabel;
+	private String loadingText;
+	
 	public Game() {
 		// Set the layout of the outside panel
 	    this.setLayout(new BorderLayout());
@@ -46,11 +56,38 @@ public class Game extends Screen implements Subscriber {
 		// Request the map from the server
 		NetworkController.subscribe(Events.MAP_UPDATED, this);
 		NetworkController.sendToServer(RequestMapPacket.class);
-		
+
+		// Play the background music
+		Thread playSong = new Thread() {
+		    public void run() {
+		        Player player = null;
+				BufferedInputStream buffer = null;
+				try {
+					buffer = new BufferedInputStream(this.getClass().getResourceAsStream("/res/songs/gameBackground.mp3"));
+					player = new Player(buffer);
+					player.play();
+				} catch (JavaLayerException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    }  
+		};
+
+		playSong.start();
+
+	    
+		loadingText = "Loading Map...";
+		// Add text in the middle of the screen that clarifies the map is being loaded
+		loadingLabel = new JLabel(loadingText, SwingConstants.CENTER);
+		loadingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		add(loadingLabel, BorderLayout.CENTER);
+	
 	}
 	
 	public void drawMap(Map map) {
-				
+		
+		// Clear the loading text
+		this.removeAll();
 		
 		// Create a new panel to have everything in it
 		JLayeredPane panel = new JLayeredPane();
