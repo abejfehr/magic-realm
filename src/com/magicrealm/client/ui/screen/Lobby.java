@@ -11,8 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-import javafx.scene.input.KeyCode;
-
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -27,6 +25,7 @@ import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
 import com.magicrealm.client.Main;
+import com.magicrealm.client.ui.component.CharacterSelectPanel;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.network.Events;
 import com.magicrealm.common.network.NetworkController;
@@ -35,7 +34,7 @@ import com.magicrealm.common.packet.Message;
 import com.magicrealm.common.packet.RegisterCharacter;
 import com.magicrealm.server.controller.GameController;
 
-/*
+/**
  * Pre-Game Lobby, to be Displayed after Main Menu
  * CreateGame from main menu allows client to start game
  * If the client is joining the game client can only wait for host to start game
@@ -43,6 +42,8 @@ import com.magicrealm.server.controller.GameController;
  * Functions
  * ----------
  * -none
+ * 
+ * @author: Nathan Barton
  */
 
 @SuppressWarnings("serial")
