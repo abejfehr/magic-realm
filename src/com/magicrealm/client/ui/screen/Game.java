@@ -75,11 +75,9 @@ public class Game extends Screen implements Subscriber {
 
 		playSong.start();
 
-	    
-		loadingText = "Loading Map...";
 		// Add text in the middle of the screen that clarifies the map is being loaded
+		loadingText = "Loading Map...";
 		loadingLabel = new JLabel(loadingText, SwingConstants.CENTER);
-		loadingLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		add(loadingLabel, BorderLayout.CENTER);
 	
 	}
