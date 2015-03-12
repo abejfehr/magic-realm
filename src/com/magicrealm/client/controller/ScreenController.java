@@ -1,6 +1,8 @@
 package com.magicrealm.client.controller;
 
+import java.awt.AlphaComposite;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -8,13 +10,10 @@ import java.util.HashMap;
 import java.util.Observable;
 
 import javax.imageio.ImageIO;
-import javax.swing.JOptionPane;
 
 //import apple.laf.JRSUIUtils.Images;
-
 import com.magicrealm.client.ui.screen.MainMenu;
 import com.magicrealm.client.ui.screen.Screen;
-import com.magicrealm.common.Config;
 
 /*
  * ScreenController will manage which screen is currently shown in the game.
@@ -78,9 +77,35 @@ public class ScreenController extends Observable {
 	}
 	
 	
-	
 	/**
-	 * Paint - Can be used to paint the images on the display
+	 * Paints the images to the display
+	 */
+	public static void paint(Graphics g, String imagePath, int x, int y, int sizeX, int sizeY, float opacity) {
+		// Check if the image is already stored
+		if(!images.containsKey(imagePath)) {
+			BufferedImage image = null;
+
+			try {
+				image = ImageIO.read(ScreenController.class.getResource(imagePath));
+			} catch(Exception e) { 
+				System.out.println("Something failed");
+			}
+			
+			AffineTransform tx = AffineTransform.getScaleInstance(2.5f, 2.5f);
+			AffineTransformOp resizeOp = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+			image = resizeOp.filter(image, null);
+			images.put(imagePath, image);
+
+		}
+		
+		Graphics2D graphics = (Graphics2D) g;
+		
+		graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
+		graphics.drawImage(images.get(imagePath), x, y, null);
+	}	
+
+	/**
+	 * Paints the images to the display
 	 */
 	public static void paint(Graphics g, String imagePath, int x, int y, int angle) {
 

@@ -8,6 +8,8 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.JPanel;
 
+import com.magicrealm.client.controller.ScreenController;
+import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Character;
@@ -116,6 +118,9 @@ public class MapCanvas extends JPanel {
 					map.getTileAngle(characterLocation));
 			
 		}
+		
+		ScreenController.paint(ourGraphics, Config.MISC_IMAGE_LOCATION + "clouds.png", -1000, -1000, 5000, 5000,
+				getCloudOpacityFromScale((float) scale, 1.0f, 0.3f, 0.6f, 0.5f));
 	}
 	
 	public void setMapTiles(HexTile[][] tiles) {
@@ -125,4 +130,24 @@ public class MapCanvas extends JPanel {
 	public HexTile[][] getMapTiles() {
 		return map.getTiles();
 	}
+	
+	private float getCloudOpacityFromScale(float scale, float minOpacity, float maxOpacity, float minZoom, float maxZoom) {
+		float endDifference = 1.0f; // In case there's a mistake, I don't want the clouds to cover everything
+		
+		float opacityDifference = maxOpacity - minOpacity;
+		float zoomDifference = maxZoom - minZoom;
+
+		if(scale <= maxZoom) {
+		  endDifference = maxOpacity;
+		}
+		else if(scale >= minZoom) {
+		  endDifference = minOpacity;
+		}
+		else {
+		  endDifference = 1.0f - (float) (minOpacity - (opacityDifference * ((scale - maxZoom) / zoomDifference))) + 0.3f;
+		}
+		
+		return 1.0f - endDifference;
+	}
+	
 }
