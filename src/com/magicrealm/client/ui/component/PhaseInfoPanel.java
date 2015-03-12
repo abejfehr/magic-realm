@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.magicrealm.common.Player;
+import com.magicrealm.server.controller.GameController;
 
 /**
  * The CharacterHUD is a JPanel that renders an image which represents the
@@ -45,14 +46,28 @@ public class PhaseInfoPanel extends JPanel {
 		setLayout(new GridLayout(2,1));
 		
 		// Phase label
-		phaseLabel.setText("BirdSong");
+		String phaseText = null;
+		switch(GameController.getPhase()) {
+			case GameController.BIRDSONG:
+				phaseText = "Birdsong";
+				break;
+			case GameController.DAYLIGHT:
+				phaseText = "Daylight";
+				break;
+			case GameController.SUNSET:
+				phaseText = "Sunset";
+				break;
+			case GameController.MIDNIGHT:
+				phaseText = "Midnight";
+		}
+		phaseLabel.setText(phaseText);
 		Font phaseFont = new Font("Helvetica", Font.PLAIN, 72);
 		phaseLabel.setFont(phaseFont);
 		phaseLabel.setForeground(Color.WHITE);
 		add(phaseLabel);
 		
 		// Info label
-		infoLabel.setText("Day 2 - Abe's turn");
+		infoLabel.setText("Day " + GameController.getDayNumber() + " - " + GameController.getCurrentPlayer().getName() + "'s turn");
 		Font infoFont = new Font("Helvetica", Font.PLAIN, 24);
 		infoLabel.setFont(infoFont);
 		infoLabel.setForeground(Color.WHITE);
