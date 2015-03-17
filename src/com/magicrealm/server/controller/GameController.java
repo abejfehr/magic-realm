@@ -127,16 +127,15 @@ public class GameController implements Subscriber {
 		return players;
 	}
 
-	public static void setCharacter(Player player, Character character) {
+	public static void setCharacter(int connectionID, Character character) {
 		// Loop through the list of players and see if we can find the player, and add their character
-	    Iterator it = players.entrySet().iterator();
-	    while (it.hasNext()) {
-	        java.util.Map.Entry pair = (java.util.Map.Entry)it.next();
-	        
-	        Player p = (Player) pair.getValue();
-	        p.setCharacter(character);
-	    }
-
+	    Player p = players.get(connectionID);
+	    p.setCharacter(character);
+	    players.put(connectionID, p);
+	}
+	
+	public static int getConnectionID() {
+		return ownConnectionID;
 	}
 	
 	public static int getPhase() { return phase; }
