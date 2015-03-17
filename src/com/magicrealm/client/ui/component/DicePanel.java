@@ -2,10 +2,10 @@ package com.magicrealm.client.ui.component;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -54,6 +54,18 @@ public class DicePanel extends JPanel {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(ScreenController.class.getResource(Config.MISC_IMAGE_LOCATION + "dice.png"));
+			Image toolkitImage = image.getScaledInstance(100, 100, 
+				      Image.SCALE_SMOOTH);
+				int width = toolkitImage.getWidth(null);
+				int height = toolkitImage.getHeight(null);
+
+				// width and height are of the toolkit image
+				BufferedImage newImage = new BufferedImage(width, height, 
+				      BufferedImage.TYPE_INT_ARGB);
+				Graphics g = newImage.getGraphics();
+				g.drawImage(toolkitImage, 0, 0, null);
+				g.dispose();
+				image = newImage;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +73,7 @@ public class DicePanel extends JPanel {
 		diceImage = new JLabel(new ImageIcon(image));
 		this.add(diceImage);
 		
-		Font cheatModeFont = new Font("Helvetica", Font.BOLD, 18);
+		Font cheatModeFont = new Font("Helvetica", Font.BOLD, 16);
 		cheatModeLabel.setFont(cheatModeFont);
 		cheatModeLabel.setForeground((/*character.isCheating()*/true ? Color.GREEN : Color.RED));
 		cheatModeLabel.setText("Cheat Mode: " + (true ? "on" : "off"));
@@ -70,7 +82,7 @@ public class DicePanel extends JPanel {
 		// Don't draw the background
 		this.setOpaque(false);
 		
-		this.setSize(200, 230);
+		this.setSize(120, 130);
 	}
 		
 }

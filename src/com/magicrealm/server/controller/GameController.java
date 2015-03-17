@@ -1,6 +1,7 @@
 package com.magicrealm.server.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -23,12 +24,26 @@ public class GameController implements Subscriber {
 	private static Map map; // The game board
 	private static HashMap<Integer, Player> players; // The list of connected players
 	private static int ownConnectionID;
+	private static int phase; // The phase of the day
+	private static int dayNumber = 1;
+	private static int currentPlayerIndex = 0;
+	private static ArrayList<Integer> playerTurns = new ArrayList();
+	
+	public static final int BIRDSONG = 0;
+	public static final int DAYLIGHT = 1;
+	public static final int SUNSET = 2;
+	public static final int MIDNIGHT = 3;
 	
 	/*
 	 * Add a player
 	 */
 	public static void addPlayer(int connectionID, Player player) {
 		players.put(connectionID, player);
+	}
+	
+	public static void initPlayerTurns() {
+		playerTurns = new ArrayList<Integer>(players.keySet());
+		Collections.shuffle(playerTurns);
 	}
 	
 	public static ArrayList<Player> getPlayerList() {
@@ -42,6 +57,7 @@ public class GameController implements Subscriber {
 		chatHistory = "";
 		map = null;
 		players = new HashMap<Integer, Player>();
+		phase = BIRDSONG;
 		
 		// Create an instance of this class to subscribe to events
 		GameController gc = new GameController();
@@ -49,7 +65,8 @@ public class GameController implements Subscriber {
 		// Subscribes to network events
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
 		NetworkController.subscribe(Events.CONNECTION_INFO_RECEIVED, gc);
-
+		
+		initPlayerTurns();
 	}
 	
 	public static void startNewGame() {
@@ -58,12 +75,15 @@ public class GameController implements Subscriber {
 		map = MapFactory.createIteration1Map();
 		//map = MapFactory.createTestMap();
 		players = new HashMap<Integer, Player>();
+		phase = BIRDSONG;
 		
 		// Create an instance of this class to subscribe to events
 		GameController gc = new GameController();
 		
 		// Subscribes to network events
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
+		
+		initPlayerTurns();
 	}
 
 	public static Map getMap() { return map; }
@@ -117,4 +137,17 @@ public class GameController implements Subscriber {
 	public static int getConnectionID() {
 		return ownConnectionID;
 	}
+	
+	public static int getPhase() { return phase; }
+
+	public static int getDayNumber() { return dayNumber; }
+	
+	public static Player getCurrentPlayer() {
+		if(playerTurns.size() < 1) {
+			playerTurns = new ArrayList<Integer>(players.keySet());
+			Collections.shuffle(playerTurns);
+		}
+		int something = playerTurns.get(currentPlayerIndex);
+		return players.get(something); }
+	
 }

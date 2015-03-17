@@ -2,9 +2,12 @@ package com.magicrealm.client.ui.component;
 
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import com.magicrealm.client.controller.ScreenController;
+import com.magicrealm.common.Config;
 import com.magicrealm.common.Player;
 
 /**
@@ -38,22 +41,25 @@ public class ActionBar1 extends JPanel {
 	private void initPanel() {
 		
 		// Set the layout to be a grid
-		setLayout(new GridLayout(1,6));
+		setLayout(new GridLayout(1,8));
 		
 		// Get the icons for the buttons
-		JButton button1 = new JButton("MOVE");
+		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "hide.gif");
+		JButton button1 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "hide.gif")));
 		this.add(button1);
 		
-		JButton button2 = new JButton("SEEK");
+		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "move.gif");
+		JButton button2 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "move.gif")));
 		this.add(button2);
 		
-		JButton button3 = new JButton("END");
+		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "rest.gif");
+		JButton button3 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "rest.gif")));
 		this.add(button3);
 		
 		// Don't draw the background
 		this.setOpaque(false);
 		
-		this.setSize(400, 75);
+		this.setSize(300, 60);
 	}
 		
 }
