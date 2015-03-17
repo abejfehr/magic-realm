@@ -116,17 +116,25 @@ public abstract class Character {
      */
     
     //getting your victory points
-    public    int       getGoldPoints()      { return goldPoints; }
-    public    int       getFamePoints()      { return famePoints; }
-    public    int       getNotorietyPoints() { return notorietyPoints; }
-    public    int       getTreasurePoints()  { return treasurePoints; }
-    public    int       getSpellPoints()     { return spellPoints; }
+
+
+    public  int              getGoldPoints()       { return goldPoints; }
+    public  int              getFamePoints()       { return famePoints; }
+    public  int              getNotorietyPoints()  { return notorietyPoints; }
+    public  int              getTreasurePoints()   { return treasurePoints; }
+    public  int              getSpellPoints()      { return spellPoints; }
+    public  VictoryCondition getVictoryCondition() { return victoryCondition; }
+
     
-    public    Dwellings getStartingPoint()                    { return startingPoint; }
-    public    void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }
-    public    void      setStartingPoint(int startingDwelling){ startingPoint = new Dwellings(startingDwelling); }
-    public    void      setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
+    public  Dwellings getStartingPoint()                    { return startingPoint; }
+    public  void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }
+    public  void      setStartingPoint(int startingDwelling){ startingPoint = new Dwellings(startingDwelling); }
+    public  void      setVictoryCondition(int treasure,int fame, int notoriety,int gold,int spell){
     	victoryCondition = new VictoryCondition(treasure, fame, notoriety, gold, spell);   	
     }
+
+	public String getImageName() {
+		return imageFilename;
+	}
     
 }
