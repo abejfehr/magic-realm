@@ -67,9 +67,8 @@ public class MainMenu extends Screen {
 		createGameButton.setFont(font);
 		createGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//scrController.show(Game.class);
-				//scrController.show(Lobby.class);
-
+				
+				NetworkController.setHostStatus(true);
 				try {
 					NetworkController.StartServer(Config.GAME_PORT);
 					// Connects to localhost, since we started our own server
@@ -99,7 +98,7 @@ public class MainMenu extends Screen {
 		joinGameButton.setFont(font);
 		joinGameButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				NetworkController.setHostStatus(false);
 				String ipAddress = JOptionPane.showInputDialog("Enter the IP Address of the host", Config.DEFAULT_IP_ADDRESS);
 				
 				try {

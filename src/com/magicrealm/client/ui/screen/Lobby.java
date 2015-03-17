@@ -11,9 +11,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-//import javafx.scene.input.KeyCode;
-
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -31,9 +28,13 @@ import com.magicrealm.common.Config;
 import com.magicrealm.common.network.Events;
 import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.common.network.Subscriber;
+import com.magicrealm.common.packet.GameStartPacket;
 import com.magicrealm.common.packet.Message;
 import com.magicrealm.common.packet.RegisterCharacter;
 import com.magicrealm.server.controller.GameController;
+
+//import javafx.scene.input.KeyCode;
+import javax.imageio.ImageIO;
 
 /*
  * Pre-Game Lobby, to be Displayed after Main Menu
@@ -124,15 +125,15 @@ public class Lobby extends Screen implements Subscriber {
 	    try {
 			imgLogo = ImageIO.read(Main.class.getResource(Config.MISC_IMAGE_LOCATION + "logo2smaller.png"));
 		} catch(Exception e) { } // Should fail silently if images aren't available
-		//logo = new JLabel(new ImageIcon(imgLogo));
-		logo = new JLabel();
+		logo = new JLabel(new ImageIcon(imgLogo));
+		//logo = new JLabel();
 		logo.setAlignmentX(CENTER_ALIGNMENT);
 		
 		titlePanel.setLayout(new FlowLayout());
 		titlePanel.setPreferredSize(new Dimension(1000,200));
 		titlePanel.setOpaque(false);
 		titlePanel.add(logo);
-		titlePanel.add(gameTitle);
+		//titlePanel.add(gameTitle);
 		
 		/*
 		 * OptionPanel,
@@ -146,6 +147,9 @@ public class Lobby extends Screen implements Subscriber {
 		info.setFont(font);
 		info.setForeground(Color.CYAN);
 		info.setPreferredSize(new Dimension(515,80));
+		JPanel  buttonPanel           = new JPanel();
+		buttonPanel.setLayout(new FlowLayout());
+		buttonPanel.setOpaque(false);
 		JButton startGameButton       = new JButton("Start Game");
 		JButton createCharacterButton = new JButton("Create Character");
 		createCharacterButton.setPreferredSize(new Dimension(450,80));
@@ -170,7 +174,7 @@ public class Lobby extends Screen implements Subscriber {
 				}else {
 
 					RegisterCharacter newCharacter = new RegisterCharacter();
-					newCharacter.setPlayer(GameController.myself());
+					newCharacter.setConnectionID(GameController.getConnectionID());
 					newCharacter.setCharacter(characterPanel.getCharacter((Integer)treasurePointsSpinner.getValue(), 
 																		 (Integer)famePointsSpinner.getValue(),
 																		 (Integer)notorietyPointsSpinner.getValue(),
@@ -181,23 +185,24 @@ public class Lobby extends Screen implements Subscriber {
 				}
 			}
 		});
-		
+		buttonPanel.add(createCharacterButton);
 		/*
 		 * Start Game Button actionlistener to display board
 		 */
-		
-		startGameButton.setPreferredSize(new Dimension(450,80));
-		startGameButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				scrController.show(Game.class);
-			}
-		});
-		
-		optionPanel.setLayout(new FlowLayout());
+		if (NetworkController.isHost()){
+			startGameButton.setPreferredSize(new Dimension(450,80));
+			startGameButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GameStartPacket gameStart = new GameStartPacket();
+					NetworkController.sendToServer(gameStart);
+				}
+			});
+			buttonPanel.add(startGameButton);
+		}
+		optionPanel.setLayout(new BorderLayout());
 		optionPanel.setOpaque(false);
-		optionPanel.add(info);
-		optionPanel.add(createCharacterButton);
-		optionPanel.add(startGameButton);
+		optionPanel.add(info, BorderLayout.WEST);
+		optionPanel.add(buttonPanel,BorderLayout.EAST);
 		
 	    /*
 	     * Chat Panel
@@ -320,6 +325,7 @@ public class Lobby extends Screen implements Subscriber {
 		 */
 		NetworkController.subscribe(Events.MESSAGE_RECEIVED, this);
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, this);
+		NetworkController.subscribe(Events.GAME_STARTED,this);
 
 	}
 
@@ -339,12 +345,15 @@ public class Lobby extends Screen implements Subscriber {
 	@Override
 	public void eventFired(int event) {
 		if(event == Events.PLAYER_REGISTERED) {
-			// Update the list of players
+			//GameController.setNewPlayerList(newPlayers);
 			
 		}
 		if(event == Events.MESSAGE_RECEIVED) {
 			// Update the message text up in here
 			chatText.setText(GameController.getChatHistory());
+		}
+		if(event == Events.GAME_STARTED) {
+			scrController.show(Game.class);
 		}
 	}
 

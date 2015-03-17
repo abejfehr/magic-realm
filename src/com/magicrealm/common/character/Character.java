@@ -32,7 +32,7 @@ public abstract class Character {
 	protected Weapon           weapon;
 	protected String           imageFilename;
 	protected String           name;	
-    protected int treasureCount, gold, notorietyCount, fameCount, spellCount;
+    protected int treasurePoints, goldPoints, notorietyPoints, famePoints, spellPoints;
 	protected VictoryCondition victoryCondition;
 	protected Dwellings        startingPoint;	
 	//Armour
@@ -51,15 +51,15 @@ public abstract class Character {
 	
     public Character(int vulnerability, String name, String imgFilename){
     	
-    	this.vulnerability  = new Vulnerability(vulnerability);
-    	this.startingPoint  = new Dwellings(Dwellings.NOT_SET);
-    	this.name           = name;
-    	this.imageFilename  = imgFilename;
-    	this.gold           = 10;
-    	this.treasureCount  = 0;
-    	this.notorietyCount = 0;
-    	this.fameCount      = 0;
-    	this.spellCount     = 0;
+    	this.vulnerability   = new Vulnerability(vulnerability);
+    	this.startingPoint   = new Dwellings(Dwellings.NOT_SET);
+    	this.name            = name;
+    	this.imageFilename   = imgFilename;
+    	this.goldPoints      = 10;
+    	this.treasurePoints  = 0;
+    	this.notorietyPoints = 0;
+    	this.famePoints      = 0;
+    	this.spellPoints     = 0;
     	
     }
     
@@ -67,14 +67,14 @@ public abstract class Character {
     
     public Character(){ 
     	
-    	this.vulnerability  = new Vulnerability(1);
-    	this.startingPoint  = new Dwellings(Dwellings.NOT_SET);
-    	this.name           = "new character";
-    	this.gold           = 10;
-    	this.treasureCount  = 0;
-    	this.notorietyCount = 0;
-    	this.fameCount      = 0;
-    	this.spellCount     = 0;
+    	this.vulnerability   = new Vulnerability(1);
+    	this.startingPoint   = new Dwellings(Dwellings.NOT_SET);
+    	this.name            = "new character";
+    	this.goldPoints      = 10;
+    	this.treasurePoints  = 0;
+    	this.notorietyPoints = 0;
+    	this.famePoints      = 0;
+    	this.spellPoints     = 0;
     	
     }
     
@@ -104,6 +104,13 @@ public abstract class Character {
     /*
      * Getters/Setters
      */
+    
+    //getting your victory points
+    public    int       getGoldPoints()      { return goldPoints; }
+    public    int       getFamePoints()      { return famePoints;}
+    public    int       getNotorietyPoints() { return notorietyPoints;}
+    public    int       getTreasurePoints()  { return treasurePoints;}
+    public    int       getSpellPoints()     { return spellPoints;}
     
     public    Dwellings getStartingPoint()                    { return startingPoint; }
     public    void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }

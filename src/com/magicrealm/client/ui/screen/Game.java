@@ -37,6 +37,10 @@ public class Game extends Screen implements Subscriber {
 		add(scroller, BorderLayout.CENTER);
 		validate();
 		repaint();
+		System.out.println(GameController.getPlayerList().size());
+		for (int i=0; i < GameController.getPlayerList().size(); i++){
+			System.out.println(GameController.getPlayerList().get(i).getCharacter().toString());
+		}
 		
 	}
 
