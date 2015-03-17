@@ -20,6 +20,8 @@ import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.VictoryCondition;
 import com.magicrealm.common.Vulnerability;
+import com.magicrealm.common.model.hextile.HexTile;
+import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.weapon.Weapon;
 
 public abstract class Character {
@@ -34,7 +36,9 @@ public abstract class Character {
 	protected String           name;	
     protected int treasurePoints, goldPoints, notorietyPoints, famePoints, spellPoints;
 	protected VictoryCondition victoryCondition;
-	protected Dwellings        startingPoint;	
+	protected Dwellings        startingPoint;
+	protected String           location;
+	protected HexTile          currentHexTile;
 	//Armour
 	//Combat chits
 	//List of active chits
@@ -60,6 +64,7 @@ public abstract class Character {
     	this.notorietyPoints = 0;
     	this.famePoints      = 0;
     	this.spellPoints     = 0;
+    	this.location        = startingPoint.getLocation();
     	
     }
     
@@ -75,6 +80,7 @@ public abstract class Character {
     	this.notorietyPoints = 0;
     	this.famePoints      = 0;
     	this.spellPoints     = 0;
+    	this.location        = startingPoint.getLocation();
     	
     }
     
@@ -101,16 +107,20 @@ public abstract class Character {
     	
     }
     
+    public void moveCharacter(){
+    	
+    }
+    
     /*
      * Getters/Setters
      */
     
     //getting your victory points
     public    int       getGoldPoints()      { return goldPoints; }
-    public    int       getFamePoints()      { return famePoints;}
-    public    int       getNotorietyPoints() { return notorietyPoints;}
-    public    int       getTreasurePoints()  { return treasurePoints;}
-    public    int       getSpellPoints()     { return spellPoints;}
+    public    int       getFamePoints()      { return famePoints; }
+    public    int       getNotorietyPoints() { return notorietyPoints; }
+    public    int       getTreasurePoints()  { return treasurePoints; }
+    public    int       getSpellPoints()     { return spellPoints; }
     
     public    Dwellings getStartingPoint()                    { return startingPoint; }
     public    void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }

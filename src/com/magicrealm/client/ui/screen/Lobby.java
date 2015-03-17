@@ -41,10 +41,7 @@ import com.magicrealm.server.controller.GameController;
 //import javafx.scene.input.KeyCode;
 
 
-/*
-=======
 /**
->>>>>>> master
  * Pre-Game Lobby, to be Displayed after Main Menu
  * CreateGame from main menu allows client to start game
  * If the client is joining the game client can only wait for host to start game
