@@ -15,6 +15,8 @@ public class Config {
 	public static final String SOUNDS_LOCATION = "/res/sounds/";
 
 	public static final String CHARACTER_CHIT_IMAGE_LOCATION ="/res/characterChits/";
+	public static final String CHARACTER_HUD_IMAGE_LOCATION = "/res/characterHUD/";
+	public static final String ACTION_IMAGE_LOCATION = "/res/actions/";
 
 
 	/*
