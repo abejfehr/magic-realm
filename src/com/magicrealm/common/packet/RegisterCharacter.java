@@ -4,11 +4,12 @@ import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Character;
 
 public class RegisterCharacter extends Packet {
-	private Player player;
+	//private Player player;
 	private Character character;
+	private int connectionID;
 	
-	public void setPlayer(Player p) { player = p; }
 	public void setCharacter(Character c) { character = c; }
+	public void setConnectionID(int i) { connectionID = i; }
 	public Character getCharacter() { return character; }
-	public Player getPlayer() { return player; }
+	public int getConnectionID() { return connectionID; }
 }

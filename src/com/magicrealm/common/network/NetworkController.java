@@ -12,6 +12,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.magicrealm.common.Player;
 import com.magicrealm.common.packet.ConnectionInfo;
+import com.magicrealm.common.packet.GameStartPacket;
 import com.magicrealm.common.packet.MapPacket;
 import com.magicrealm.common.packet.Message;
 import com.magicrealm.common.packet.Packet;
@@ -30,6 +31,7 @@ public class NetworkController {
 	private static Server server;
 	private static Client client;
 	private static HashMap<Integer, ArrayList<Subscriber>> subscribers = null;
+	private static boolean isHost;
 	
 	
 	
@@ -116,6 +118,12 @@ public class NetworkController {
 	            		server.sendToAllTCP(object);
 	            		
 	            	}
+	            	/*
+	            	 * game start
+	            	 */
+	            	if(object instanceof GameStartPacket){
+	            		server.sendToAllTCP(object);
+	            	}
 	            }
 	         }
 
@@ -165,11 +173,13 @@ public class NetworkController {
 	    			if(object instanceof RegisterPlayer) {
 	    				
 	    				GameController.addPlayer(((RegisterPlayer) object).getConnectionID(), ((RegisterPlayer) object).getPlayer());
+	    				System.out.println("The Players Connection ID: " + ((RegisterPlayer) object).getConnectionID());
 	    				
 	    				fireEvent(Events.PLAYER_REGISTERED);
-	    				
+
 	    				System.out.println("Client received Registered Player");
 	    			}
+
 	    			if(object instanceof PlayerList) {
 	    				
 	    				GameController.setNewPlayerList(((PlayerList) object).getPlayers());
@@ -182,8 +192,9 @@ public class NetworkController {
 	    			if(object instanceof RegisterCharacter) {
 	    				
 	    				RegisterCharacter rc = (RegisterCharacter)object;
-	    				GameController.setCharacter(rc.getPlayer(), rc.getCharacter());
-	    				
+	    				GameController.setCharacter(rc.getConnectionID(), rc.getCharacter());
+	    				System.out.println("Client received Registered Character" + rc.getCharacter().toString());
+
 	    			}
 	    			
 	    			/*
@@ -198,6 +209,12 @@ public class NetworkController {
 	            			            		
 	            		fireEvent(Events.MESSAGE_RECEIVED);
 	    				
+	    			}
+	    			/*
+	    			 * Game started
+	    			 */
+	    			if(object instanceof GameStartPacket) {
+	    				fireEvent(Events.GAME_STARTED);    				
 	    			}
 	    		} 			
 	    	}
@@ -277,6 +294,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.packet.RegisterCharacter.class);
 	    kryo.register(com.magicrealm.common.packet.PlayerList.class);
 	    kryo.register(com.magicrealm.common.packet.Message.class);
+	    kryo.register(com.magicrealm.common.packet.GameStartPacket.class);
 	    
 	    // Primitives and Utils
 	    kryo.register(byte[].class);
@@ -298,9 +316,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.model.map.Map.class);
 	    kryo.register(com.magicrealm.common.Dwellings.class);
 	    kryo.register(com.magicrealm.common.Vulnerability.class);
-
 	    kryo.register(com.magicrealm.common.VictoryCondition.class);
-
 	    kryo.register(com.magicrealm.common.Player.class);
 
 
@@ -381,4 +397,12 @@ public class NetworkController {
 	public static void sendToServer(Packet packet) {			
 		client.sendTCP(packet);
     }
+	
+	
+	/*
+	 * getters and setters
+	 */
+	
+	public static boolean isHost(){ return isHost; }
+	public static void    setHostStatus(boolean host) {isHost = host;}
 }
