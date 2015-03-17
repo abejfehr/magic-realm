@@ -2,11 +2,7 @@ package com.magicrealm.common.character;
 
 import java.awt.Dimension;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
-import com.magicrealm.client.ui.screen.CharacterSelectPanel;
 
 public class CharacterTest {
 

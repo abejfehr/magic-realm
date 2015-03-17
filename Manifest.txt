@@ -3,3 +3,4 @@ Main-Class: com.magicrealm.client.Main
 Rsrc-Class-Path: ./ junit.jar org.hamcrest.core_1.3.0.v201303031735.ja
  r kryo-2.23.1-SNAPSHOT-all-debug.jar jsonbeans-0.5.jar
 Class-Path: .
+
