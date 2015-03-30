@@ -19,15 +19,14 @@ public class GameController implements Subscriber {
 	/*
 	 * Private members
 	 */
-	private static String name; // The name of the game(not yet used)
 	private static String chatHistory; // For the chat box in the lobby screen
 	private static Map map; // The game board
 	private static HashMap<Integer, Player> players; // The list of connected players
 	private static int ownConnectionID;
-	private static int phase; // The phase of the day
+	private static int period; // The period of the day
 	private static int dayNumber = 1;
 	private static int currentPlayerIndex = 0;
-	private static ArrayList<Integer> playerTurns = new ArrayList();
+	private static ArrayList<Integer> playerTurns = new ArrayList<Integer>();
 	
 	public static final int BIRDSONG = 0;
 	public static final int DAYLIGHT = 1;
@@ -53,11 +52,10 @@ public class GameController implements Subscriber {
 	public static void joinNewGame() {
 
 		// A bunch of default values until we get the actual info
-		name = "";
 		chatHistory = "";
 		map = null;
 		players = new HashMap<Integer, Player>();
-		phase = BIRDSONG;
+		period = BIRDSONG;
 		
 		// Create an instance of this class to subscribe to events
 		GameController gc = new GameController();
@@ -65,23 +63,25 @@ public class GameController implements Subscriber {
 		// Subscribes to network events
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
 		NetworkController.subscribe(Events.CONNECTION_INFO_RECEIVED, gc);
+		NetworkController.subscribe(Events.PLAYER_FINISHED_TURN, gc);
 		
-		initPlayerTurns();
+		// initPlayerTurns(); -> the turn order should be received over the network
 	}
 	
 	public static void startNewGame() {
-		name = "GameName1";
 		chatHistory = "";
 		map = MapFactory.createIteration1Map();
 		//map = MapFactory.createTestMap();
 		players = new HashMap<Integer, Player>();
-		phase = BIRDSONG;
-		
+		setPeriod(BIRDSONG);
+
 		// Create an instance of this class to subscribe to events
 		GameController gc = new GameController();
 		
 		// Subscribes to network events
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
+		NetworkController.subscribe(Events.GAME_STARTED, gc); // So we can begin the first turn
+		NetworkController.subscribe(Events.PLAYER_FINISHED_TURN, gc);
 		
 		initPlayerTurns();
 	}
@@ -102,6 +102,20 @@ public class GameController implements Subscriber {
 			if(map != null) {
 				map.setPlayerList(players.values());
 			}
+		}
+		else if(event == Events.PLAYER_FINISHED_TURN) {
+			advancePlayer();
+			if(isMyTurn()) {
+				System.out.println("It must be my turn");
+				startPeriod();
+			}
+		}
+		else if(event == Events.GAME_STARTED) {
+			System.out.println("The game has officially started!");
+			if(isMyTurn()) {
+				System.out.println("It must be my turn");
+				startPeriod();
+			}			
 		}
 	}
 	
@@ -138,7 +152,7 @@ public class GameController implements Subscriber {
 		return ownConnectionID;
 	}
 	
-	public static int getPhase() { return phase; }
+	public static int getPeriod() { return period; }
 
 	public static int getDayNumber() { return dayNumber; }
 	
@@ -148,6 +162,78 @@ public class GameController implements Subscriber {
 			Collections.shuffle(playerTurns);
 		}
 		int something = playerTurns.get(currentPlayerIndex);
-		return players.get(something); }
+		return players.get(something);
+	}
+
+	public static void setPeriod(int p) {
+		period = p;
+	}
 	
+	public static void startPeriod() {
+		// I need to somehow notify the screen components that the aspects of the turn have changed
+		switch(period) {
+			case BIRDSONG:
+				Birdsong.start();
+				break;
+			case DAYLIGHT:
+				// Since my daylight period started here, I can enable the action bar now
+				Daylight.start();
+				break;
+			case SUNSET:
+				Sunset.start();
+				break;
+			case MIDNIGHT:
+				Midnight.start();
+				break;
+		}
+
+	}
+	
+	public static void endPeriod() {
+		switch(period) {
+		case BIRDSONG:
+			Birdsong.end();
+			break;
+		case DAYLIGHT:
+			// The action bar can be disabled now
+			Daylight.end();
+			break;
+		case SUNSET:
+			Sunset.end();
+			break;
+		case MIDNIGHT:
+			Midnight.end();
+			break;
+		}	
+	}
+	
+	public static boolean isMyTurn() {
+		return (getCurrentPlayer() == myself());
+	}
+
+	public static void advancePlayer() {
+		++currentPlayerIndex;
+		if(currentPlayerIndex > players.size() - 1) {
+			advancePeriod();
+			currentPlayerIndex = 0;
+		}
+
+		// Notify each player that the turn has changed
+	}
+	
+	public static void advancePeriod() {
+		++period;
+		if(period > MIDNIGHT) {
+			advanceDay();
+			period = BIRDSONG;
+		}
+		
+		// Notify each player that the period has changed
+	}
+
+	private static void advanceDay() {
+		++dayNumber;
+		// The character has 4 phases again
+		//myself().getCharacter().resetNumberOfPhases();
+	}
 }

@@ -21,6 +21,10 @@ import com.magicrealm.common.Player;
 public class ActionBar1 extends JPanel {
 
 	private Player player; // May not be necessary, but we'll see
+	private boolean enabled; // Can be disabled
+	private JButton button1;
+	private JButton button2;
+	private JButton button3;
 	
 	/**
 	 * Sole constructor
@@ -45,15 +49,18 @@ public class ActionBar1 extends JPanel {
 		
 		// Get the icons for the buttons
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "hide.gif");
-		JButton button1 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "hide.gif")));
+		button1 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "hide.gif")));
+		button1.setEnabled(enabled);
 		this.add(button1);
 		
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "move.gif");
-		JButton button2 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "move.gif")));
+		button2 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "move.gif")));
+		button2.setEnabled(enabled);
 		this.add(button2);
 		
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "rest.gif");
-		JButton button3 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "rest.gif")));
+		button3 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "rest.gif")));
+		button3.setEnabled(enabled);
 		this.add(button3);
 		
 		// Don't draw the background
@@ -61,5 +68,29 @@ public class ActionBar1 extends JPanel {
 		
 		this.setSize(300, 60);
 	}
+	
+	
+	
+	/**
+	 * Enables the action bar
+	 */
+	public void enable() { enabled = true; update(); }
+	
+	
+	
+	/**
+	 * Disables the action bar
+	 */
+	public void disable() { enabled = false; update(); }
 		
+	
+	
+	/**
+	 * Updates the buttons
+	 */
+	private void update() {
+		button1.setEnabled(enabled);
+		button2.setEnabled(enabled);
+		button3.setEnabled(enabled);
+	}
 }

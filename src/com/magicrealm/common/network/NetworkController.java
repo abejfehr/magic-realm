@@ -21,6 +21,7 @@ import com.magicrealm.common.packet.RegisterCharacter;
 import com.magicrealm.common.packet.RegisterPlayer;
 import com.magicrealm.common.packet.RequestConnection;
 import com.magicrealm.common.packet.RequestMapPacket;
+import com.magicrealm.common.packet.TurnFinishedPacket;
 import com.magicrealm.server.controller.GameController;
 
 public class NetworkController {
@@ -122,6 +123,7 @@ public class NetworkController {
 	            	 * game start
 	            	 */
 	            	if(object instanceof GameStartPacket){
+	            		System.out.println("Telling everyone to start the game");
 	            		server.sendToAllTCP(object);
 	            	}
 	            }
@@ -210,12 +212,26 @@ public class NetworkController {
 	            		fireEvent(Events.MESSAGE_RECEIVED);
 	    				
 	    			}
+	    			
 	    			/*
 	    			 * Game started
 	    			 */
 	    			if(object instanceof GameStartPacket) {
-	    				fireEvent(Events.GAME_STARTED);    				
+	    				System.out.println("Was told to start the game");
+	    				fireEvent(Events.GAME_STARTED);
 	    			}
+	    			
+	    			/*
+	    			 * Turn finished
+	    			 */
+	    			if(object instanceof TurnFinishedPacket) {
+	    				
+	    				System.out.println("Just received a notification that a player's turn is finished");
+	    				
+	    				fireEvent(Events.PLAYER_FINISHED_TURN);
+
+	    			}
+
 	    		} 			
 	    	}
 	    	
@@ -295,6 +311,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.packet.PlayerList.class);
 	    kryo.register(com.magicrealm.common.packet.Message.class);
 	    kryo.register(com.magicrealm.common.packet.GameStartPacket.class);
+	    kryo.register(com.magicrealm.common.packet.TurnFinishedPacket.class);
 	    
 	    // Primitives and Utils
 	    kryo.register(byte[].class);
