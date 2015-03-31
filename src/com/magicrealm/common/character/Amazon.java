@@ -21,6 +21,7 @@ public class Amazon extends Character{
 		super(Vulnerability.MEDIUM, name, "amazon.png");
 		this.setStartingPoint();
 		this.weapon = new ShortSword();
+		this.location = startingPoint.getLocation();
 		
 	}
 	
@@ -31,6 +32,7 @@ public class Amazon extends Character{
 		super(Vulnerability.MEDIUM, "new amazon", "amazon.png");
 		this.setStartingPoint();
 		this.weapon = new ShortSword();
+		this.location = startingPoint.getLocation();
 		
 	}
 	

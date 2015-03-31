@@ -1,6 +1,10 @@
 package com.magicrealm.client.ui.component;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,6 +13,7 @@ import javax.swing.JPanel;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Player;
+import com.magicrealm.server.controller.GameController;
 
 /**
  * The CharacterHUD is a JPanel that renders an image which represents the
@@ -21,7 +26,7 @@ import com.magicrealm.common.Player;
 public class ActionBar1 extends JPanel {
 
 	private Player player; // May not be necessary, but we'll see
-	
+	protected boolean nextClick = false;
 	/**
 	 * Sole constructor
 	 * @param player	the player who's action is being requested
@@ -50,6 +55,13 @@ public class ActionBar1 extends JPanel {
 		
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "move.gif");
 		JButton button2 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "move.gif")));
+		button2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Move Button Pressed");
+				GameController.getActionController().moveCharacter();
+				//GameController.getMap().enterMoveMode();
+			}
+		});
 		this.add(button2);
 		
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "rest.gif");
@@ -61,5 +73,9 @@ public class ActionBar1 extends JPanel {
 		
 		this.setSize(300, 60);
 	}
+
+
+
+
 		
 }

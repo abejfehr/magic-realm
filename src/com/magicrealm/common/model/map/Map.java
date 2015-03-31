@@ -24,6 +24,7 @@ public class Map {
 	private HexTile[][] tiles;
 	private ArrayList<Dwellings> dwellings = new ArrayList<Dwellings>();
 	private ArrayList<Player> players = new ArrayList<Player>();
+	private boolean moveMode;
 		
 	/*
 	 * Getters and setters
@@ -37,7 +38,7 @@ public class Map {
 	/*
 	 * Returns the requested tile(by the tile code)
 	 */
-	private HexTile getTile(String code) {
+	public HexTile getTile(String code) {
 		for(int i=0;i<tiles.length;++i) {
 			for(int j=0;j<tiles[i].length;++j) {
 				if(tiles[i][j]!=null){
@@ -250,4 +251,20 @@ public class Map {
 	public ArrayList<Player> getPlayerList() {
 		return players;
 	}
+
+	public void enterMoveMode() {
+		moveMode = true;
+		
+	}
+	
+	public void exitMoveMode() {
+		moveMode = false;
+		
+	}
+	
+	public boolean isInMoveMode() {
+		return moveMode;
+	}
+
+	
 }

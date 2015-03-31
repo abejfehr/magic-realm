@@ -28,6 +28,7 @@ public class GameController implements Subscriber {
 	private static int dayNumber = 1;
 	private static int currentPlayerIndex = 0;
 	private static ArrayList<Integer> playerTurns = new ArrayList();
+	private static ActionController actionController = new ActionController(); 
 	
 	public static final int BIRDSONG = 0;
 	public static final int DAYLIGHT = 1;
@@ -121,6 +122,7 @@ public class GameController implements Subscriber {
 
 	public static void setNewPlayerList(HashMap<Integer, Player> newPlayers) {
 		players = newPlayers;
+		//map.setPlayerList(newPlayers.values());
 	}
 	
 	public static HashMap<Integer, Player> getPlayerHashMap() {
@@ -141,6 +143,8 @@ public class GameController implements Subscriber {
 	public static int getPhase() { return phase; }
 
 	public static int getDayNumber() { return dayNumber; }
+	
+	public static ActionController getActionController() { return actionController; }
 	
 	public static Player getCurrentPlayer() {
 		if(playerTurns.size() < 1) {

@@ -22,6 +22,7 @@ public class Swordsman extends Character{
 		super(Vulnerability.LIGHT, name, "swordsman.png");
 		this.setStartingPoint();
 		this.weapon = new ThrustingSword();
+		this.location = startingPoint.getLocation();
 		
 	}
 	
@@ -32,6 +33,7 @@ public class Swordsman extends Character{
 		super(Vulnerability.LIGHT, "new swordsman", "swordsman.png");
 		this.setStartingPoint();
 		this.weapon = new ThrustingSword();
+		this.location = startingPoint.getLocation();
 	
 	}
 	

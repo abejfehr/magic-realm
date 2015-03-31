@@ -76,10 +76,17 @@ public class NetworkController {
 	            	 */
 	            	if(object instanceof RequestMapPacket) {
 	            		// We've received a request for  a new map.
+	            		System.out.println("Entered RequestMapPacket server handler");
 	            		MapPacket mp = new MapPacket(GameController.getMap());
 	            		
 	            		server.sendToAllTCP(mp);
 	            		
+	            		System.out.println("Sending a map to all connected clients");
+	            	}
+	            	if(object instanceof MapPacket) {
+	            		System.out.println("server received new map");
+	            		
+	            		server.sendToAllTCP(object);
 	            		System.out.println("Sending a map to all connected clients");
 	            	}
 	            	if(object instanceof RegisterPlayer) {
@@ -122,6 +129,9 @@ public class NetworkController {
 	            	 * game start
 	            	 */
 	            	if(object instanceof GameStartPacket){
+	            		server.sendToAllTCP(object);
+	            	}
+	            	if(object instanceof PlayerList){
 	            		server.sendToAllTCP(object);
 	            	}
 	            }

@@ -21,7 +21,8 @@ public class Elf extends Character{
 		
 		super(Vulnerability.LIGHT, name, "elf.png") ;
 		this.setStartingPoint();
-		this.weapon = new LightBow(); 
+		this.weapon = new LightBow();
+		this.location = startingPoint.getLocation();
 
 	}
 	
@@ -32,6 +33,7 @@ public class Elf extends Character{
 		super(Vulnerability.LIGHT, "new elf", "elf.png");
 		this.setStartingPoint();
 		this.weapon = new LightBow();
+		this.location = startingPoint.getLocation();
 		
 	}
 	

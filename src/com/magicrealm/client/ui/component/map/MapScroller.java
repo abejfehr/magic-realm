@@ -1,13 +1,23 @@
 package com.magicrealm.client.ui.component.map;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
+
+import com.magicrealm.common.model.path.Node;
+import com.magicrealm.common.model.path.Clearing;
+import com.magicrealm.server.controller.GameController;
  
 @SuppressWarnings("serial")
 public class MapScroller extends JComponent {

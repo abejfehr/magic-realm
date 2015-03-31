@@ -64,7 +64,7 @@ public abstract class Character {
     	this.notorietyPoints = 0;
     	this.famePoints      = 0;
     	this.spellPoints     = 0;
-    	this.location        = startingPoint.getLocation();
+    	this.location        = null;
     	
     }
     
@@ -80,7 +80,7 @@ public abstract class Character {
     	this.notorietyPoints = 0;
     	this.famePoints      = 0;
     	this.spellPoints     = 0;
-    	this.location        = startingPoint.getLocation();
+    	this.location        = null;
     	
     }
     
@@ -107,10 +107,6 @@ public abstract class Character {
     	
     }
     
-    public void moveCharacter(){
-    	
-    }
-    
     /*
      * Getters/Setters
      */
@@ -124,7 +120,7 @@ public abstract class Character {
     public  int              getTreasurePoints()   { return treasurePoints; }
     public  int              getSpellPoints()      { return spellPoints; }
     public  VictoryCondition getVictoryCondition() { return victoryCondition; }
-
+    public  String           getLocation()         { return location; } 
     
     public  Dwellings getStartingPoint()                    { return startingPoint; }
     public  void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }
@@ -135,6 +131,11 @@ public abstract class Character {
 
 	public String getImageName() {
 		return imageFilename;
+	}
+
+	public void setLocation(String code) {
+		location = code;
+		
 	}
     
 }

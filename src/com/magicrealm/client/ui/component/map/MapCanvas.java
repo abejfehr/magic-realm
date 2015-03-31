@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
 
@@ -15,6 +16,8 @@ import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Character;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.map.Map;
+import com.magicrealm.common.model.path.Clearing;
+import com.magicrealm.common.model.path.Node;
 
 @SuppressWarnings("serial")
 public class MapCanvas extends JPanel {
@@ -108,7 +111,7 @@ public class MapCanvas extends JPanel {
 					j = i;
 				}
 			}
-			String characterLocation = map.getDwellings().get(j).getLocation();
+			String characterLocation = c.getLocation(); //map.getDwellings().get(j).getLocation();
 			x = map.getTilePositionX(characterLocation);
 			y = map.getTilePositionY(characterLocation);
 			
@@ -130,6 +133,7 @@ public class MapCanvas extends JPanel {
 	public HexTile[][] getMapTiles() {
 		return map.getTiles();
 	}
+	public Map getMap() { return map; }
 	
 	private float getCloudOpacityFromScale(float scale, float minOpacity, float maxOpacity, float minZoom, float maxZoom) {
 		float endDifference = 1.0f; // In case there's a mistake, I don't want the clouds to cover everything

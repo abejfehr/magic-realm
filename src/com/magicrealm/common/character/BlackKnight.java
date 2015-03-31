@@ -22,7 +22,7 @@ public class BlackKnight extends Character{
 		super(Vulnerability.MEDIUM, name, "black_knight.png");
 		this.setStartingPoint();
 		this.weapon = new Mace();
-		
+		this.location = startingPoint.getLocation();
 	} 
 	
     // no-args for serialization
@@ -32,6 +32,7 @@ public class BlackKnight extends Character{
 		super(Vulnerability.MEDIUM, "new black knight", "black_knight.png");
 		this.setStartingPoint();
 		this.weapon = new Mace();
+		this.location = startingPoint.getLocation();
 		
 	}
 	
