@@ -50,9 +50,11 @@ public class Dwellings {
 		switch (dwelling){
 		case INN:
 			imageName = "inn.gif";
+			setLocation("BV5");
 			break;
 		case CHAPEL:
 			imageName = "chapel.gif";
+			setLocation("AV5");
 			break;
 		case SMALL_CAMPFIRE:
 			imageName = "small_fire.gif";
@@ -65,9 +67,11 @@ public class Dwellings {
 			break;
 		case GUARD_HOUSE:
 			imageName = "guard.gif";
+			setLocation("DV5");
 			break;
 		case HOUSE:
 			imageName = "house.gif";
+			setLocation("CV5");
 			break;
 		case TWO_GHOSTS:
 			imageName = "ghost.gif";

@@ -83,22 +83,22 @@ public abstract class MapFactory {
 		
 		// Inn
 		Dwellings inn = new Dwellings(Dwellings.INN);
-		inn.setLocation("BV5");
+		//inn.setLocation("BV5");
 		dwellings.add(inn);
 		
 		// Guard
 		Dwellings guardHouse = new Dwellings(Dwellings.GUARD_HOUSE);
-		guardHouse.setLocation("DV5");
+		//guardHouse.setLocation("DV5");
 		dwellings.add(guardHouse);
 		
 		// House
 		Dwellings house = new Dwellings(Dwellings.HOUSE);
-		house.setLocation("CV5");
+		//house.setLocation("CV5");
 		dwellings.add(house);
 		
 		// Chapel
 		Dwellings chapel = new Dwellings(Dwellings.CHAPEL);
-		chapel.setLocation("AV5");
+		//chapel.setLocation("AV5");
 		dwellings.add(chapel);
 
 		m.setTiles(tiles);

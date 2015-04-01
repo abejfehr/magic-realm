@@ -1,7 +1,12 @@
 package com.magicrealm.common;
 
 public class Config {
-
+	
+	/*
+	 * Debug Configuration
+	 */
+	public static final String LOG_FILE_LOCATION = "magicrealm.log";
+	
 	/*
 	 * Image configuration
 	 */

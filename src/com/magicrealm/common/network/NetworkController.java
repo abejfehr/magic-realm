@@ -10,6 +10,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.esotericsoftware.minlog.Log;
 import com.magicrealm.common.Player;
 import com.magicrealm.common.packet.ConnectionInfo;
 import com.magicrealm.common.packet.GameStartPacket;
@@ -77,10 +78,17 @@ public class NetworkController {
 	            	 */
 	            	if(object instanceof RequestMapPacket) {
 	            		// We've received a request for  a new map.
+	            		System.out.println("Entered RequestMapPacket server handler");
 	            		MapPacket mp = new MapPacket(GameController.getMap());
 	            		
 	            		server.sendToAllTCP(mp);
 	            		
+	            		System.out.println("Sending a map to all connected clients");
+	            	}
+	            	if(object instanceof MapPacket) {
+	            		System.out.println("server received new map");
+	            		
+	            		server.sendToAllTCP(object);
 	            		System.out.println("Sending a map to all connected clients");
 	            	}
 	            	if(object instanceof RegisterPlayer) {
@@ -124,6 +132,9 @@ public class NetworkController {
 	            	 */
 	            	if(object instanceof GameStartPacket){
 	            		System.out.println("Telling everyone to start the game");
+	            		server.sendToAllTCP(object);
+	            	}
+	            	if(object instanceof PlayerList){
 	            		server.sendToAllTCP(object);
 	            	}
 	            }

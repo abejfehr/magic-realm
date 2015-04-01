@@ -11,9 +11,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-
 import javax.imageio.ImageIO;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -26,6 +24,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
+import com.esotericsoftware.minlog.Log;
 import com.magicrealm.client.Main;
 import com.magicrealm.client.ui.component.CharacterSelectPanel;
 import com.magicrealm.common.Config;
@@ -41,10 +40,7 @@ import com.magicrealm.server.controller.GameController;
 //import javafx.scene.input.KeyCode;
 
 
-/*
-=======
 /**
->>>>>>> master
  * Pre-Game Lobby, to be Displayed after Main Menu
  * CreateGame from main menu allows client to start game
  * If the client is joining the game client can only wait for host to start game
@@ -364,6 +360,7 @@ public class Lobby extends Screen implements Subscriber {
 		}
 		if(event == Events.GAME_STARTED) {
 			scrController.show(Game.class);
+			Log.info("The GAME_STARTED event has been fired");
 		}
 	}
 

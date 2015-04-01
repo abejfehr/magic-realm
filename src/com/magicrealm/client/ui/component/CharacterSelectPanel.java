@@ -167,6 +167,7 @@ public class CharacterSelectPanel extends JPanel{
     				break;
     		}
     		newCharacter.setStartingPoint(n);
+    		newCharacter.setLocation(newCharacter.getStartingPoint().getLocation());
     		
     	}
     	else if(characterSelectString == "Dwarf"){ //Dwarf has to select one of 2 locations to start at
@@ -189,6 +190,7 @@ public class CharacterSelectPanel extends JPanel{
     				n = Dwellings.GUARD_HOUSE;
     		}   		
     		newCharacter.setStartingPoint(n);
+    		newCharacter.setLocation(newCharacter.getStartingPoint().getLocation());
     		
     	}
     	else if(characterSelectString == "Elf"){
