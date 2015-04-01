@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import javax.swing.JFrame;
 
+import com.esotericsoftware.minlog.Log;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.client.ui.screen.Screen;
 
@@ -20,6 +21,9 @@ public class Main extends JFrame implements Observer {
 		
 		//window.add(background);
 		add(scrController.getScreen());		
+		
+		// Set the logger
+		Log.setLogger(new com.magicrealm.common.Logger());
 		
 		// Build and show the window
 		pack();
