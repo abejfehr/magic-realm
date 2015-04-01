@@ -1,6 +1,10 @@
 package com.magicrealm.common.model.path;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.magicrealm.common.model.map.Map;
 
 public class Clearing extends Node implements Serializable {
 
@@ -31,7 +35,38 @@ public class Clearing extends Node implements Serializable {
 		this.x = x;
 		this.y = y;
 	}
+    
 
+    /*
+     * Getting the adjacent clearings
+     */
+    public ArrayList<Clearing> getAdjacentClearings(Map m, boolean hidden) {
+            ArrayList<Clearing> results = new ArrayList<Clearing>();
+           
+            // Go through the map's hextiles and print out each clearing that has a
+            // path length of 1
+            for(int i=0;i<m.getTiles().length;++i) {
+                    for(int j=0;j<m.getTiles()[i].length;++j) {
+                    	if(m.getTiles()[i][j] != null){
+                            for(int k=0;k<m.getTiles()[i][j].getClearings().size();++k) {
+                            	if(m.getTiles()[i][j].getClearings().get(k) instanceof Edge){
+                            		break;
+                            	}	
+                                Clearing otherClearing = (Clearing) m.getTiles()[i][j].getClearings().get(k);
+                                //System.out.println(" Other Clearings code " + otherClearing.getCode());
+                                System.out.println(" Clearings code " + this.getCode());
+                                List<Node> pathBetween = m.getPathBetween(this.getCode(), otherClearing.getCode(), hidden);
+                                if(pathBetween != null){
+                                	if(pathBetween.size() == 2) {
+                                        results.add(otherClearing);
+                                	}
+                                }
+                            }
+                    	}    
+                    }
+            }
+            return results;
+    }
 	
 	
 	/*

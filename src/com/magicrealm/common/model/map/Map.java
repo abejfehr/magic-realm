@@ -3,6 +3,7 @@ package com.magicrealm.common.model.map;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -165,7 +166,7 @@ public class Map {
 		Node source = GameController.getMap().getClearing(origin);
 		Node target = GameController.getMap().getClearing(destination);
 		
-        ArrayBlockingQueue<Node> nodeQueue = new ArrayBlockingQueue<Node>(5);
+        ArrayBlockingQueue<Node> nodeQueue = new ArrayBlockingQueue<Node>(100);
         nodeQueue.add(source);
         source.discovered = true;
         
@@ -250,6 +251,42 @@ public class Map {
 
 	public ArrayList<Player> getPlayerList() {
 		return players;
+	}
+	
+	public HashMap<HexTile,Integer> getNeighbourTiles(String tileCode){
+		
+		HashMap<HexTile,Integer> returnHashMap = new HashMap<HexTile,Integer>();
+		
+		//This is the x, y of the center tile
+		int tileArrayPositionX = this.getTileCoordinateX(tileCode);
+		int tileArrayPositionY = this.getTileCoordinateY(tileCode);
+		
+		//now in a circle from the top clockwise go through 
+		//puts in hextile as key and angle of that tile as the value
+		if(getTile(tileArrayPositionX,tileArrayPositionY - 1) != null)
+			returnHashMap.put(getTile(tileArrayPositionX,tileArrayPositionY-1),getTile(tileArrayPositionX,tileArrayPositionY-1).getAngle());
+		
+		if(getTile(tileArrayPositionX + 1,tileArrayPositionY - 1) != null)
+			returnHashMap.put(getTile(tileArrayPositionX + 1,tileArrayPositionY - 1),getTile(tileArrayPositionX + 1,tileArrayPositionY - 1).getAngle());
+		
+		if(getTile(tileArrayPositionX + 1,tileArrayPositionY) != null)
+			returnHashMap.put(getTile(tileArrayPositionX + 1,tileArrayPositionY),getTile(tileArrayPositionX + 1,tileArrayPositionY).getAngle());
+		
+		if(getTile(tileArrayPositionX,tileArrayPositionY + 1) != null)
+			returnHashMap.put(getTile(tileArrayPositionX,tileArrayPositionY + 1),getTile(tileArrayPositionX,tileArrayPositionY + 1).getAngle());
+		
+		if(getTile(tileArrayPositionX - 1,tileArrayPositionY) != null)
+			returnHashMap.put(getTile(tileArrayPositionX - 1,tileArrayPositionY),getTile(tileArrayPositionX - 1,tileArrayPositionY).getAngle());
+		
+		if(getTile(tileArrayPositionX - 1,tileArrayPositionY - 1) != null)
+			returnHashMap.put(getTile(tileArrayPositionX - 1,tileArrayPositionY - 1),getTile(tileArrayPositionX - 1,tileArrayPositionY - 1).getAngle());
+		
+		for (HexTile t : returnHashMap.keySet()){
+			System.out.println(t.getCode());	
+		}
+		
+		return returnHashMap;
+	
 	}
 
 	public void enterMoveMode() {
