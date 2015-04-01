@@ -43,8 +43,6 @@ public class ActionBar1 extends JPanel {
 		initPanel();
 	}
 	
-
-	
 	/**
 	 * Initializes the panel by placing the subcomponents on it
 	 */
@@ -57,6 +55,12 @@ public class ActionBar1 extends JPanel {
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "hide.gif");
 		button1 = new JButton(new ImageIcon(ScreenController.getImage(Config.ACTION_IMAGE_LOCATION + "hide.gif")));
 		button1.setEnabled(enabled);
+		button1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Hide Button Pressed");
+				//TODO: GameController.getActionController().hideCharacter();
+			}
+		});
 		this.add(button1);
 		
 		ScreenController.storeImage(Config.ACTION_IMAGE_LOCATION + "move.gif");
