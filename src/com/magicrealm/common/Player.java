@@ -10,6 +10,7 @@ public class Player {
 	 */
 	private String name;
 	private Character character;
+	private boolean cheating; // Whether or not they're in cheat mode
 	
 	private String[] defaultNames = {
 			"Ordjen",
@@ -80,5 +81,13 @@ public class Player {
 	@Override
 	public String toString() {
 		return "Player: " + name;
+	}
+	
+	public boolean isCheating() {
+		return cheating;
+	}
+	
+	public void toggleCheatMode() {
+		cheating = !cheating;
 	}
 }

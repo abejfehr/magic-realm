@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -71,12 +73,24 @@ public class DicePanel extends JPanel {
 			e.printStackTrace();
 		}
 		diceImage = new JLabel(new ImageIcon(image));
+		diceImage.addMouseListener(new MouseListener() {
+			public void mouseClicked(MouseEvent e) {
+				player.toggleCheatMode();
+				update();
+			}
+			public void mousePressed(MouseEvent e) { }
+			public void mouseReleased(MouseEvent e) { }
+			public void mouseEntered(MouseEvent e) { }
+			public void mouseExited(MouseEvent e) { }
+			
+		});
 		this.add(diceImage);
 		
 		Font cheatModeFont = new Font("Helvetica", Font.BOLD, 16);
 		cheatModeLabel.setFont(cheatModeFont);
-		cheatModeLabel.setForeground((/*character.isCheating()*/true ? Color.GREEN : Color.RED));
-		cheatModeLabel.setText("Cheat Mode: " + (true ? "on" : "off"));
+		cheatModeLabel.setBackground(null);
+		cheatModeLabel.setForeground((player.isCheating() ? Color.GREEN : Color.RED));
+		cheatModeLabel.setText("Cheat Mode: " + (player.isCheating() ? "on" : "off"));
 		this.add(cheatModeLabel);
 		
 		// Don't draw the background
@@ -84,5 +98,10 @@ public class DicePanel extends JPanel {
 		
 		this.setSize(120, 130);
 	}
-		
+		 
+	private void update() {
+		cheatModeLabel.setForeground((player.isCheating() ? Color.GREEN : Color.RED));
+		cheatModeLabel.setText("Cheat Mode: " + (player.isCheating() ? "on" : "off"));	
+		cheatModeLabel.setBackground(null);
+	}
 }

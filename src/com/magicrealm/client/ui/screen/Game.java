@@ -15,7 +15,7 @@ import javazoom.jl.player.Player;
 import com.magicrealm.client.ui.component.ActionBar1;
 import com.magicrealm.client.ui.component.CharacterHUD;
 import com.magicrealm.client.ui.component.DicePanel;
-import com.magicrealm.client.ui.component.PhaseInfoPanel;
+import com.magicrealm.client.ui.component.PeriodInfoPanel;
 import com.magicrealm.client.ui.component.map.MapCanvas;
 import com.magicrealm.client.ui.component.map.MapScroller;
 import com.magicrealm.common.model.map.Map;
@@ -39,7 +39,7 @@ public class Game extends Screen implements Subscriber {
 	private MapCanvas canvas;
 	private MapScroller scroller;
 	private CharacterHUD hud;
-	private PhaseInfoPanel phasePanel;
+	private PeriodInfoPanel periodPanel;
 	private ActionBar1 actionBar1;
 	private DicePanel dicePanel;
 
@@ -55,6 +55,7 @@ public class Game extends Screen implements Subscriber {
 	    
 		// Request the map from the server
 		NetworkController.subscribe(Events.MAP_UPDATED, this);
+		NetworkController.subscribe(Events.PLAYER_FINISHED_TURN, this);
 		NetworkController.sendToServer(RequestMapPacket.class);
 
 		// Play the background music
@@ -94,6 +95,9 @@ public class Game extends Screen implements Subscriber {
 		// ActionBar1
 		actionBar1 = new ActionBar1(GameController.myself());
 		actionBar1.setBounds(this.getWidth()/2 - actionBar1.getWidth()/2,this.getHeight()-actionBar1.getHeight(),actionBar1.getWidth(),actionBar1.getHeight());
+		if(GameController.isMyTurn()) {
+			actionBar1.enable();	
+		}
 		panel.add(actionBar1, JLayeredPane.PALETTE_LAYER);
 
 		// DicePanel
@@ -110,9 +114,9 @@ public class Game extends Screen implements Subscriber {
 		panel.add(hud, JLayeredPane.PALETTE_LAYER);
 
 		// Phase Info Panel
-		phasePanel = new PhaseInfoPanel(GameController.myself());
-		phasePanel.setBounds(MARGIN,MARGIN,phasePanel.getWidth(),phasePanel.getHeight());
-		panel.add(phasePanel, JLayeredPane.PALETTE_LAYER);
+		periodPanel = new PeriodInfoPanel(GameController.myself());
+		periodPanel.setBounds(MARGIN,MARGIN,periodPanel.getWidth(),periodPanel.getHeight());
+		panel.add(periodPanel, JLayeredPane.PALETTE_LAYER);
 
 		// Map Canvas
 		canvas = new MapCanvas(map);
@@ -142,6 +146,16 @@ public class Game extends Screen implements Subscriber {
 			case Events.MAP_UPDATED:
 				drawMap(GameController.getMap());				
 				break;
+			case Events.PLAYER_FINISHED_TURN:
+				if(periodPanel != null) {
+					periodPanel.update();
+					if(GameController.isMyTurn()) {
+						actionBar1.enable();
+					}
+					else {
+						actionBar1.disable();
+					}
+				}
 		}
 				
 	}

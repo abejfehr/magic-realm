@@ -11,17 +11,17 @@ import com.magicrealm.common.Player;
 import com.magicrealm.server.controller.GameController;
 
 /**
- * The CharacterHUD is a JPanel that renders an image which represents the
- * player's character as well as the victory conditions and their respective
- * stats.
+ * The PeriodInfoPanel is a JPanel that renders an image which represents the
+ * period of the day(birdsong, daylight, sunset or midnight) and whose turn it
+ * is.
  * 
  * @author      Abe Fehr
  */
 @SuppressWarnings("serial")
-public class PhaseInfoPanel extends JPanel {
+public class PeriodInfoPanel extends JPanel {
 
 	private Player player;
-	private JLabel phaseLabel = new JLabel();
+	private JLabel periodLabel = new JLabel();
 	private JLabel infoLabel = new JLabel();
 	
 	/**
@@ -29,7 +29,7 @@ public class PhaseInfoPanel extends JPanel {
 	 * @param player	the player who's stats are to be displayed
 	 * @see             Player
 	 */
-	public PhaseInfoPanel(Player player) {
+	public PeriodInfoPanel(Player player) {
 		this.player = player;
 		
 		initPanel();
@@ -46,37 +46,41 @@ public class PhaseInfoPanel extends JPanel {
 		setLayout(new GridLayout(2,1));
 		
 		// Phase label
-		String phaseText = null;
-		switch(GameController.getPhase()) {
-			case GameController.BIRDSONG:
-				phaseText = "Birdsong";
-				break;
-			case GameController.DAYLIGHT:
-				phaseText = "Daylight";
-				break;
-			case GameController.SUNSET:
-				phaseText = "Sunset";
-				break;
-			case GameController.MIDNIGHT:
-				phaseText = "Midnight";
-		}
-		phaseLabel.setText(phaseText);
 		Font phaseFont = new Font("Helvetica", Font.PLAIN, 72);
-		phaseLabel.setFont(phaseFont);
-		phaseLabel.setForeground(Color.WHITE);
-		add(phaseLabel);
+		periodLabel.setFont(phaseFont);
+		periodLabel.setForeground(Color.WHITE);
+		add(periodLabel);
 		
 		// Info label
-		infoLabel.setText("Day " + GameController.getDayNumber() + " - " + GameController.getCurrentPlayer().getName() + "'s turn");
 		Font infoFont = new Font("Helvetica", Font.PLAIN, 24);
 		infoLabel.setFont(infoFont);
 		infoLabel.setForeground(Color.WHITE);
 		add(infoLabel);
+		
+		this.update();
 		
 		// Don't draw the background
 		this.setOpaque(false);
 		
 		this.setSize(400, 150);
 	}
-		
+	
+	public void update() {
+		String periodText = null;
+		switch(GameController.getPeriod()) {
+			case GameController.BIRDSONG:
+				periodText = "Birdsong";
+				break;
+			case GameController.DAYLIGHT:
+				periodText = "Daylight";
+				break;
+			case GameController.SUNSET:
+				periodText = "Sunset";
+				break;
+			case GameController.MIDNIGHT:
+				periodText = "Midnight";
+		}
+		periodLabel.setText(periodText);
+		infoLabel.setText("Day " + GameController.getDayNumber() + " - " + GameController.getCurrentPlayer().getName() + "'s turn");
+	}
 }

@@ -1,6 +1,9 @@
 package com.magicrealm.common.model.path;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import com.magicrealm.common.model.map.Map;
 
 public class Clearing extends Node implements Serializable {
 
@@ -44,5 +47,5 @@ public class Clearing extends Node implements Serializable {
 	public int getOffsetY() { return y; }
 	
 	public String getCode() { return tileCode + number; }
-
+	
 }
