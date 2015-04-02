@@ -83,8 +83,8 @@ public class Ledges extends HexTile implements Serializable {
 		c4.adjacencyListByHiddenPath.add(c6);
 		c6.adjacencyListByHiddenPath.add(c4);
 		
-		c2.adjacencyListByHiddenPath.add(c5);
-		c5.adjacencyListByHiddenPath.add(c2);
+		c2.adjacencyListByNormalPath.add(c5);
+		c5.adjacencyListByNormalPath.add(c2);
 
 		// Define the edges
 		e1.adjacencyListByNormalPath.add(c2);

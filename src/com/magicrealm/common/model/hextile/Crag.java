@@ -85,6 +85,9 @@ public class Crag extends HexTile implements Serializable {
 
 		c3.adjacencyListByNormalPath.add(c5);
 		c5.adjacencyListByNormalPath.add(c3);
+		
+		c2.adjacencyListByNormalPath.add(c5);
+		c5.adjacencyListByNormalPath.add(c2);
 
 		// Define the edges
 		e6.adjacencyListByNormalPath.add(c2);

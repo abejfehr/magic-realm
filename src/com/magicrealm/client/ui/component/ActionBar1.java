@@ -26,7 +26,7 @@ import com.magicrealm.server.controller.GameController;
 public class ActionBar1 extends JPanel {
 
 	private Player player; // May not be necessary, but we'll see
-	private boolean enabled; // Can be disabled
+	private boolean enabled = true; // Can be disabled
 	private JButton button1;
 	private JButton button2;
 	private JButton button3;
@@ -94,7 +94,7 @@ public class ActionBar1 extends JPanel {
 	/**
 	 * Disables the action bar
 	 */
-	public void disable() { enabled = false; update(); }
+	public void disable() { }//enabled = false; update(); }
 
 
 

@@ -38,7 +38,7 @@ public class Borderland extends HexTile implements Serializable {
 	 */
 	private void init() {
 
-		code = "BV";
+		code = "BL";
 		
 		/*
 		 * Normal side of the tile
