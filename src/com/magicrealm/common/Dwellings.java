@@ -50,7 +50,7 @@ public class Dwellings {
 		switch (dwelling){
 		case INN:
 			imageName = "inn.gif";
-			setLocation("BV5");
+			setLocation("BL5");
 			break;
 		case CHAPEL:
 			imageName = "chapel.gif";
