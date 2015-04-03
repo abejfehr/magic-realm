@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +20,7 @@ import javax.swing.event.ListSelectionListener;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
+import com.magicrealm.common.Player;
 import com.magicrealm.common.character.Amazon;
 import com.magicrealm.common.character.BlackKnight;
 import com.magicrealm.common.character.Captain;
@@ -26,6 +28,7 @@ import com.magicrealm.common.character.Character;
 import com.magicrealm.common.character.Dwarf;
 import com.magicrealm.common.character.Elf;
 import com.magicrealm.common.character.Swordsman;
+import com.magicrealm.server.controller.GameController;
 
 /*
  * Character Select Panel
@@ -128,11 +131,27 @@ public class CharacterSelectPanel extends JPanel{
     
     public Character getCharacter(int treasure, int fame, int notoriety, int gold, int spell){
     	
-    	String    characterSelectString = characterList.getSelectedValue().toString();
-    	Character newCharacter          = null;   	
-    	String    name                  = JOptionPane.showInputDialog(null, 
-    																 "What's your Characters name?", 
-    																 "Name");
+    	ArrayList<Player> players               = GameController.getPlayerList();
+    	String            characterSelectString = characterList.getSelectedValue().toString();
+    	Character         newCharacter          = null;  
+    	 		
+    	   		
+    	for (int i=0; i<players.size();i++){
+    		if (players.get(i).getCharacter() != null){
+    			if (players.get(i).getCharacter().toString() == characterSelectString){
+    				JOptionPane.showMessageDialog(null, 
+    					  					 	 "Sorry someones already selected the " + characterSelectString, 
+    					  					 	 "Not Available", 
+    					  					 	 JOptionPane.ERROR_MESSAGE);
+    					
+    				return newCharacter;
+    			}
+    		}
+    	}
+    	  	 	
+    	String name = JOptionPane.showInputDialog(null, 
+    											 "What's your Characters name?", 
+    											 "Name");
     	
     	//Determine which character class is being selected and create new instance of it
     	

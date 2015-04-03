@@ -38,5 +38,5 @@ public class Dwarf extends Character{
 	 * Overrides javas toString method
 	 */
 	@Override
-	public String toString(){return (""+ this.name + ", the Dwarf");}
+	public String toString(){return ("Dwarf");}
 }

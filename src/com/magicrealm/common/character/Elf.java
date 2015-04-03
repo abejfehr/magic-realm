@@ -41,6 +41,6 @@ public class Elf extends Character{
 	 * Overrides javas toString method
 	 */
 	@Override
-	public String toString(){return (""+ this.name + ", the Elf");}
+	public String toString(){return ("Elf");}
 	
 }

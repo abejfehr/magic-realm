@@ -40,6 +40,6 @@ public class BlackKnight extends Character{
 	 * Overrides javas toString method
 	 */
 	@Override
-	public String toString(){return (""+ this.name + ", the Black Knight");}
+	public String toString(){return ("Black Knight");}
 	
 }
