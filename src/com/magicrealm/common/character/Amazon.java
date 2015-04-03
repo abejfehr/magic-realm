@@ -40,6 +40,6 @@ public class Amazon extends Character{
 	 * Overrides javas toString method
 	 */
 	@Override
-	public String toString(){return (""+ this.name + ", the Amazon");}
+	public String toString(){return ("Amazon");}
 	
 }

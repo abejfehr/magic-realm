@@ -41,6 +41,6 @@ public class Swordsman extends Character{
 	 * Overrides javas toString method
 	 */
 	@Override
-	public String toString(){ return (""+ this.name + ", the Swordsman");}
+	public String toString(){ return ("Swordsman");}
 	
 }

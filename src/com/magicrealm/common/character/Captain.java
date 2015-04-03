@@ -35,6 +35,6 @@ public class Captain extends Character{
 	 * Overrides javas toString method
 	 */
 	@Override
-	public String toString(){return (""+ this.name + ", the Captain");}
+	public String toString(){return ("Captain");}
 	
 }

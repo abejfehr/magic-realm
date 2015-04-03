@@ -34,6 +34,7 @@ import com.magicrealm.common.network.Subscriber;
 import com.magicrealm.common.packet.GameStartPacket;
 import com.magicrealm.common.packet.Message;
 import com.magicrealm.common.packet.RegisterCharacter;
+import com.magicrealm.common.character.Character;
 import com.magicrealm.server.controller.GameController;
 
 
@@ -175,19 +176,26 @@ public class Lobby extends Screen implements Subscriber {
 				if (totalVictory != 5){
 					JOptionPane.showMessageDialog(null, "Victory Points not properly set");
 					
-				}else if(characterPanel.getCharacterList().getSelectedValue() == null){
-					JOptionPane.showMessageDialog(null, "No character class selected");
-				}else {
-
-					RegisterCharacter newCharacter = new RegisterCharacter();
-					newCharacter.setConnectionID(GameController.getConnectionID());
-					newCharacter.setCharacter(characterPanel.getCharacter((Integer)treasurePointsSpinner.getValue(), 
-																		 (Integer)famePointsSpinner.getValue(),
-																		 (Integer)notorietyPointsSpinner.getValue(),
-																		 (Integer)goldPointsSpinner.getValue(),
-																		 (Integer)spellPointsSpinner.getValue()));
-					NetworkController.sendToServer(newCharacter);
-
+				}
+				else if(characterPanel.getCharacterList().getSelectedValue() == null){
+					JOptionPane.showMessageDialog(null, "No character selected");	
+				}	
+				else {
+					
+				    Character character = characterPanel.getCharacter((Integer)treasurePointsSpinner.getValue(), 
+ 																	  (Integer)famePointsSpinner.getValue(),
+ 																	  (Integer)notorietyPointsSpinner.getValue(),
+ 																	  (Integer)goldPointsSpinner.getValue(),
+ 																	  (Integer)spellPointsSpinner.getValue());
+				    if (character == null){
+				    	JOptionPane.showMessageDialog(null, "Please try selecting a different character");
+				    }
+				    else{
+				    	RegisterCharacter newCharacter = new RegisterCharacter();
+				    	newCharacter.setConnectionID(GameController.getConnectionID());
+				    	newCharacter.setCharacter(character);
+				    	NetworkController.sendToServer(newCharacter);
+				    }
 				}
 			}
 		});
