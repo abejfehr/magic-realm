@@ -158,5 +158,13 @@ public class ActionController {
 	}
 	public void search(){}
 
+	public void hideCharacter(){
+		
+		// Confirm that character is now hiding
+		System.out.println(GameController.myself().getCharacter() + " is now hiding.");
+		
+		// Change character image
+		
+	}
 
 }
