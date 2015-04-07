@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.magicrealm.chit.Chit;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.model.path.Clearing;
@@ -24,7 +25,7 @@ public abstract class HexTile implements Serializable {
 	protected boolean enchanted = false;
 	protected ArrayList<Node> pathNodes = new ArrayList<Node>();
 	protected ArrayList<Node> enchantedPathNodes = new ArrayList<Node>();
-
+	protected ArrayList<Chit> chits = new ArrayList<Chit>();
 	
 	
 	/*

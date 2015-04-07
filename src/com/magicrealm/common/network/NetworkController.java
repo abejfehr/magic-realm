@@ -10,13 +10,13 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.esotericsoftware.minlog.Log;
 import com.magicrealm.common.Player;
 import com.magicrealm.common.packet.ConnectionInfo;
 import com.magicrealm.common.packet.GameStartPacket;
 import com.magicrealm.common.packet.MapPacket;
 import com.magicrealm.common.packet.Message;
 import com.magicrealm.common.packet.Packet;
+import com.magicrealm.common.packet.PhaseEndPacket;
 import com.magicrealm.common.packet.PlayerList;
 import com.magicrealm.common.packet.RegisterCharacter;
 import com.magicrealm.common.packet.RegisterPlayer;
@@ -116,7 +116,7 @@ public class NetworkController {
 	            	 */
 	            	if(object instanceof Message) {
 	            		
-	            		Message message = (Message)object;
+	            		//Message message = (Message)object;
 	            		
 	            		// Add the message to the game text(unless I'm the client as well)
 	            		// In that case, the text was already updated in our lobby
@@ -135,6 +135,12 @@ public class NetworkController {
 	            		server.sendToAllTCP(object);
 	            	}
 	            	if(object instanceof PlayerList){
+	            		server.sendToAllTCP(object);
+	            	}
+	            	if(object instanceof TurnFinishedPacket){
+	            		server.sendToAllTCP(object);
+	            	}
+	            	if(object instanceof PhaseEndPacket){
 	            		server.sendToAllTCP(object);
 	            	}
 	            }
@@ -242,6 +248,11 @@ public class NetworkController {
 	    				fireEvent(Events.PLAYER_FINISHED_TURN);
 
 	    			}
+	    			
+	    			if(object instanceof PhaseEndPacket){
+	    				System.out.println ("Just received a notification that a phase is over");
+	    				fireEvent(Events.PHASE_ENDED);
+	    			}
 
 	    		} 			
 	    	}
@@ -323,6 +334,7 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.packet.Message.class);
 	    kryo.register(com.magicrealm.common.packet.GameStartPacket.class);
 	    kryo.register(com.magicrealm.common.packet.TurnFinishedPacket.class);
+	    kryo.register(com.magicrealm.common.packet.PhaseEndPacket.class);
 	    
 	    // Primitives and Utils
 	    kryo.register(byte[].class);
@@ -393,6 +405,8 @@ public class NetworkController {
 	    kryo.register(com.magicrealm.common.weapon.Spear.class);
 	    kryo.register(com.magicrealm.common.weapon.Staff.class);
 	    kryo.register(com.magicrealm.common.weapon.ThrustingSword.class);
+	    
+	    kryo.register(com.magicrealm.chit.Chit.class);
 	    
 	}
 	

@@ -57,7 +57,7 @@ public class ActionBar1 extends JPanel {
 		button1.setEnabled(enabled);
 		button1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// System.out.println("Hide Button Pressed");
+				System.out.println("Hide Button Pressed");
 				GameController.getActionController().hideCharacter();
 			}
 		});
@@ -98,7 +98,7 @@ public class ActionBar1 extends JPanel {
 	/**
 	 * Disables the action bar
 	 */
-	public void disable() { }//enabled = false; update(); }
+	public void disable() { enabled = false; update(); }
 
 
 

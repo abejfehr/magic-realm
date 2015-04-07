@@ -22,6 +22,7 @@ public class Amazon extends Character{
 		this.setStartingPoint();
 		this.weapon = new ShortSword();
 		this.location = startingPoint.getLocation();
+		Amazon.MAX_NUMBER_OF_ACTIONS = 4;
 		
 	}
 	
@@ -33,6 +34,7 @@ public class Amazon extends Character{
 		this.setStartingPoint();
 		this.weapon = new ShortSword();
 		this.location = startingPoint.getLocation();
+		Amazon.MAX_NUMBER_OF_ACTIONS = 4;
 		
 	}
 	

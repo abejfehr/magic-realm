@@ -56,6 +56,7 @@ public class Game extends Screen implements Subscriber {
 		// Request the map from the server
 		NetworkController.subscribe(Events.MAP_UPDATED, this);
 		NetworkController.subscribe(Events.PLAYER_FINISHED_TURN, this);
+		NetworkController.subscribe(Events.PHASE_ENDED, this);
 		NetworkController.sendToServer(RequestMapPacket.class);
 
 		// Play the background music
@@ -95,8 +96,13 @@ public class Game extends Screen implements Subscriber {
 		// ActionBar1
 		actionBar1 = new ActionBar1(GameController.myself());
 		actionBar1.setBounds(this.getWidth()/2 - actionBar1.getWidth()/2,this.getHeight()-actionBar1.getHeight(),actionBar1.getWidth(),actionBar1.getHeight());
-		if(GameController.isMyTurn()) {
-			actionBar1.enable();	
+		if (GameController.getPeriod() == 1 ){
+			System.out.println("Enabling Action bar");
+			actionBar1.enable();
+		}
+		else{ 
+			System.out.println("Disabling Action bar");
+			actionBar1.enable();				
 		}
 		panel.add(actionBar1, JLayeredPane.PALETTE_LAYER);
 
@@ -128,7 +134,7 @@ public class Game extends Screen implements Subscriber {
 
 		validate();
 		repaint();
-		System.out.println(GameController.getPlayerList().size());
+
 		for (int i=0; i < GameController.getPlayerList().size(); i++){
 			System.out.println(GameController.getPlayerList().get(i).getCharacter().toString());
 		}
@@ -149,12 +155,26 @@ public class Game extends Screen implements Subscriber {
 			case Events.PLAYER_FINISHED_TURN:
 				if(periodPanel != null) {
 					periodPanel.update();
-					if(GameController.isMyTurn()) {
-						actionBar1.enable();
-					}
-					else {
+					if(GameController.myself().getCharacter().isDaylightOver()) {
 						actionBar1.disable();
 					}
+					else {
+						actionBar1.enable();
+					}
+				}
+			case Events.PHASE_ENDED:
+				System.out.println("Game Screen received PHASE_END event.");
+				if (GameController.getPeriod() != 1 ){
+					System.out.println("Disabling Action bar");
+					actionBar1.disable();
+				}
+				else {
+					if (actionBar1 != null){
+						actionBar1.enable();
+					}
+				}
+				if (periodPanel != null){
+					periodPanel.update();
 				}
 		}
 				

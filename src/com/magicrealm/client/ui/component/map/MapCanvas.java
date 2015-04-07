@@ -9,6 +9,7 @@ import java.awt.geom.Ellipse2D;
 
 import javax.swing.JPanel;
 
+import com.magicrealm.chit.Chit;
 import com.magicrealm.client.controller.ScreenController;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
@@ -89,6 +90,21 @@ public class MapCanvas extends JPanel {
 					map.getClearing(dwelling.getLocation()).getOffsetX(),
 					map.getClearing(dwelling.getLocation()).getOffsetY(),
 					map.getTileAngle(dwelling.getLocation()));
+		}
+		
+		/*
+		 * Paint the chits
+		 */
+		for(Chit chit : map.getChits()){
+			for(int i=0;i<tiles.length;++i) {
+				for(int j=0;j<tiles[i].length;++j) {
+					// Check to make sure the tile exists
+					if(tiles[i][j] != null) {
+						chit.paint(ourGraphics,Map.getTilePositionX(i, j),Map.getTilePositionY(i, j));
+					}
+				}
+			}
+			
 		}
 		
 		/*

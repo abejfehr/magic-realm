@@ -12,6 +12,7 @@ import com.magicrealm.common.model.map.MapFactory;
 import com.magicrealm.common.network.Events;
 import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.common.network.Subscriber;
+import com.magicrealm.common.packet.PlayerList;
 
 
 public class GameController implements Subscriber {
@@ -64,7 +65,10 @@ public class GameController implements Subscriber {
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
 		NetworkController.subscribe(Events.CONNECTION_INFO_RECEIVED, gc);
 		NetworkController.subscribe(Events.PLAYER_FINISHED_TURN, gc);
+		NetworkController.subscribe(Events.PHASE_ENDED, gc);
 		
+		
+		//NetworkController.sendToServer(new PlayerList());
 		// initPlayerTurns(); -> the turn order should be received over the network
 	}
 	
@@ -82,6 +86,7 @@ public class GameController implements Subscriber {
 		NetworkController.subscribe(Events.PLAYER_REGISTERED, gc);
 		NetworkController.subscribe(Events.GAME_STARTED, gc); // So we can begin the first turn
 		NetworkController.subscribe(Events.PLAYER_FINISHED_TURN, gc);
+		NetworkController.subscribe(Events.PHASE_ENDED, gc);
 		
 		initPlayerTurns();
 	}
@@ -104,18 +109,24 @@ public class GameController implements Subscriber {
 			}
 		}
 		else if(event == Events.PLAYER_FINISHED_TURN) {
-			advancePlayer();
-			if(isMyTurn()) {
-				System.out.println("It must be my turn");
-				startPeriod();
-			}
+			Daylight.checkForPhaseFinish();
+			//advancePlayer();
+			//if(isMyTurn()) {
+				//System.out.println("It must be my turn");
+				//startPeriod();
+			//}
 		}
 		else if(event == Events.GAME_STARTED) {
 			System.out.println("The game has officially started!");
-			if(isMyTurn()) {
-				System.out.println("It must be my turn");
+			//if(isMyTurn()) {
+				//System.out.println("It must be my turn");
 				startPeriod();
-			}			
+			//}			
+		}
+		else if (event == Events.PHASE_ENDED){
+			advancePeriod();
+			System.out.println("Advancing the Phase");			
+			startPeriod();
 		}
 	}
 	

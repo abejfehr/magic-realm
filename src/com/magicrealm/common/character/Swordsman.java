@@ -23,6 +23,7 @@ public class Swordsman extends Character{
 		this.setStartingPoint();
 		this.weapon = new ThrustingSword();
 		this.location = startingPoint.getLocation();
+		Captain.MAX_NUMBER_OF_ACTIONS = 4;
 		
 	}
 	
@@ -34,6 +35,7 @@ public class Swordsman extends Character{
 		this.setStartingPoint();
 		this.weapon = new ThrustingSword();
 		this.location = startingPoint.getLocation();
+		Captain.MAX_NUMBER_OF_ACTIONS = 4;
 	
 	}
 	

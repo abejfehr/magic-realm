@@ -2,6 +2,8 @@ package com.magicrealm.common.model.map;
 
 import java.util.ArrayList;
 
+import com.magicrealm.chit.Chit;
+import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.model.hextile.AwfulValley;
 import com.magicrealm.common.model.hextile.BadValley;
@@ -101,8 +103,28 @@ public abstract class MapFactory {
 		//chapel.setLocation("AV5");
 		dwellings.add(chapel);
 
+		ArrayList<Chit> chits   = new ArrayList<Chit>();
+		Chit            newChit = null;
+		for(int i=0;i<Config.MAX_NUM_CHITS;i++){
+			if(i<5){
+				newChit =  new Chit("V");
+			}
+			else if(i<10){
+				newChit =  new Chit("C");
+			}
+			else if(i<15){
+				newChit =  new Chit("W");
+			}
+			else if(i<20){
+				newChit =  new Chit("M");
+			}			
+			chits.add(newChit);
+		}
+		
+		
 		m.setTiles(tiles);
 		m.setDwellings(dwellings);
+		m.setChits(chits);
 		
 		return m;
 	}
