@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 
+import com.magicrealm.chit.Chit;
 import com.magicrealm.common.Config;
 import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.Player;
@@ -25,6 +26,7 @@ public class Map {
 	private HexTile[][] tiles;
 	private ArrayList<Dwellings> dwellings = new ArrayList<Dwellings>();
 	private ArrayList<Player> players = new ArrayList<Player>();
+	private ArrayList<Chit>   chits   = new ArrayList<Chit>();
 	private boolean moveMode;
 		
 	/*
@@ -301,6 +303,15 @@ public class Map {
 	
 	public boolean isInMoveMode() {
 		return moveMode;
+	}
+
+	public ArrayList<Chit> getChits() {
+		
+		return chits;
+	}
+	
+	public void setChits(ArrayList<Chit> chitList) {
+		chits = chitList;
 	}
 
 	

@@ -23,6 +23,7 @@ public class BlackKnight extends Character{
 		this.setStartingPoint();
 		this.weapon = new Mace();
 		this.location = startingPoint.getLocation();
+		BlackKnight.MAX_NUMBER_OF_ACTIONS = 4;
 	} 
 	
     // no-args for serialization
@@ -33,6 +34,7 @@ public class BlackKnight extends Character{
 		this.setStartingPoint();
 		this.weapon = new Mace();
 		this.location = startingPoint.getLocation();
+		BlackKnight.MAX_NUMBER_OF_ACTIONS = 4;
 		
 	}
 	

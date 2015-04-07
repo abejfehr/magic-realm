@@ -20,7 +20,7 @@ import com.magicrealm.server.controller.GameController;
 @SuppressWarnings("serial")
 public class PeriodInfoPanel extends JPanel {
 
-	private Player player;
+	//private Player player;
 	private JLabel periodLabel = new JLabel();
 	private JLabel infoLabel = new JLabel();
 	
@@ -30,7 +30,7 @@ public class PeriodInfoPanel extends JPanel {
 	 * @see             Player
 	 */
 	public PeriodInfoPanel(Player player) {
-		this.player = player;
+		//this.player = player;
 		
 		initPanel();
 	}

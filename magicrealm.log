@@ -280,3 +280,403 @@ Fri Apr 03 13:32:29 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
 Fri Apr 03 13:32:29 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
 Fri Apr 03 13:32:35 EDT 2015 3[null] The GAME_STARTED event has been fired
 
+Fri Apr 03 15:11:35 EDT 2015 3[kryonet] Server opened.
+Fri Apr 03 15:11:36 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Fri Apr 03 15:11:36 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Fri Apr 03 15:11:36 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Fri Apr 03 15:11:46 EDT 2015 3[null] The GAME_STARTED event has been fired
+Fri Apr 03 15:15:30 EDT 2015 3[kryonet] Server opened.
+Fri Apr 03 15:15:30 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Fri Apr 03 15:15:30 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Fri Apr 03 15:15:30 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Fri Apr 03 15:15:38 EDT 2015 3[null] The GAME_STARTED event has been fired
+Fri Apr 03 15:18:46 EDT 2015 3[kryonet] Server opened.
+Fri Apr 03 15:18:47 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Fri Apr 03 15:18:47 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Fri Apr 03 15:18:47 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Fri Apr 03 15:18:54 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 12:49:33 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 12:49:34 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 12:49:34 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 12:49:34 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 12:49:44 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 12:53:43 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 12:53:43 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 12:53:43 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 12:53:43 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 12:54:02 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 12:54:02 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 12:54:02 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 12:54:14 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 12:54:14 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:00:05 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 13:14:38 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:14:38 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:14:38 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:14:38 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:14:51 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 13:15:44 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:15:44 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:15:44 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:15:44 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:16:02 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:16:14 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 13:16:14 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 13:16:52 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:16:53 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:16:53 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:16:53 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:17:00 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:21:41 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:21:41 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:21:41 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:21:42 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:21:54 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:23:10 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:23:10 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:23:10 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:23:10 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:23:18 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:27:04 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:27:04 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:27:05 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:27:05 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:27:13 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:32:33 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:32:33 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:32:33 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:32:33 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:32:40 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:33:47 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:33:48 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:33:48 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:33:48 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:34:07 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:34:07 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 13:34:07 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 13:34:19 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:34:19 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:37:32 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 13:38:31 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 13:38:32 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:38:32 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:38:32 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 13:38:44 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 13:38:44 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 13:38:44 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 13:38:58 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:38:58 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 13:47:55 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 14:14:06 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:14:06 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:14:06 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:14:06 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:14:16 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:19:03 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:19:03 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:19:03 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:19:03 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:19:10 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:22:10 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:22:10 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:22:10 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:22:10 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:22:16 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:23:59 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:23:59 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:23:59 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:23:59 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:24:09 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:30:51 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:30:52 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:30:52 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:30:52 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:30:59 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:35:27 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:35:27 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:35:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:35:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:35:34 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:41:01 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:41:01 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:41:01 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:41:01 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:41:07 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:42:29 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:42:29 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:42:29 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:42:29 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:42:36 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:52:16 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:52:16 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:52:16 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:52:16 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:52:26 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:52:38 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 14:57:01 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:57:01 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:57:01 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:57:01 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:57:07 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:57:20 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 14:59:13 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 14:59:13 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 14:59:13 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:59:13 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 14:59:19 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 14:59:31 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 15:00:22 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 15:00:22 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:00:22 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:00:22 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:00:28 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:05:02 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 15:05:02 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:05:02 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:05:02 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:05:10 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:05:22 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 15:05:50 EDT 2015 3[kryonet] Server closed.
+Mon Apr 06 15:05:56 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 15:05:56 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:05:56 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:05:56 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:06:03 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:31:26 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 15:31:27 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:31:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:31:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:31:51 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:31:51 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 15:31:51 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 15:32:09 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:32:09 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:33:43 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 15:37:23 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 15:37:23 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:37:23 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:37:23 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:37:37 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:37:37 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 15:37:37 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 15:37:48 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:37:48 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:49:56 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 15:52:27 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 15:52:27 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:52:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:52:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 15:52:48 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 15:52:48 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 15:52:49 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 15:53:01 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 15:53:02 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:02:24 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 16:02:36 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 16:02:36 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:02:36 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:02:36 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:02:51 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:02:51 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:02:51 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:03:01 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:03:02 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:16:19 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 16:16:36 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 16:16:36 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:16:36 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:16:36 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:16:47 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:16:47 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:16:47 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:17:07 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:17:08 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:29:31 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 16:30:46 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 16:30:46 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:30:46 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:30:46 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:30:58 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:30:58 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:30:58 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:31:09 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:31:11 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:34:30 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 16:37:35 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 16:37:35 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:37:35 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:37:35 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:37:45 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:37:45 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:37:45 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:37:57 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:37:58 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:40:24 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 16:43:09 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 16:43:09 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:43:09 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:43:09 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 16:43:19 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 16:43:19 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:43:19 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 16:43:32 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 16:43:33 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 17:00:32 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 17:00:32 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 17:00:32 EDT 2015 3[kryonet] Connection 2 disconnected.
+Mon Apr 06 17:00:32 EDT 2015 3[kryonet] Connection 1 disconnected.
+Mon Apr 06 17:05:42 EDT 2015 3[kryonet] Server opened.
+Mon Apr 06 17:05:43 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 17:05:43 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 17:05:43 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Mon Apr 06 17:05:58 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Mon Apr 06 17:05:58 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 17:05:58 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Mon Apr 06 17:06:11 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 17:06:12 EDT 2015 3[null] The GAME_STARTED event has been fired
+Mon Apr 06 17:07:25 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 13:37:33 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 13:37:34 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 13:37:34 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 13:37:34 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 13:37:44 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:09:42 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 14:09:42 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:09:42 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:09:42 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:10:03 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:10:03 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:10:03 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:10:15 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:10:16 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:11:59 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 14:12:22 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 14:12:22 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:12:22 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:12:22 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:12:45 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:12:45 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:12:45 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:13:06 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:13:07 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:17:40 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 14:18:00 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 14:18:00 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:18:00 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:18:00 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:18:11 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:18:11 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:18:11 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:18:21 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:18:22 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:27:12 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 14:54:03 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 14:54:03 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:54:03 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:54:03 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:54:09 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:54:09 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:54:09 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:54:27 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:54:28 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:56:05 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 14:58:05 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 14:58:05 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:58:05 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:58:06 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:58:16 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:58:16 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:58:16 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:58:29 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:58:30 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:59:05 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 14:59:17 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 14:59:17 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:59:17 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:59:17 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 14:59:40 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 14:59:40 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:59:40 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 14:59:49 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 14:59:50 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:00:25 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:00:43 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:00:43 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:00:43 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:00:43 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:00:53 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:00:53 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:00:53 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:01:09 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:01:10 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:01:36 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:01:52 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:01:52 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:01:52 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:01:52 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:01:58 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:01:58 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:01:58 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:02:24 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:02:25 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:03:05 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:04:06 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:04:06 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:04:06 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:04:06 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:04:16 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:04:16 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:04:16 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:04:29 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:04:30 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:04:52 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:05:09 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:05:09 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:05:09 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:05:09 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:05:22 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:05:22 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:05:22 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:05:35 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:05:36 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:07:26 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:09:26 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:09:27 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:09:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:09:27 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:09:36 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:09:36 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:09:36 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:09:49 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:09:50 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:10:16 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:10:37 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:10:37 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:10:37 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:10:37 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:10:47 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:10:47 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:10:47 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:11:03 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:11:04 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:14:55 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:17:10 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:17:11 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:17:11 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:17:11 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:17:26 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:17:26 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:17:26 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:17:37 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:17:38 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:17:58 EDT 2015 3[kryonet] Connection 2 disconnected.
+Tue Apr 07 15:18:14 EDT 2015 3[kryonet] Server opened.
+Tue Apr 07 15:18:14 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:18:14 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:18:14 EDT 2015 3[kryonet] Connection 1 connected: /127.0.0.1
+Tue Apr 07 15:18:25 EDT 2015 3[kryonet] Connecting: /127.0.0.1:54321
+Tue Apr 07 15:18:25 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:18:25 EDT 2015 3[kryonet] Connection 2 connected: /127.0.0.1
+Tue Apr 07 15:18:38 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:18:39 EDT 2015 3[null] The GAME_STARTED event has been fired
+Tue Apr 07 15:21:44 EDT 2015 3[kryonet] Connection 2 disconnected.

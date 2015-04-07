@@ -21,8 +21,11 @@ import com.magicrealm.common.Dwellings;
 import com.magicrealm.common.VictoryCondition;
 import com.magicrealm.common.Vulnerability;
 import com.magicrealm.common.model.hextile.HexTile;
-import com.magicrealm.common.model.path.Clearing;
+import com.magicrealm.common.network.NetworkController;
+import com.magicrealm.common.packet.PlayerList;
+import com.magicrealm.common.packet.TurnFinishedPacket;
 import com.magicrealm.common.weapon.Weapon;
+import com.magicrealm.server.controller.GameController;
 
 public abstract class Character {
 	
@@ -39,6 +42,11 @@ public abstract class Character {
 	protected Dwellings        startingPoint;
 	protected String           location;
 	protected HexTile          currentHexTile;
+	protected boolean          hidden;
+	protected int              numberOfActions;
+	protected boolean          finishedDaylight;
+	protected static int       MAX_NUMBER_OF_ACTIONS = 4;
+	protected int              healthPoints;
 	//Armour
 	//Combat chits
 	//List of active chits
@@ -64,6 +72,9 @@ public abstract class Character {
     	this.notorietyPoints = 0;
     	this.famePoints      = 0;
     	this.spellPoints     = 0;
+    	this.numberOfActions = 0;
+    	this.finishedDaylight= false;
+    	this.healthPoints    = 12;
     	this.location        = null;
     	
     }
@@ -80,6 +91,9 @@ public abstract class Character {
     	this.notorietyPoints = 0;
     	this.famePoints      = 0;
     	this.spellPoints     = 0;
+    	this.numberOfActions = 0;
+    	this.finishedDaylight= false;
+    	this.healthPoints    = 12;
     	this.location        = null;
     	
     }
@@ -103,8 +117,12 @@ public abstract class Character {
 		double newY = y + centerY + (oX-centerX)*Math.sin(rotation) + (oY-centerY)*Math.cos(rotation);
 
 		// Draw a single tile
-		ScreenController.paint(g, Config.CHARACTER_CHIT_IMAGE_LOCATION + imageFilename, (int)(newX - characterCenterX), (int)(newY - characterCenterY), 0);
-    	
+		if (hidden == false){
+			ScreenController.paint(g, Config.CHARACTER_CHIT_IMAGE_LOCATION + imageFilename, (int)(newX - characterCenterX), (int)(newY - characterCenterY), 0);
+		}
+		else{
+			ScreenController.paint(g, Config.HIDDEN_CHARACTER_IMAGE_LOCATION + imageFilename, (int)(newX - characterCenterX), (int)(newY - characterCenterY), 0);
+		}
     }
     
     /*
@@ -119,8 +137,13 @@ public abstract class Character {
     public  int              getNotorietyPoints()  { return notorietyPoints; }
     public  int              getTreasurePoints()   { return treasurePoints; }
     public  int              getSpellPoints()      { return spellPoints; }
+    public  int              getHealthPoints()     { return healthPoints; }
+    public  int              getNumberOfActions()  { return numberOfActions; }
     public  VictoryCondition getVictoryCondition() { return victoryCondition; }
-    public  String           getLocation()         { return location; } 
+    public  String           getLocation()         { return location; }
+    public  String           getName()             { return name; }
+    public  boolean          isHidden()            { return hidden; }
+    public  boolean          isDaylightOver()      { return finishedDaylight; }
     
     public  Dwellings getStartingPoint()                    { return startingPoint; }
     public  void      setStartingPoint()                    { startingPoint = new Dwellings(Dwellings.INN); }
@@ -137,5 +160,25 @@ public abstract class Character {
 		location = code;
 		
 	}
+	public void hide(){ hidden = true; }
+	public void unhide() { hidden = false; }
+	public void actionPerformed() {
+		numberOfActions++;
+		System.out.println("Number of actions performed: " + numberOfActions);
+		if (numberOfActions == MAX_NUMBER_OF_ACTIONS){
+			finishedDaylight  = true;
+		}
+	}
+
+	public void resetDaylight() {		
+		finishedDaylight = false;
+		numberOfActions  = 0;		
+	}
+
+	public void takeDamage(int damage) {
+		healthPoints -= damage;		
+	}
+
+	
     
 }

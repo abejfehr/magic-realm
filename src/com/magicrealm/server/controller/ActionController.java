@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import com.magicrealm.common.die.Die;
 import com.magicrealm.common.model.hextile.HexTile;
 import com.magicrealm.common.model.path.Clearing;
 import com.magicrealm.common.model.path.Edge;
@@ -11,6 +12,7 @@ import com.magicrealm.common.model.path.Node;
 import com.magicrealm.common.network.NetworkController;
 import com.magicrealm.common.packet.MapPacket;
 import com.magicrealm.common.packet.PlayerList;
+import com.magicrealm.common.packet.TurnFinishedPacket;
 
 public class ActionController {
 	
@@ -136,8 +138,14 @@ public class ActionController {
 			System.out.println(l);
 			PlayerList newPlayerList = new PlayerList();
 			
+			GameController.myself().getCharacter().actionPerformed();
+			System.out.println("Player has made " + GameController.myself().getCharacter().getNumberOfActions() + " Action.");
 			//Updates players location then sends a new playerlist to the server
 			GameController.myself().getCharacter().setLocation(l);
+			
+			if(GameController.myself().getCharacter().isHidden()){
+				GameController.myself().getCharacter().unhide();
+			}
 			newPlayerList.setPlayers(GameController.getPlayerHashMap());
 			NetworkController.sendToServer(newPlayerList);
 
@@ -149,6 +157,12 @@ public class ActionController {
 			
 			System.out.println(GameController.myself().getCharacter() + " moved to " + l);
 			System.out.println(GameController.myself().getCharacter().getLocation());
+			
+			if (GameController.myself().getCharacter().isDaylightOver()){
+				NetworkController.sendToServer(new TurnFinishedPacket());
+			}
+			
+
 		}
 		else {
 			System.out.println("Character Move Cancelled");
@@ -161,9 +175,38 @@ public class ActionController {
 	public void hideCharacter(){
 		
 		// Confirm that character is now hiding
-		System.out.println(GameController.myself().getCharacter() + " is now hiding.");
+		GameController.myself().getCharacter().actionPerformed();
+		System.out.println("Player has made " + GameController.myself().getCharacter().getNumberOfActions() + " Action.");
+		Die die = new Die();
+		System.out.println("Dice roll: " + die.getCurrentNumber());
+		int dieRoll = die.getCurrentNumber();
 		
-		// Change character image
+		if (dieRoll == 6){
+				System.out.println("You failed to hide!");
+		}
+		else{
+			GameController.myself().getCharacter().hide();
+			System.out.println(GameController.myself().getCharacter() + " is now hiding.");
+			
+			PlayerList newPlayerList = new PlayerList();
+				
+			//Updates players location then sends a new playerlist to the server
+			newPlayerList.setPlayers(GameController.getPlayerHashMap());
+			NetworkController.sendToServer(newPlayerList);
+
+				//Updates the gamecontrollers map, then sends the new map to the server
+			GameController.getMap().setPlayerList(GameController.getPlayerList());
+			MapPacket newMap = new MapPacket(GameController.getMap());
+		    System.out.println("sending to server request map packet");
+			NetworkController.sendToServer(newMap);
+			
+			if (GameController.myself().getCharacter().isDaylightOver()){
+				NetworkController.sendToServer(new TurnFinishedPacket());//(TurnFinishedPacket.class);
+			}
+			
+				
+		}
+		
 		
 	}
 

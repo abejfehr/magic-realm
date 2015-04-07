@@ -21,6 +21,7 @@ public class Dwarf extends Character{
 		
 		super(Vulnerability.HEAVY, name, "dwarf.png");
 		this.weapon = new GreatAxe();
+		Dwarf.MAX_NUMBER_OF_ACTIONS = 4;
 	
 	}
 	
@@ -31,7 +32,7 @@ public class Dwarf extends Character{
 		super(Vulnerability.HEAVY, "new dwarf", "dwarf.png");
 		this.setStartingPoint();
 		this.weapon = new GreatAxe();
-	
+		Dwarf.MAX_NUMBER_OF_ACTIONS = 4;
 	}
 	
 	/*

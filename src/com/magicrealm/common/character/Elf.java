@@ -23,6 +23,7 @@ public class Elf extends Character{
 		this.setStartingPoint();
 		this.weapon = new LightBow();
 		this.location = startingPoint.getLocation();
+		Elf.MAX_NUMBER_OF_ACTIONS = 4;
 
 	}
 	
@@ -34,6 +35,7 @@ public class Elf extends Character{
 		this.setStartingPoint();
 		this.weapon = new LightBow();
 		this.location = startingPoint.getLocation();
+		Elf.MAX_NUMBER_OF_ACTIONS = 4;
 		
 	}
 	

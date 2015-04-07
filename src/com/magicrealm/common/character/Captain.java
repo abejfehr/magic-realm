@@ -21,6 +21,7 @@ public class Captain extends Character{
 		
 		super(Vulnerability.MEDIUM, name, "captain.png");
 		this.weapon = new ShortSword();
+		Captain.MAX_NUMBER_OF_ACTIONS = 4;
 		
 	}
 	
@@ -29,6 +30,7 @@ public class Captain extends Character{
 	public Captain(){ 
 		super(Vulnerability.MEDIUM, "new captain", "captain.png");
 		this.weapon = new ShortSword();
+		Captain.MAX_NUMBER_OF_ACTIONS = 4;
 	}
 	
 	/*
